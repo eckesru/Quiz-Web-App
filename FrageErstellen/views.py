@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-#from .models import KLASSENNAME # Hier Model importieren!!
+# from .models import KLASSENNAME # Hier Model importieren!!
 
 
 # Create your views here.
@@ -10,4 +10,4 @@ def index(request):
     context = {
         "name": "Jambo",
     }
-    return HttpResponse(template.render(context, request)) 
+    return HttpResponse(template.render(context, request))
