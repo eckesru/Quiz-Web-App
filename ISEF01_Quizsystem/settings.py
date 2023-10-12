@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "Core",
+    "Register",
+    "Login",
     "FrageErstellen"
 ]
 
@@ -77,12 +80,21 @@ WSGI_APPLICATION = 'ISEF01_Quizsystem.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': config('DB_NAME'),
+    'HOST': config('DB_HOST'),
+    'PORT': config('DB_PORT'),
+    'USER': config('DB_USER'),
+    'PASSWORD': config('DB_PASSWORD'),
+    'OPTIONS': {'ssl': {'disabled': True},
+                'charset': 'utf8mb4'}
+  }
 }
 
+
+# User validation
+AUTH_USER_MODEL = 'Core.Benutzer'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
