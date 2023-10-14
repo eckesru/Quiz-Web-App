@@ -8,13 +8,18 @@
 <body>
     <h2>Login</h2>
     <form id="loginFormular">
+        <!-- Eingabefeld für E-Mail -->
         <label for="email">E-Mail:</label>
         <input type="email" id="email" required>
         
+        <!-- Eingabefeld für Passwort -->
         <label for="passwort">Passwort:</label>
-        <input type="passwort" id="passwort" required>
-        
+        <input type="password" id="passwort" required>
+               
         <button type="submit" id="einloggenButton">Einloggen</button>
+
+        <div id="fehlermeldung" class="meldung"></div>
+        <div id="erfolgsmeldung" class="meldung"></div>
     </form>
     <script src="login.js"></script>
 </body>

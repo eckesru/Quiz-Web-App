@@ -57,3 +57,17 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.meldung {
+    display: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#fehlermeldung {
+    color: red;
+}
+
+#erfolgsmeldung {
+    color: green;
+}
