@@ -29,6 +29,38 @@ document
     const email = document.getElementById("email").value;
     const passwort = document.getElementById("passwort").value;
 
+    /*
+    // AJAX-Anfrage an das Django-Backend
+    const url = "/auth/login/";  // Django-Authentifizierungs-URL an
+    const data = {
+        email: email,
+        passwort: passwort
+    };
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Erfolgreiche Anmeldung
+            console.log("Login erfolgreich!");
+            zeigeErfolgsmeldung();
+            window.location.href = "frage.html";
+        } else {
+            // Fehlgeschlagene Anmeldung
+            console.error("Anmeldung fehlgeschlagen. Bitte überprüfe deine Eingaben.");
+            zeigeFehlermeldung();
+        }
+    })
+    .catch(error => console.error("Fehler beim Senden der Anmeldeanfrage:", error));
+});
+    */
+
     // Provisorische Prüfung des Logins
     if (email === "example@example.com" && passwort === "password123") {
       // Erfolgreiche Anmeldung
