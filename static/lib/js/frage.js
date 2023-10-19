@@ -1,4 +1,5 @@
-// Formular zum Fragen erstellen abrufen
+ /*
+ // Formular zum Fragen erstellen abrufen
 const frageErstellenFormular = document.getElementById(
   "frageErstellenFormular"
 );
@@ -20,10 +21,10 @@ frageSpeichernButton.addEventListener("click", function () {
   console.log("Fragetext", frageText);
   console.log("Tag", frageTag);
   console.log("Modul", frageModul);
-  console.log("Erstelldatum Frage", frageErstelldatum);
+//()  console.log("Erstelldatum Frage", frageErstelldatum);
 
   //Daten an Django senden
-  fetch("/speichere_frage/", {
+  fetch("/FrageErstellen/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,6 +47,17 @@ frageSpeichernButton.addEventListener("click", function () {
       console.error("Fehler beim Senden der Daten", error);
     });
 });
+*/
+
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("frageSpeichernButton").addEventListener("click", function(e){
+      const frageTitel = document.getElementById("frageTitel").value;
+      var frageText = tinymce.get("frageText").getContent();
+      const frageTag = document.getElementById("frageTag").value;
+      const frageModul = document.getElementById("frageModul").value;
+  });
+});
+
 
 // TinyMCE um aus dem Fragetext ein Rich Text Editor zu machen
 tinymce.init({

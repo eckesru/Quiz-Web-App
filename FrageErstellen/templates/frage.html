@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/tinymce/tinymce.min.js"></script>
+    <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
     <link rel="stylesheet" href="/static/lib/css/styles.css">
     <title>Frage erstellen</title>
 </head>
 <body>
     <div id="frageErstellen">
         <h2>Frage erstellen</h2>
-        <form id="frageErstellenFormular">
+        <form id="frageErstellenFormular" method="post" action="/FrageErstellen/">
+            {% csrf_token %}
             <label for="frageTitel">Fragetitel:</label>
-            <input type="text" id="frageTitel" required minlength="6" maxlength="150" placeholder="Kurzer und aussagekräftiger Titel" />
+            <input type="text" id="frageTitel" name="frageTitle" required minlength="6" maxlength="150" placeholder="Kurzer und aussagekräftiger Titel" />
     
             <label for="frageText">Fragetext:</label>
-            <textarea id="frageText" required placeholder="Bitte stellen Sie Ihre Frage in vollständiger Form dar."></textarea>
+            <textarea id="frageText" name="frageText" placeholder="Bitte stellen Sie Ihre Frage in vollständiger Form dar."></textarea>
     
             <label for="frageTag">Tag:</label>
-            <select id="frageTag">
+            <select id="frageTag" name="frageTag">
                 <option value="architektur-bau">Architektur & Bau</option>
                 <option value="design-medien">Design & Medien</option>
             </select>
     
             <label for="frageModul">Modul:</label>
-            <select id="frageModul">
+            <select id="frageModul" name="frageModul">
                 <option value="DLBWIEWI01">DLBWIEWI01</option>
                 <option value="BBWL01-01">BBWL01-01</option>
             </select>
     
-            <button type="button" id="frageSpeichernButton">Frage speichern</button>
+            <button  type="submit" id="frageSpeichernButton">Frage speichern</button>
         </form>
     </div>
-    <script src="/FrageErstellen/templates/frage.js"></script>
+    <script src="/static/lib/js/frage.js"></script>
 </body>
 </html>
