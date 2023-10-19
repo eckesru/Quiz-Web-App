@@ -9,7 +9,7 @@ from Core.models import Frage
 def frage(request):
     if request.method == 'POST': # Prüfen, ob es sich bei dem Aufruf um POST handelt
         user = request.user
-        tags = request.POST.get('frageTag')
+        tags = request.POST.getlist('frageTags')
         module = request.POST.get('frageModul')
         title = request.POST.get('frageTitel')
         text = request.POST.get('frageText')
