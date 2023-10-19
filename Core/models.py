@@ -21,8 +21,8 @@ class Benutzer(AbstractUser):
 
 class Frage(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
-    user_id = models.ForeignKey("Benutzer",
-                                on_delete=models.DO_NOTHING)
+    user = models.ForeignKey("Benutzer",
+                             on_delete=models.DO_NOTHING)
     # on_delete=models.CASCADE -> PlanetBase unterstützt keine Constraints
     # bzw. referenzielle Integrität aufgrund Performancefokus
     # db_constraint=False -> Falls Migrationsprobleme, wieder reinnehmen
@@ -33,6 +33,14 @@ class Frage(models.Model):
     module = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     text = models.TextField()
+
+    def __init__(self, user, _tags, module, title, text):
+        super().__init__()
+        self.user = user
+        self.tags = _tags
+        self.module = module
+        self.title = title
+        self.text = text
 
     class Meta:
         managed = False
