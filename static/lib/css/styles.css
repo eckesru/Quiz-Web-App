@@ -63,10 +63,6 @@ textarea {
     height: 150px;
 }
 
-select {
-    height: 40px;
-}
-
 #frageSpeichernButton, #einloggenButton {
     width: 100%;
     padding: 10px 20px;
@@ -94,9 +90,4 @@ button:hover {
 
 #erfolgsmeldung {
     color: green;
-}
-
-ul{
-    /*to-do
-    */
 }

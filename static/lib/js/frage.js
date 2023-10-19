@@ -18,6 +18,3 @@ tinymce.init({
   width: "100%",
   height: 300,
 });
-
-// Prüfung ob JavaScript vollständig geladen wurde
-console.log("frage.js wurde geladen.");
