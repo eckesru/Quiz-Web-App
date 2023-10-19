@@ -12,7 +12,13 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit"id="einloggenButton">Einloggen</button>
-        <div id="fehlermeldung" class="meldung"></div>
+        <div id="fehlermeldung" class="meldung">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div id="erfolgsmeldung" class="meldung"></div>
     </form>
     <script src="login.js"></script>

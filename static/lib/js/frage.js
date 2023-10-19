@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 });
 
-
 // TinyMCE um aus dem Fragetext ein Rich Text Editor zu machen
 tinymce.init({
   selector: "#frageText",
