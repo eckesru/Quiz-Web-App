@@ -6,10 +6,10 @@ from Core.models import Frage
 
 
 # Create your views here.
-def index(request):
+def frage(request):
     user = request.user
     username = user.username
-    template = loader.get_template("index.html")
+    template = loader.get_template("frage.html")
     context = {
         "username": username,
     }
