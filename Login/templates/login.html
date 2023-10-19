@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> 
     <title>Login</title>
 </head>
 <body>
     <h2>Login</h2>
-    <form method="post">
+    <form method="post" id="loginFormular">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit"id="einloggenButton">Einloggen</button>
+        <div id="fehlermeldung" class="meldung"></div>
+        <div id="erfolgsmeldung" class="meldung"></div>
     </form>
 </body>
 </html>

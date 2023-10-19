@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       logoutButton.style.display = "block"; // Zeige die Logout-Schaltfläche
     } else {
       // Der Benutzer ist nicht angemeldet
-      loggedInStatusElement.textContent = "Nicht angemeldet";
+      window.location.href = "login.html";
       logoutButton.style.display = "none"; // Verstecke die Logout-Schaltfläche
     }
   }
