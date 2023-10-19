@@ -1,3 +1,28 @@
+#loggedInStatus {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#loginLogoutButton {
+    display: flex;
+    justify-content: flex-end;
+}
+#logoutButton {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+  
+  #logoutButton:hover {
+    background-color: #cc0000;
+}
+  
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -42,7 +67,7 @@ select {
     height: 40px;
 }
 
-button {
+#frageSpeichernButton, #einloggenButton {
     width: 100%;
     padding: 10px 20px;
     margin-top: 20px;

@@ -65,6 +65,10 @@ document
     if (email === "example@example.com" && passwort === "password123") {
       // Erfolgreiche Anmeldung
       console.log("Login erfolgreich!");
+
+      // Speichern der Anmeldeinformationen im localStorage
+      localStorage.setItem("loggedInUser", email);
+
       zeigeErfolgsmeldung();
 
       // Weiterleitung zur frage.html nach einer kurzen Verzögerung
