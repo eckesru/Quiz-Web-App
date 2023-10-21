@@ -57,8 +57,9 @@ body {
     width: 100%;
 }
 
-main {
+.main {
     flex-grow: 1;
+    margin-top: 120px;
 }
 
 .footer {
@@ -78,11 +79,11 @@ main {
     margin-right: 20px;
 }
 
-#copyright {
+.footer p {
     font-size: 10px;
 }
 
-/* Login und Frage Formular */
+/* Login Formular */
 h2 {
     text-align: center;
 }
@@ -94,11 +95,13 @@ form {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 label {
     display: block;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 input, textarea, select {
@@ -109,15 +112,11 @@ input, textarea, select {
     margin-bottom: 10px;
 }
 
-input, textarea {
-    width: 96%;
-}
-
 textarea {
     height: 150px;
 }
 
-#frageSpeichernButton, #einloggenButton {
+#frageSpeichernButton {
     width: 100%;
     padding: 10px 20px;
     margin-top: 20px;
@@ -127,21 +126,9 @@ textarea {
     border-radius: 3px;
     cursor: pointer;
     font-size: 18px;
+    transition: background-color 0.3s;
 }
 
-button:hover {
+#frageSpeichernButton:hover {
     background-color: #0056b3;
-}
-
-.meldung {
-    display: none;
-    margin-top: 20px;
-}
-
-#fehlermeldung {
-    color: red;
-}
-
-#erfolgsmeldung {
-    color: green;
 }

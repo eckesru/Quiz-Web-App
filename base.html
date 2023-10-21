@@ -10,7 +10,6 @@
 </head>
 <body>
     <header class="header">
-        <!-- Header-Inhalt hier, wie Logo, Menü, etc. -->
         <img src="/static/lib/images/logo.png" alt="Logo" class="logo" height="100">
         <nav class="navbar">
             <a href="#">Home</a>
@@ -20,7 +19,7 @@
             <a href="#">Quiz</a>
         </nav>
     </header>
-    <main>
+    <main class="main">
         <div class="content">
             {% block content %}{% endblock %}
         </div>
@@ -32,8 +31,7 @@
         <a href="">Datenschutz</a>
         <br>
         <br>
-        <p id="copyright">&copy; 2023 IU Internationale Hochschule - Alle Rechte vorbehalten</p>
+        <p>&copy; 2023 IU Internationale Hochschule - Alle Rechte vorbehalten</p>
     </footer>
-    <!-- Footer und Skripte hier -->
 </body>
 </html>
