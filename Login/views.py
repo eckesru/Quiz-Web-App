@@ -11,7 +11,8 @@ def login_view(request):
             login(request, user)
             messages.success(request, 'Login erfolgreich.')
             return redirect("/FrageErstellen/")
+        else:
+            messages.error(request, 'Login fehlgeschlagen')
     else:
-        messages.success(request, 'Login fehlgeschlagen.')
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
