@@ -19,6 +19,26 @@ class Benutzer(AbstractUser):
         db_table = "Benutzer"
 
 
+class Tag(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
+    str_id = models.CharField(max_length=255)
+    text = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = "Tag"
+
+
+class Modul(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
+    str_id = models.CharField(max_length=255)
+    text = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = "Modul"
+
+
 class Frage(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     user = models.ForeignKey("Benutzer",
@@ -29,30 +49,23 @@ class Frage(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     last_edited = models.DateTimeField(auto_now=True)
     flagged = models.BooleanField(default=0)
-    _tags = models.TextField(db_column="tags")
-    module = models.CharField(max_length=255)
+    tag = models.ManyToManyField(Tag)
+    module = models.ForeignKey("Modul",
+                               on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255)
     text = models.TextField()
-
-    def __init__(self, user, _tags, module, title, text):
-        super().__init__()
-        self.user = user
-        self.tags = _tags
-        self.module = module
-        self.title = title
-        self.text = text
 
     class Meta:
         managed = False
         db_table = "Frage"
 
-    @property
-    def tags(self):
-        return self._tags.split(",")
+#    @property
+#    def tags(self):
+#        return self._tags.split(",")
 
-    @tags.setter
-    def tags(self, tags_list):
-        self._tags = ",".join(tags_list)
+#    @tags.setter
+#    def tags(self, tags_list):
+#        self._tags = ",".join(tags_list)
 
 
 class Kommentar(models.Model):
@@ -65,7 +78,6 @@ class Kommentar(models.Model):
 
 class Antwort(models.Model):
     pass
-
 
     class Meta:
         managed = False

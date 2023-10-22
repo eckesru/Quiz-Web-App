@@ -3,11 +3,11 @@
     <div id="frageErstellen">
         <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
         <script src="/static/lib/js/frage.js"></script>
-        <form id="frageErstellenFormular" method="post" action="/FrageErstellen/">
+        <form id="frageErstellenFormular" method="post">
             <h2>Frage erstellen</h2><br>
             {% csrf_token %}
             <label for="frageTitel">Fragetitel:</label>
-            <input type="text" id="frageTitel" name="frageTitle" required minlength="6" maxlength="150" placeholder="Kurzer und aussagekräftiger Titel" />
+            <input type="text" id="frageTitel" name="frageTitel" required minlength="6" maxlength="150" placeholder="Kurzer und aussagekräftiger Titel" />
     
             <label for="frageText">Fragetext:</label>
             <textarea id="frageText" name="frageText" placeholder="Bitte stellen Sie Ihre Frage in vollständiger Form dar."></textarea>
@@ -15,14 +15,14 @@
             <label for="frageTags">Tag:</label>
             <select id="frageTags" name="frageTags" multiple size="5">
                 {% for tag in tag_choices %}
-                <option value="{{ tag.name }}">{{ tag.name }}</option>
+                <option value="{{ tag.str_id }}">{{ tag.text }}</option>
                 {% endfor %}
             </select>
     
             <label for="frageModul">Modul:</label>
             <select id="frageModul" name="frageModul">
                 {% for modul in module_choices %}
-                <option value="{{ modul.name }}">{{ modul.name }}</option>
+                <option value="{{ modul.str_id }}">{{ modul.text }}</option>
                 {% endfor %}
             </select>
     
