@@ -14,16 +14,16 @@
     
             <label for="frageTags">Tag:</label>
             <select id="frageTags" name="frageTags" multiple size="5">
-                <option value="architektur-bau">Architektur & Bau</option>
-                <option value="design-medien">Design & Medien</option>
-                <option value="gesundheit-soziales">Gesundheit & Soziales</option>
-                <option value="it-technik">IT & Technik</option>
+                {% for tag in tag_choices %}
+                <option value="{{ tag.name }}">{{ tag.name }}</option>
+                {% endfor %}
             </select>
     
             <label for="frageModul">Modul:</label>
             <select id="frageModul" name="frageModul">
-                <option value="DLBWIEWI01">DLBWIEWI01</option>
-                <option value="BBWL01-01">BBWL01-01</option>
+                {% for modul in module_choices %}
+                <option value="{{ modul.name }}">{{ modul.name }}</option>
+                {% endfor %}
             </select>
     
             <button  type="submit" id="frageSpeichernButton">Frage speichern</button>
