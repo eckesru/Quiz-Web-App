@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
-from Core.models import Frage, Modul, Tag  # from .models import KLASSENNAME, Hier Models importieren!
+from Core.models import Frage, Modul, Tag
+# from .models import KLASSENNAME, Hier Models importieren!
 
-from django.contrib.auth.decorators import login_required  # Zur Umleitung auf /login/ benötigt
-@login_required(login_url='/login/') # Leitet User zum Login, wenn nicht eingeloggt
+from django.contrib.auth.decorators import login_required
+# Zur Umleitung auf /login/ benötigt
 
 
+@login_required(login_url='/login/')
+# Leitet User zum Login, wenn nicht eingeloggt
 # Create your views here.
 def frage_erstellen_view(request):
-    if request.method == 'POST': # Prüfen, ob es sich bei dem Aufruf um POST handelt
+    if request.method == 'POST':
+        # Prüfen, ob es sich bei dem Aufruf um POST handelt
         user = request.user
 
         selected_tags_str_ids = request.POST.getlist('frageTags')
