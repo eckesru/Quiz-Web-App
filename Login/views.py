@@ -11,7 +11,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, 'Login erfolgreich.')
-            return redirect("/FrageErstellen/")
+            return redirect("/frage-erstellen/")
         else:
             messages.error(request, 'Login fehlgeschlagen')
     else:

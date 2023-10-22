@@ -13,19 +13,30 @@ from django.contrib.auth.decorators import login_required
 def frage(request):
     if request.method == 'POST': # Prüfen, ob es sich bei dem Aufruf um POST handelt
         user = request.user
-        tags = request.POST.getlist('tags')
-        tag_list = []
-        for tag in tags:
-            tag_list.append(Tag(tag.id, tag.str_id, tag.text))
-        module = Modul(request.POST.get('modul.id'), request.POST.get('modul.str_id'), request.POST.get('modul.text'))
+
+        selected_tags_str_ids = request.POST.getlist('frageTags')
+        selected_tags = Tag.objects.filter(str_id__in=selected_tags_str_ids)
+        print(selected_tags)
+        module_str_id = request.POST.get('frageModul')
+        module = Modul.objects.get(str_id=module_str_id)
+
         title = request.POST.get('frageTitel')
         text = request.POST.get('frageText')
-        frage = Frage(user=user, tags=tags, module=module, title=title, text=text)
-        Frage.save(frage)
-        return redirect("/FrageErstellen")
+
+        # Erzeugung des Frage-Objekts
+        frage = Frage.objects.create(
+            user=user,
+            module=module,
+            title=title,
+            text=text
+        )
+
+        # Hinzufügen der Tags zur Frage
+        frage.tag.set(selected_tags)
+        frage.save()
+
+        return redirect("/frage-erstellen/")
     module_choices = Modul.objects.all().values()
     tag_choices = Tag.objects.all().values()
-    print(module_choices)
-    print(tag_choices)
     context = {"module_choices": module_choices, "tag_choices": tag_choices}
     return render(request, 'frage.html', context)
