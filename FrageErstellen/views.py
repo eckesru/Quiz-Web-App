@@ -4,6 +4,10 @@ from django.template import loader
 # from .models import KLASSENNAME # Hier Model importieren!
 from Core.models import Frage
 
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/login/') # Loggt User aus, wenn nicht eingeloggt
+
 
 # Create your views here.
 def frage(request):
