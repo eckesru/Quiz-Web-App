@@ -14,7 +14,7 @@ body {
 }
 
 .header {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -59,11 +59,10 @@ body {
 
 .main {
     flex-grow: 1;
-    margin-top: 120px;
 }
 
 .footer {
-    position: fixed;
+    position: relative;
     font-size: 14px;
     left: 0;
     bottom: 0;
