@@ -46,9 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "Core",
-    "Register",
     "Login",
-    "FrageErstellen"
+    "Logout",
+    "FrageErstellen",
 ]
 
 MIDDLEWARE = [

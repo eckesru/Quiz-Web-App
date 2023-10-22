@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import loader
+from django.contrib.auth.decorators import login_required # Zur Umleitung auf /login/ benötigt
 # from .models import KLASSENNAME # Hier Model importieren!
 from Core.models import Frage, Modul, Tag
-
-from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login/') # Leitet User zum Login, wenn nicht eingeloggt
 
