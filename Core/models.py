@@ -24,6 +24,12 @@ class Tag(models.Model):
     str_id = models.CharField(max_length=255)
     text = models.TextField()
 
+    def __init__(self, id, str_id, text):
+        super().__init__()
+        self.id = id
+        self.str_id = str_id
+        self.text = text
+
     class Meta:
         managed = False
         db_table = "Tag"
@@ -33,6 +39,12 @@ class Modul(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     str_id = models.CharField(max_length=255)
     text = models.TextField()
+
+    def __init__(self, id, str_id, text):
+        super().__init__()
+        self.id = id
+        self.str_id = str_id
+        self.text = text
 
     class Meta:
         managed = False
@@ -55,10 +67,10 @@ class Frage(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
 
-    def __init__(self, user, _tags, module, title, text):
+    def __init__(self, user, tags, module, title, text):
         super().__init__()
         self.user = user
-        self.tags = _tags
+        self.tags = tags
         self.module = module
         self.title = title
         self.text = text
