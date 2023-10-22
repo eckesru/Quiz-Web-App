@@ -50,9 +50,11 @@ input {
 }
 
 .alert-sucess {
+    margin-top: 10px;
     color: green;
 }
 
 .alert-error {
+    margin-top: 10px;
     color: red;
 }

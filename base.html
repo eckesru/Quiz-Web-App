@@ -13,11 +13,11 @@
         <img src="/static/lib/images/logo.png" alt="Logo" class="logo" height="100">
         <nav class="navbar">
             <a href="#">Home</a>
-            <a href="#">Frage erstellen</a>
+            <a href="{% url 'FrageErstellen' %}">Frage erstellen</a>
             <a href="#">Meine Fragen</a>
             <a href="#">Frage des Tages</a>
             <a href="#">Quiz</a>
-            <a href="#">Logout</a>
+            <a href="{% url 'Logout' %}">Logout</a>
         </nav>
     </header>
     <main class="main">
