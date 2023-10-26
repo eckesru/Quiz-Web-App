@@ -8,9 +8,19 @@
                     <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
                     <p class="frage-text">{{ frage.text|safe }}</p>
                     <div class="tags">
+                        <i class="fas fa-tags"></i>
                         {% for tag in frage.tag.all %}
                             <span class="tag">{{ tag.text }}</span>
                         {% endfor %}
+                    </div>
+                    <div class="frage-actions">
+                        <form method="get" action="{% url 'frage-bearbeiten' frage.id %}">
+                            <button type="submit" id="bearbeiten-button">Bearbeiten</button>
+                        </form>
+                        <form method="post" action="{% url 'frage-loeschen' frage.id %}">
+                            {% csrf_token %}
+                            <button type="submit" id="loeschen-button">Löschen</button>
+                        </form>
                     </div>
                 </div>
             {% endfor %}

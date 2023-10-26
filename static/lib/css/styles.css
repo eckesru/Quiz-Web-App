@@ -87,7 +87,7 @@ h2 {
   text-align: center;
 }
 
-form {
+#frageErstellenFormular {
   width: 80%;
   max-width: 600px;
   margin: 20px auto;
@@ -174,8 +174,10 @@ textarea {
 
 /* Stil für den Fragetext */
 .frage-text {
-  font-size: 16px; /* Ändern Sie die Schriftgröße nach Bedarf */
-  line-height: 1.6; /* Ändern Sie den Zeilenabstand nach Bedarf */
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Stil für Tags */
@@ -191,4 +193,38 @@ textarea {
   margin: 5px;
   border-radius: 5px;
   font-size: 12px;
+}
+
+.fa-tag {
+  margin-right: 5px;
+}
+
+/* Stil für Buttons (Bearbeiten / Löschen) */
+
+#bearbeiten-button, #loeschen-button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+#bearbeiten-button {
+  background-color: #007bff;
+}
+
+#loeschen-button {
+  background-color: #ff0000;
+}
+
+#bearbeiten-button:hover {
+  background-color: #0056b3;
+}
+
+#loeschen-button:hover {
+  background-color: #bb0000;
 }
