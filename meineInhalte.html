@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="meineInhalte">
+        <div class="frage-container">
+            <h2>Meine Fragen</h2>
+            {% for frage in fragen %}
+                <div class="frage">
+                    <h3>Fragetitel:</h3>
+                    <p>{{ frage.frageTitle }}</p>
+                    <h3>Fragetext:</h3>
+                    <p>{{ frage.frageText }}</p>
+                    <h3>Tag:</h3>
+                    <p>{{ frage.frageTags }}</p>
+                    <h3>Modul:</h3>
+                    <p>{{ frage.frageModul }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
