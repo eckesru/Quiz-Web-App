@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "Login",
     "Logout",
     "FrageErstellen",
+    "MeineInhalte",
 ]
 
 MIDDLEWARE = [
