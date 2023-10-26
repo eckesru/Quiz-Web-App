@@ -8,7 +8,7 @@
                     <h3>Fragetitel:</h3>
                     <p>{{ frage.title }}</p>
                     <h3>Fragetext:</h3>
-                    <p>{{ frage.text }}</p>
+                    <p>{{ frage.text|safe }}</p>
                     <h3>Tag:</h3>
                     <ul>
                     {% for tag in frage.tag.all %}
