@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Core.models import Frage, Modul, Tag
+from Core.models import Benutzer, Frage, Modul, Tag
 
 
 # Register your models here.

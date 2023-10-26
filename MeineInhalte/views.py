@@ -18,15 +18,14 @@ def meine_inhalte_view(request):
     context = {"fragen": user_fragen}
     return render(request, 'meineInhalte.html', context)
     
-def delete_question(request)
+def delete_question(request):
     frage_del = request.POST.get('frage')
     frage_del_obj = Frage.objects.filter(id=frage)
     frage_del_obj.delete()
-    return render(request), 'meineInhalte.html')
+    return render(request, 'meineInhalte.html')
     
-def edit_question(request)
+def edit_question(request):
     frage_edit = request.POST.get('frage')
     frage_edit_obj = Frage.objects.filter(id=frage)
     context = {"frage": frage}
-    return render(request), 'meineInhalte.html', context)
-    
+    return render(request, 'meineInhalte.html', context)
