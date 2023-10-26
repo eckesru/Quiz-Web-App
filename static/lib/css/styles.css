@@ -142,38 +142,53 @@ textarea {
   padding: 20px;
 }
 
+/* Stil für "Meine Inhalte" */
+/* Stil für das Container-Div */
+#meineInhalte {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
 /* Stil für die Frage-Container */
 .frage-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
 /* Stil für jede Frage */
 .frage {
-  border: 1px solid #ccc;
-  padding: 10px;
-  flex: 1;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
-/* Stil für Überschriften innerhalb der Fragen */
+/* Stil für Titel der Fragen */
 .frage h3 {
   font-weight: bold;
-  margin-top: 0;
 }
 
-/* Stil für den Text innerhalb der Fragen */
-.frage p {
-  margin: 0;
+/* Stil für den Fragetext */
+.frage-text {
+  font-size: 16px; /* Ändern Sie die Schriftgröße nach Bedarf */
+  line-height: 1.6; /* Ändern Sie den Zeilenabstand nach Bedarf */
 }
 
-/* Responsive Anpassungen */
-@media (max-width: 768px) {
-  .frage-container {
-    flex-direction: column;
-  }
+/* Stil für Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .frage {
-    flex: none;
-  }
+.tag {
+  background-color: #007bff;
+  color: #fff;
+  padding: 3px 8px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 12px;
 }

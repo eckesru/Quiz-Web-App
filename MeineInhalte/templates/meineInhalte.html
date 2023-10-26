@@ -5,18 +5,13 @@
             <h2>Meine Fragen</h2>
             {% for frage in fragen %}
                 <div class="frage">
-                    <h3>Fragetitel:</h3>
-                    <p>{{ frage.title }}</p>
-                    <h3>Fragetext:</h3>
-                    <p>{{ frage.text|safe }}</p>
-                    <h3>Tag:</h3>
-                    <ul>
-                    {% for tag in frage.tag.all %}
-                    <li>{{ tag.text }}</li>
-                    {% endfor %}
-                    </ul>
-                    <h3>Modul:</h3>
-                    <p>{{ frage.module.text }}</p>
+                    <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+                    <p class="frage-text">{{ frage.text|safe }}</p>
+                    <div class="tags">
+                        {% for tag in frage.tag.all %}
+                            <span class="tag">{{ tag.text }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
             {% endfor %}
         </div>
