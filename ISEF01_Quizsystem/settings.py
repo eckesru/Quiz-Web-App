@@ -32,8 +32,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# TODO: DEBUG auf false setzen
 
-ALLOWED_HOSTS = ["isef01quiz.ddns.net"]
+ALLOWED_HOSTS = ["isef01quiz.ddns.net", "localhost"]
+# TODO: localhost in ALLOWED_HOST rausnehmen
 
 
 # Application definition
