@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Core.models import Frage, Modul, Tag
+from Core.models import Frage
 # from .models import KLASSENNAME, Hier Models importieren!
 
 from django.contrib.auth.decorators import login_required
@@ -12,20 +12,23 @@ from django.contrib.auth.decorators import login_required
 def meine_inhalte_view(request):
     user = request.user
     if request.method == 'POST':
-        
+        if request.POST.get("BUTTONNAME"):
+            pass
         return redirect("/frage-erstellen/")
     user_fragen = Frage.objects.filter(user_id=user)
     context = {"fragen": user_fragen}
     return render(request, 'meineInhalte.html', context)
-    
+
+
 def delete_question(request):
     frage_del = request.POST.get('frage')
-    frage_del_obj = Frage.objects.filter(id=frage)
+    frage_del_obj = Frage.objects.filter(id=frage_del)
     frage_del_obj.delete()
     return render(request, 'meineInhalte.html')
-    
+
+
 def edit_question(request):
     frage_edit = request.POST.get('frage')
-    frage_edit_obj = Frage.objects.filter(id=frage)
-    context = {"frage": frage}
+    frage_edit_obj = Frage.objects.filter(id=frage_edit)
+    context = {"frage": frage_edit_obj}
     return render(request, 'meineInhalte.html', context)
