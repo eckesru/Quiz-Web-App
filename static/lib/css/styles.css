@@ -229,3 +229,17 @@ textarea {
 #loeschen-button:hover {
   background-color: #bb0000;
 }
+
+/* Stil für Bestätigungsbox */
+
+.bestätigungsBox {
+  display: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -3,29 +3,27 @@
     <div id="meineInhalte">
         <div class="frage-container">
             <h2>Meine Fragen</h2>
-            {% for frage in fragen %}
-                <div class="frage">
-                    <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
-                    <p class="frage-text">{{ frage.text|safe }}</p>
-                    <div class="tags">
-                        <i class="fas fa-tags"></i>
-                        {% for tag in frage.tag.all %}
-                            <span class="tag">{{ tag.text }}</span>
-                        {% endfor %}
-                    </div>
-                    <!--
-                    <div class="frage-actions">
-                        <form method="get" action="{% url 'frage-bearbeiten' frage.id %}">
-                            <button type="submit" id="bearbeiten-button">Bearbeiten</button>
-                        </form>
-                        <form method="post" action="{% url 'frage-loeschen' frage.id %}">
-                            {% csrf_token %}
-                            <button type="submit" id="loeschen-button">Löschen</button>
-                        </form>
-                    </div>
-                    -->
+                <div id="bestaetigungsBox" class="bestaetigungsBox">
+                    <p>Möchten Sie den Eintrag wirklich löschen?</p>
+                    <button id="bestaetigen-button">Ja</button>
+                    <button id="abbrechen-button">Nein</button>
                 </div>
-            {% endfor %}
+                {% for frage in fragen %}
+                    <div class="frage">
+                        <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+                        <p class="frage-text">{{ frage.text|safe }}</p>
+                        <div class="tags">
+                            <i class="fas fa-tags"></i>
+                            {% for tag in frage.tag.all %}
+                                <span class="tag">{{ tag.text }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="frage-actions">
+                            <button type="submit" id="bearbeiten-button">Bearbeiten</button>
+                            <button type="submit" id="loeschen-button">Löschen</button>
+                        </div>
+                    </div>
+                {% endfor %}
         </div>
     </div>
 {% endblock %}
