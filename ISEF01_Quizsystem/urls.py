@@ -23,4 +23,5 @@ urlpatterns = [
     path("login/", include("Login.urls")),
     path("logout/", include("Logout.urls")),
     path("meine-inhalte/", include("MeineInhalte.urls")),
+    path("frage/", include("FrageAnsicht.urls")),
 ]

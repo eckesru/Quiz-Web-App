@@ -47,11 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "Core",
-    "Login",
-    "Logout",
-    "FrageErstellen",
-    "MeineInhalte",
+    'Core',
+    'Login',
+    'Logout',
+    'FrageErstellen',
+    'MeineInhalte',
+    'FrageAnzeigen',
 ]
 
 MIDDLEWARE = [
