@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="frageAnzeigen">
+        <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+        <p>{{ frage.text|safe }}</p>
+        <div class="tags">
+            <i class="fas fa-tags"></i>
+            {% for tag in frage.tag.all %}
+                <span class="tag">{{ tag.text }}</span>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
