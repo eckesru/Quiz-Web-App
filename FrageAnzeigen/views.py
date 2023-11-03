@@ -36,6 +36,6 @@ def frage_anzeigen_view_delete(request, frage_id):
 
 # TODO: Überarbeiten. Redirect zur eigenen App?
 @login_required(login_url='/login/')
-def frage_anzeigen_edit(request, frage_id):
+def frage_anzeigen_view_edit(request, frage_id):
     frage = Frage.objects.get(id=frage_id)
     pass
