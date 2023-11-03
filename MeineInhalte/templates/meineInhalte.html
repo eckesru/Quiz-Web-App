@@ -8,7 +8,7 @@
             <!--
             <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
             -->
-            <h3><a href="{% url 'frage-anzeigen' frage.id %}">{{ frage.module.text }}: {{ frage.title }}</a></h3>
+            <h3><a href="{% url 'frage' frage.id %}">{{ frage.module.text }}: {{ frage.title }}</a></h3>
             <!--
             <p class="frage-text">{{ frage.text|safe }}</p>
             -->

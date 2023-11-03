@@ -16,7 +16,6 @@ def frage_erstellen_view(request):
 
         selected_tags_str_ids = request.POST.getlist('frageTags')
         selected_tags = Tag.objects.filter(str_id__in=selected_tags_str_ids)
-        print(selected_tags)
         module_str_id = request.POST.get('frageModul')
         module = Modul.objects.get(str_id=module_str_id)
 
