@@ -13,7 +13,7 @@
       <!--
         <a href="{% url 'frage' frage.id %}"></a>
     -->
-      <p class="frage-text">{{ frage.text|safe }}</p>
+      <div class="frage-text">{{ frage.text|safe }}</div>
       <div class="tags">
         <i class="fas fa-tags"></i>
         {% for tag in frage.tag.all %}
