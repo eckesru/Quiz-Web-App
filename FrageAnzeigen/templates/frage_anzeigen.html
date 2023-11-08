@@ -3,7 +3,7 @@
 <script src="/static/lib/js/antwort.js"></script>
 <div id="frageAnzeigen">
   <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
-  <p class="frageAnzeigen-frage-text">{{ frage.text|safe }}</p>
+  <div class="frageAnzeigen-frage-text">{{ frage.text|safe }}</div>
   <div class="tags">
     <i class="fas fa-tags"></i>
     {% for tag in frage.tag.all %}
