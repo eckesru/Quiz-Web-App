@@ -1,28 +1,40 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <script src="/static/lib/js/meineInhalte.js"></script>
 <div id="meineInhalte" class="meineInhalte-container">
-    <div class="frage-container">
-        <h2>Meine Fragen</h2>
-        {% for frage in fragen %}
-        <div class="frage">
-            <h3><a href="{% url 'frage' frage.id %}">{{ frage.module.text }}: {{ frage.title }}</a></h3>
-            <p class="frage-text"><a href="{% url 'frage' frage.id %}">{{ frage.text|safe }}</a></p>
-            <div class="tags">
-                <i class="fas fa-tags"></i>
-                {% for tag in frage.tag.all %}
-                <span class="tag">{{ tag.text }}</span>
-                {% endfor %}
-            </div>
-            <div class="frage-actions">
-                <button type="submit" id="bearbeiten-button">Bearbeiten</button>
-                <button type="submit" id="loeschen-button" onclick="bestaetigeLoeschen()">Löschen</button>
-            </div>
-        </div>
+  <div class="frage-container">
+    <h2>Meine Fragen</h2>
+    {% for frage in fragen %}
+    <div class="frage">
+      <h3>
+        <a href="{% url 'frage' frage.id %}"
+          >{{ frage.module.text }}: {{ frage.title }}</a
+        >
+      </h3>
+      <!--
+        <a href="{% url 'frage' frage.id %}"></a>
+    -->
+      <p class="frage-text">{{ frage.text|safe }}</p>
+      <div class="tags">
+        <i class="fas fa-tags"></i>
+        {% for tag in frage.tag.all %}
+        <span class="tag">{{ tag.text }}</span>
         {% endfor %}
+      </div>
+      <div class="frage-actions">
+        <button type="submit" id="bearbeiten-button">Bearbeiten</button>
+        <button
+          type="submit"
+          id="loeschen-button"
+          onclick="bestaetigeLoeschen()"
+        >
+          Löschen
+        </button>
+      </div>
     </div>
-    <div class="antwort-container">
-        <h2>Meine Antworten</h2>
-    </div>
+    {% endfor %}
+  </div>
+  <div class="antwort-container">
+    <h2>Meine Antworten</h2>
+  </div>
 </div>
 {% endblock %}
