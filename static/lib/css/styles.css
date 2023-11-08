@@ -194,17 +194,6 @@ textarea {
   line-height: 1.6;
 }
 
-.frage-text::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 30px;
-  height: 100%;
-  background: linear-gradient(to right, transparent, white 50%);
-  pointer-events: none;
-}
-
 .frage-text a {
   text-decoration: none;
   color: #000000;
