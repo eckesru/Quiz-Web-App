@@ -184,7 +184,7 @@ textarea {
 
 /* Stil für den Fragetext */
 .frage-text {
-  max-height: 2em;
+  max-height: 1.8em;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
