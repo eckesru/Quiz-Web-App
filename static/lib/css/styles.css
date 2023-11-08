@@ -183,7 +183,7 @@ textarea {
 }
 
 /* Stil für den Fragetext */
-.frage-text p {
+.frage-text p, ul, ol {
   max-height: 3em;
   overflow: hidden;
   white-space: nowrap;
