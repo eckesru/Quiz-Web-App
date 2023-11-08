@@ -1,17 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="meineInhalte">
+<div id="meineInhalte" class="meineInhalte-container">
     <div class="frage-container">
         <h2>Meine Fragen</h2>
         {% for frage in fragen %}
         <div class="frage">
-            <!--
-            <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
-            -->
             <h3><a href="{% url 'frage' frage.id %}">{{ frage.module.text }}: {{ frage.title }}</a></h3>
-            <!--
-            <p class="frage-text">{{ frage.text|safe }}</p>
-            -->
+            <p class="frage-text"><a href="{% url 'frage' frage.id %}">{{ frage.text|safe }}</p>
             <div class="tags">
                 <i class="fas fa-tags"></i>
                 {% for tag in frage.tag.all %}
@@ -24,6 +19,9 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+    <div class="antwort-container">
+        <h2>Meine Antworten</h2>
     </div>
 </div>
 {% endblock %}

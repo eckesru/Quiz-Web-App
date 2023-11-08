@@ -1,13 +1,28 @@
-{% extends "base.html" %}
-{% block content %}
-    <div id="frageAnzeigen">
-        <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
-        <p>{{ frage.text|safe }}</p>
-        <div class="tags">
-            <i class="fas fa-tags"></i>
-            {% for tag in frage.tag.all %}
-                <span class="tag">{{ tag.text }}</span>
-            {% endfor %}
-        </div>
-    </div>
+{% extends "base.html" %} {% block content %}
+<script src="/static/lib/js/tinymce/tinymce.min.js"></script>
+<script src="/static/lib/js/antwort.js"></script>
+<div id="frageAnzeigen">
+  <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+  <p class="frageAnzeigen-frage-text">{{ frage.text|safe }}</p>
+  <div class="tags">
+    <i class="fas fa-tags"></i>
+    {% for tag in frage.tag.all %}
+    <span class="tag">{{ tag.text }}</span>
+    {% endfor %}
+  </div>
+</div>
+<div id="antwort">
+    <p class="antwort-text"></p>
+</div>
+<div id="antwort-formular">
+  <form id="antwortErstellenFormular" method="post" action="">
+    {% csrf_token %}
+    <textarea
+      id="antwortText"
+      name="antwortText"
+      placeholder="Antwort schreiben..."
+    ></textarea>
+    <button type="submit" id="antwortSpeichern-button">Absenden</button>
+  </form>
+</div>
 {% endblock %}
