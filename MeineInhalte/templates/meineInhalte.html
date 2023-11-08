@@ -7,7 +7,7 @@
         {% for frage in fragen %}
         <div class="frage">
             <h3><a href="{% url 'frage' frage.id %}">{{ frage.module.text }}: {{ frage.title }}</a></h3>
-            <p class="frage-text"><a href="{% url 'frage' frage.id %}">{{ frage.text|safe }}</p>
+            <p class="frage-text"><a href="{% url 'frage' frage.id %}">{{ frage.text|safe }}</a></p>
             <div class="tags">
                 <i class="fas fa-tags"></i>
                 {% for tag in frage.tag.all %}
