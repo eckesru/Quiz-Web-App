@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<script src="/static/lib/js/meineInhalte.js"></script>
 <div id="meineInhalte" class="meineInhalte-container">
     <div class="frage-container">
         <h2>Meine Fragen</h2>
@@ -15,7 +16,7 @@
             </div>
             <div class="frage-actions">
                 <button type="submit" id="bearbeiten-button">Bearbeiten</button>
-                <button type="submit" id="loeschen-button">Löschen</button>
+                <button type="submit" id="loeschen-button" onclick="bestaetigeLoeschen()">Löschen</button>
             </div>
         </div>
         {% endfor %}
