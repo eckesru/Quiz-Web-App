@@ -5,6 +5,12 @@
     <h2>Meine Fragen</h2>
     {% for frage in fragen %}
     <div class="frage">
+      <div class="frage-meta">
+        <span class="frage-username">{{ frage.user.username }}</span>
+        <span class="frage-erstelldatum"
+          >{{ frage.created_at|date:"Y-m-d H:i:s" }}</span
+        >
+      </div>
       <h3>
         <a href="{% url 'frage' frage.id %}"
           >{{ frage.module.text }}: {{ frage.title }}</a

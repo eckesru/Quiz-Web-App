@@ -255,7 +255,7 @@ textarea {
 
 #like-button:hover {
   background-color: #2980b9;
-  transform: scale(1.1);
+  transform: scale(1);
 }
 
 #like-button.clicked {
