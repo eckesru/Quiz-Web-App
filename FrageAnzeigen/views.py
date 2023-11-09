@@ -16,16 +16,19 @@ def frage_anzeigen_view(request, frage_id):
     if request.method == "POST":
         # Falls der antwortErstellen-Button betätigt wurde, dann Antwort-Func.
         if 'antwortErstellen' in request.POST:
-            return redirect("/frage/" + str(frage_id) + "/" + "answer/")
-
+            return redirect("/frage/" + str(frage_id) + "/" + "antwort/")
+        
+    # Fragen vom Delete-User "entfernt" sollen nicht angezeigt werden
+    del_user = Benutzer.objects.get(username="entfernt")
     frage = Frage.objects.get(id=frage_id)
-    antwort = Antwort.objects.filter(frage=frage)
+    antwort = Antwort.objects.filter(frage=frage).exclude(user=del_user)
+
     # Sortierung des QuerySets. "-" bedeutet absteigend, "" aufsteigend.
     antwort.order_by("-likes", "-creation_date")
-    antwort.values()
-    print(antwort)
+
     context = {"frage": frage,
                "antwort": antwort}
+    print(antwort)
     return render(request, 'frage_anzeigen.html', context)
 
 
@@ -47,23 +50,6 @@ def frage_anzeigen_view_delete(request, frage_id):
 
 
 @login_required(login_url='/login/')
-def frage_anzeigen_view_antwort_erstellen(request, frage_id):
-    user = request.user
-    frage = Frage.objects.get(id=frage_id)
-    antwort_text = request.POST.get('antwortText')
-
-    # Erzeugung des Antwort-Objekts
-    antwort = Antwort.objects.create(
-        user=user,
-        frage=frage,
-        text=antwort_text
-    )
-
-    antwort.save()
-    return redirect("/frage/" + str(frage_id) + "/")
-
-
-@login_required(login_url='/login/')
 def like_frage(request, frage_id):
     if request.method == 'POST':
         user = request.user
@@ -78,27 +64,6 @@ def like_frage(request, frage_id):
         likes_new = frage.likes + 1
         Frage.objects.filter(id=frage_id).update(likes=likes_new)
         user.liked_fragen.add(frage)
-        return JsonResponse({'liked': True})
-
-    return JsonResponse({'liked': False})
-
-
-@login_required(login_url='/login/')
-def like_antwort(request, frage_id):
-    if request.method == 'POST':
-        user = request.user
-        antwort_id = request.POST.get('antwort_id')
-        antwort = Antwort.objects.filter(id=antwort_id).get()
-
-        if antwort in user.liked_antworten.all():
-            likes_new = antwort.likes - 1
-            Antwort.objects.filter(id=antwort_id).update(likes=likes_new)
-            user.liked_antworten.remove(antwort)
-            return JsonResponse({'liked': False})
-
-        likes_new = antwort.likes + 1
-        Antwort.objects.filter(id=antwort_id).update(likes=likes_new)
-        user.liked_antworten.add(antwort)
         return JsonResponse({'liked': True})
 
     return JsonResponse({'liked': False})

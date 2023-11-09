@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'MeineInhalte',
     'FrageAnzeigen',
     'FrageBearbeiten',
+    'AntwortErstellen',
+    'AntwortBearbeiten',
+    'DashboardApp',
 ]
 
 MIDDLEWARE = [

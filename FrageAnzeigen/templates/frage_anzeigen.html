@@ -42,7 +42,7 @@
         $('#like-button').click(function(){
           var frage_id = $(this).data('frage-id');
           $.ajax({
-            url: 'like-frage/',
+            url: 'like/',
             data: {
               'frage_id': frage_id
             },
