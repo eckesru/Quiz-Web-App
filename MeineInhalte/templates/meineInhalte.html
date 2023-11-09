@@ -26,6 +26,13 @@
         >
           Löschen
         </button>
+        <button
+          type="submit"
+          id="like-button"
+          onclick="likeFrage('{{ frage.id }}')"
+        >
+          Like <span id="like-count">{{ frage.likes }}</span>
+        </button>
       </div>
     </div>
     {% endfor %}
