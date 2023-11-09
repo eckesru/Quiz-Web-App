@@ -13,7 +13,13 @@
     {% endfor %}
   </div>
   <div class="frage-actions">
-    <button type="submit" id="bearbeiten-button">Bearbeiten</button>
+    <button
+      type="submit"
+      id="bearbeiten-button"
+      onclick="frageBearbeiten('{{ frage.id }}')"
+    >
+      Bearbeiten
+    </button>
     <button
       type="submit"
       id="loeschen-button"
