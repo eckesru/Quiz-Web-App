@@ -32,10 +32,3 @@ def frage_anzeigen_view_delete(request, frage_id):
     if reverse_url is None:
         return redirect("/frage/" + str(frage_id) + "/")
     return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
-
-
-# TODO: Überarbeiten. Redirect zur eigenen App?
-@login_required(login_url='/login/')
-def frage_anzeigen_view_edit(request, frage_id):
-    frage = Frage.objects.get(id=frage_id)
-    pass
