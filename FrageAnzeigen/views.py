@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
-# Create your views here.
 def frage_anzeigen_view(request, frage_id):
     if request.method == "POST":
         # Falls der antwortErstellen-Button betätigt wurde, dann Antwort-Func.

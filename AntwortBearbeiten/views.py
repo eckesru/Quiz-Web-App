@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
-# Create your views here.
 def antwort_edit_view(request, frage_id, antwort_id):
     user = request.user
     antwort = Antwort.objects.get(id=antwort_id)

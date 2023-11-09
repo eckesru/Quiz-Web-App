@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
-# Create your views here.
 def frage_erstellen_view(request):
     if request.method == 'POST':
         # Prüfen, ob es sich bei dem Aufruf um POST handelt

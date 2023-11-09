@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
-# Create your views here.
 def meine_inhalte_view(request):
     user = request.user
     user_fragen = Frage.objects.filter(user_id=user)
