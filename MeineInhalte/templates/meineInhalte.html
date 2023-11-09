@@ -5,6 +5,12 @@
     <h2>Meine Fragen</h2>
     {% for frage in fragen %}
     <div class="frage">
+      <div class="frage-meta">
+        <span class="frage-username">{{ frage.user.username }}</span>
+        <span class="frage-erstelldatum"
+          >{{ frage.creation_date|date:"Y-m-d H:i:s" }}</span
+        >
+      </div>
       <h3>
         <a href="{% url 'frage' frage.id %}"
           >{{ frage.module.text }}: {{ frage.title }}</a
@@ -31,7 +37,7 @@
           id="like-button"
           onclick="likeFrage('{{ frage.id }}')"
         >
-          <i class="fas fa-thumbs-up"></i>Like
+          <i class="fas fa-thumbs-up"></i> Like
           <span id="like-count">{{ frage.likes }}</span>
         </button>
       </div>
