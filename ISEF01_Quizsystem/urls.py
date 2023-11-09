@@ -24,4 +24,5 @@ urlpatterns = [
     path("logout/", include("Logout.urls")),
     path("meine-inhalte/", include("MeineInhalte.urls")),
     path("frage/<int:frage_id>/", include("FrageAnzeigen.urls")),
+    path("frage/<int:frage_id>/edit/", include("FrageBearbeiten.urls")),
 ]
