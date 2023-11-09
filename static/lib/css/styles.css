@@ -218,9 +218,10 @@ textarea {
   margin-right: 5px;
 }
 
-/* Stil für Buttons (Bearbeiten / Löschen) */
+/* Stil für Buttons (Bearbeiten / Löschen / Like) */
 #bearbeiten-button,
-#loeschen-button {
+#loeschen-button,
+#like-button {
   width: auto;
   padding: 5px 10px;
   margin-top: 10px;
@@ -240,12 +241,26 @@ textarea {
   background-color: #ff0000;
 }
 
+#like-button {
+  background-color: #39db34;
+}
+
 #bearbeiten-button:hover {
   background-color: #0056b3;
 }
 
 #loeschen-button:hover {
   background-color: #bb0000;
+}
+
+#like-button:hover {
+  background-color: #30be2b;
+}
+
+/* Stil für den like-count */
+#like-count {
+  margin-left: 5px;
+  font-weight: bold;
 }
 
 /* Stil für "Frage anzeigen" */
