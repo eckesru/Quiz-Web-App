@@ -13,11 +13,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, 'Login erfolgreich.')
-            time.sleep(2)
             return redirect("/frage-erstellen/")
-        else:
-            messages.error(request, 'Login fehlgeschlagen')
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
