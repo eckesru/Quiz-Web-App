@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block content %}
 <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
 <script src="/static/lib/js/antwort.js"></script>
-<script src="/static/lib/js/button-loeschen.js"></script>
+<script src="/static/lib/js/button_frage_bearbeiten.js"></script>
+<script src="/static/lib/js/button_frage_loeschen.js"></script>
 <div id="frageAnzeigen">
   <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
   <div class="frageAnzeigen-frage-text">{{ frage.text|safe }}</div>
