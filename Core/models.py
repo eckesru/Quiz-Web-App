@@ -54,6 +54,7 @@ class Frage(models.Model):
                                on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255)
     text = models.TextField()
+    likes = models.IntegerField()
 
     class Meta:
         managed = False
@@ -68,16 +69,25 @@ class Frage(models.Model):
 #        self._tags = ",".join(tags_list)
 
 
-class Kommentar(models.Model):
+""" class Kommentar(models.Model):
     pass
 
     class Meta:
         managed = False
-        db_table = "Kommentar"
+        db_table = "Kommentar" """
 
 
 class Antwort(models.Model):
-    pass
+    id = models.AutoField(primary_key=True, unique=True)
+    user = models.ForeignKey("Benutzer",
+                             on_delete=models.DO_NOTHING)
+    frage = models.ForeignKey("Frage",
+                              on_delete=models.DO_NOTHING)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_edited = models.DateTimeField(auto_now=True)
+    flagged = models.BooleanField(default=0)
+    text = models.TextField()
+    likes = models.IntegerField()
 
     class Meta:
         managed = False
