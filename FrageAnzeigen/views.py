@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.http import HttpResponseRedirect
 from Core.models import Frage, Benutzer, Antwort
 # from .models import KLASSENNAME, Hier Models importieren!
@@ -18,7 +17,11 @@ def frage_anzeigen_view(request, frage_id):
             return redirect("/frage/" + str(frage_id) + "/" + "answer/")
 
     frage = Frage.objects.get(id=frage_id)
-    antwort = Antwort.objects.filter(frage=frage).values()
+    antwort = Antwort.objects.filter(frage=frage)
+    # Sortierung des QuerySets. "-" bedeutet absteigend, "" aufsteigend.
+    antwort.order_by("-likes", "-creation_date")
+    antwort.values()
+    print(antwort)
     context = {"frage": frage,
                "antwort": antwort}
     return render(request, 'frage_anzeigen.html', context)
@@ -54,5 +57,4 @@ def frage_anzeigen_view_antwort_erstellen(request, frage_id):
     )
 
     antwort.save()
-    print(antwort)
     return redirect("/frage/" + str(frage_id) + "/")
