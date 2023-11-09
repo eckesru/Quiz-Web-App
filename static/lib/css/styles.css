@@ -220,7 +220,8 @@ textarea {
 
 /* Stil für Buttons (Bearbeiten / Löschen) */
 #bearbeiten-button,
-#loeschen-button {
+#loeschen-button,
+#like-button {
   width: auto;
   padding: 5px 10px;
   margin-top: 10px;
@@ -240,6 +241,10 @@ textarea {
   background-color: #ff0000;
 }
 
+#like-button {
+  background-color: #39db34;
+}
+
 #bearbeiten-button:hover {
   background-color: #0056b3;
 }
@@ -247,6 +252,11 @@ textarea {
 #loeschen-button:hover {
   background-color: #bb0000;
 }
+
+#like-button:hover {
+  background-color: #30be2b;
+}
+
 
 /* Stil für "Frage anzeigen" */
 /* Stil für das Container-Div */
