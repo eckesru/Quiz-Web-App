@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from Core.models import Frage
 # from .models import KLASSENNAME, Hier Models importieren!
 

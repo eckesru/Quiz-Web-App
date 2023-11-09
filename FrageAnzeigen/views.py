@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from Core.models import Frage, Benutzer, Antwort
 # from .models import KLASSENNAME, Hier Models importieren!
 
+from django.http import JsonResponse
+
 from django.contrib.auth.decorators import login_required
 # Zur Umleitung auf /login/ benötigt
 
@@ -43,6 +45,7 @@ def frage_anzeigen_view_delete(request, frage_id):
         return redirect("/frage/" + str(frage_id) + "/")
     return HttpResponseRedirect(reverse_url)
 
+
 @login_required(login_url='/login/')
 def frage_anzeigen_view_antwort_erstellen(request, frage_id):
     user = request.user
@@ -58,3 +61,28 @@ def frage_anzeigen_view_antwort_erstellen(request, frage_id):
 
     antwort.save()
     return redirect("/frage/" + str(frage_id) + "/")
+
+
+@login_required(login_url='/login/')
+def like_frage(request, frage_id):
+    if request.method == 'POST':
+        frage = Frage.objects.filter(id=frage_id).get()
+        likes_new = frage.likes + 1
+        print("old ", frage.likes)
+        Frage.objects.filter(id=frage_id).update(likes=likes_new)
+        print("new ", Frage.objects.filter(id=frage_id).get().likes)
+        return JsonResponse({'liked': True})
+    return JsonResponse({'liked': False})
+
+
+@login_required(login_url='/login/')
+def like_antwort(request, frage_id):
+    if request.method == 'POST':
+        antwort_id = request.POST.get('antwort_id')
+        antwort = Antwort.objects.filter(id=antwort_id).get()
+        likes_new = antwort.likes + 1
+        print("old ", antwort.likes)
+        Frage.objects.filter(id=frage_id).update(likes=likes_new)
+        print("new ", Antwort.objects.filter(id=antwort_id).get().likes)
+        return JsonResponse({'liked': True})
+    return JsonResponse({'liked': False})
