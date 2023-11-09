@@ -6,9 +6,9 @@
     {% for frage in fragen %}
     <div class="frage">
       <div class="frage-meta">
-        <span class="frage-username">Frage von: {{ frage.user.username }}</span>
+        <span class="frage-username">{{ frage.user.username }}</span>
         <span class="frage-erstelldatum"
-          >Erstellt am: {{ frage.creation_date|date:"Y-m-d H:i:s" }}</span
+          >{{ frage.creation_date|date:"Y-m-d H:i:s" }}</span
         >
       </div>
       <h3>

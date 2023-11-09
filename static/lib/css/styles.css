@@ -172,6 +172,23 @@ textarea {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/* Stil für die Metaangaben zur Frage */
+.frage-meta {
+  margin-bottom: 5px;
+}
+
+.frage-username {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-right: 10px;
+}
+
+.frage-erstelldatum {
+  font-size: 12px;
+  color: #555;
+}
+
 /* Stil für Titel der Fragen */
 .frage h3 {
   font-weight: bold;
