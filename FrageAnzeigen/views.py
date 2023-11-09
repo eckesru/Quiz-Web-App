@@ -28,7 +28,6 @@ def frage_anzeigen_view(request, frage_id):
 
     context = {"frage": frage,
                "antwort": antwort}
-    print(antwort)
     return render(request, 'frage_anzeigen.html', context)
 
 
