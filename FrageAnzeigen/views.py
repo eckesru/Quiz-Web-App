@@ -66,23 +66,39 @@ def frage_anzeigen_view_antwort_erstellen(request, frage_id):
 @login_required(login_url='/login/')
 def like_frage(request, frage_id):
     if request.method == 'POST':
+        user = request.user
         frage = Frage.objects.filter(id=frage_id).get()
+
+        if frage in user.liked_fragen.all():
+            likes_new = frage.likes - 1
+            Frage.objects.filter(id=frage_id).update(likes=likes_new)
+            user.liked_fragen.remove(frage)
+            return JsonResponse({'liked': False})
+
         likes_new = frage.likes + 1
-        print("old ", frage.likes)
         Frage.objects.filter(id=frage_id).update(likes=likes_new)
-        print("new ", Frage.objects.filter(id=frage_id).get().likes)
+        user.liked_fragen.add(frage)
         return JsonResponse({'liked': True})
+
     return JsonResponse({'liked': False})
 
 
 @login_required(login_url='/login/')
 def like_antwort(request, frage_id):
     if request.method == 'POST':
+        user = request.user
         antwort_id = request.POST.get('antwort_id')
         antwort = Antwort.objects.filter(id=antwort_id).get()
+
+        if antwort in user.liked_antworten.all():
+            likes_new = antwort.likes - 1
+            Antwort.objects.filter(id=antwort_id).update(likes=likes_new)
+            user.liked_antworten.remove(antwort)
+            return JsonResponse({'liked': False})
+
         likes_new = antwort.likes + 1
-        print("old ", antwort.likes)
-        Frage.objects.filter(id=frage_id).update(likes=likes_new)
-        print("new ", Antwort.objects.filter(id=antwort_id).get().likes)
+        Antwort.objects.filter(id=antwort_id).update(likes=likes_new)
+        user.liked_antworten.add(antwort)
         return JsonResponse({'liked': True})
+
     return JsonResponse({'liked': False})

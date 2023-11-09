@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractUser
 class Benutzer(AbstractUser):
     _role = models.SmallIntegerField(default=0)
     points = models.IntegerField(default=0)
+    liked_fragen = models.ManyToManyField("Frage", blank=True)
+    liked_antworten = models.ManyToManyField("Antwort", blank=True)
 
     @property
     def role(self):
