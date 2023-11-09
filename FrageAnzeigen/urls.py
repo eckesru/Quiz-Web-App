@@ -4,4 +4,6 @@ from . import views
 urlpatterns = [
     path("", views.frage_anzeigen_view, name="frage"),
     path("delete/", views.frage_anzeigen_view_delete, name="frage-delete"),
+    path("answer/", views.frage_anzeigen_view_antwort_erstellen,
+         name="frage-answer"),
 ]

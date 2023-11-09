@@ -11,10 +11,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def meine_inhalte_view(request):
     user = request.user
-    if request.method == 'POST':
-        if request.POST.get("BUTTONNAME"):
-            pass
-        return redirect("/frage-erstellen/")
     user_fragen = Frage.objects.filter(user_id=user)
     context = {"fragen": user_fragen}
     return render(request, 'meineInhalte.html', context)

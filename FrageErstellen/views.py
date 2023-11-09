@@ -34,7 +34,7 @@ def frage_erstellen_view(request):
         frage.tag.set(selected_tags)
         frage.save()
 
-        return redirect("/frage-erstellen/")
+        return redirect("/frage/" + str(frage.id) + "/")
     module_choices = Modul.objects.all().values()
     tag_choices = Tag.objects.all().values()
     context = {"module_choices": module_choices, "tag_choices": tag_choices}
