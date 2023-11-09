@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<script src="/static/lib/js/meineInhalte.js"></script>
+<script src="/static/lib/js/button-loeschen.js"></script>
 <div id="meineInhalte" class="meineInhalte-container">
   <div class="frage-container">
     <h2>Meine Fragen</h2>
@@ -8,7 +8,7 @@
       <div class="frage-meta">
         <span class="frage-username">{{ frage.user.username }}</span>
         <span class="frage-erstelldatum"
-          >{{ frage.creation_date|date:"Y-m-d H:i:s" }}</span
+          >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
         >
       </div>
       <h3>

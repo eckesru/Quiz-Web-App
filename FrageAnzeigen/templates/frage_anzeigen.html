@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
 <script src="/static/lib/js/antwort.js"></script>
+<script src="/static/lib/js/button-loeschen.js"></script>
 <div id="frageAnzeigen">
   <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
   <div class="frageAnzeigen-frage-text">{{ frage.text|safe }}</div>
@@ -9,6 +10,24 @@
     {% for tag in frage.tag.all %}
     <span class="tag">{{ tag.text }}</span>
     {% endfor %}
+  </div>
+  <div class="frage-actions">
+    <button type="submit" id="bearbeiten-button">Bearbeiten</button>
+    <button
+      type="submit"
+      id="loeschen-button"
+      onclick="bestaetigeLoeschen('{{ frage.id }}')"
+    >
+      Löschen
+    </button>
+    <button
+      type="submit"
+      id="like-button"
+      onclick="likeFrage('{{ frage.id }}')"
+    >
+      <i class="fas fa-thumbs-up"></i> Like
+      <span id="like-count">{{ frage.likes }}</span>
+    </button>
   </div>
 </div>
 <div id="antwort">
