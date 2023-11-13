@@ -37,9 +37,11 @@
     </button>
   </div>
 </div>
+{% for antwort in antwort %}
 <div id="antwort">
-  <p class="antwort-text"></p>
+  <h3>{{ antwort.text|safe }}</h3>
 </div>
+{% endfor %}
 <div id="antwort-formular">
   <form id="antwortErstellenFormular" method="post">
     {% csrf_token %}
@@ -48,7 +50,9 @@
       name="antwortText"
       placeholder="Antwort schreiben..."
     ></textarea>
-    <button type="submit" id="antwortSpeichern-button" name="antwortErstellen">Absenden</button>
+    <button type="submit" id="antwortSpeichern-button" name="antwortErstellen">
+      Absenden
+    </button>
   </form>
 </div>
 {% endblock %}
