@@ -4,6 +4,12 @@
 <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
 <div id="frageAnzeigen">
+  <div class="frage-meta">
+    <span class="frage-username">{{ frage.user.username }}</span>
+    <span class="frage-erstelldatum"
+      >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
+    >
+  </div>
   <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
   <div class="frageAnzeigen-frage-text">{{ frage.text|safe }}</div>
   <div class="tags">
@@ -29,33 +35,33 @@
     </button>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <button
-    type="submit"
-    id="like-button"
-    data-frage-id="{{ frage.id }}"
-    onclick="likeFrage('{{ frage.id }}')"
-  >
-    <i class="fas fa-thumbs-up"></i> Like
-    <span id="like-count">{{ frage.likes }}</span>
-  </button>
+      type="submit"
+      id="like-button"
+      data-frage-id="{{ frage.id }}"
+      onclick="likeFrage('{{ frage.id }}')"
+    >
+      <i class="fas fa-thumbs-up"></i> Like
+      <span id="like-count">{{ frage.likes }}</span>
+    </button>
     <script>
-      $(document).ready(function(){
-        $('#like-button').click(function(){
-          var frage_id = $(this).data('frage-id');
+      $(document).ready(function () {
+        $("#like-button").click(function () {
+          var frage_id = $(this).data("frage-id");
           $.ajax({
-            url: 'like/',
+            url: "like/",
             data: {
-              'frage_id': frage_id
+              frage_id: frage_id,
             },
-            dataType: 'json',
-            type: 'POST',
+            dataType: "json",
+            type: "POST",
             headers: {
-              'X-CSRFToken': '{{ csrf_token }}'
+              "X-CSRFToken": "{{ csrf_token }}",
             },
-            success: function(response){
-              if(response.liked){
+            success: function (response) {
+              if (response.liked) {
                 // Aktualisieren Sie hier die Anzeige, z.B. Like-Zähler oder Button-Stil
               }
-            }
+            },
           });
         });
       });
@@ -64,6 +70,12 @@
 </div>
 {% for antwort in antwort %}
 <div id="antwort">
+  <div class="antwort-meta">
+    <span class="antwort-username">{{ antwort.user.username }}</span>
+    <span class="antwort-erstelldatum"
+      >{{ antwort.creation_date|date:"Y-m-d H:i" }}</span
+    >
+  </div>
   <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
 </div>
 {% endfor %}
