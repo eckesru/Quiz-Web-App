@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractUser
 class Benutzer(AbstractUser):
     _role = models.SmallIntegerField(default=0)
     points = models.IntegerField(default=0)
+    liked_fragen = models.ManyToManyField("Frage", blank=True)
+    liked_antworten = models.ManyToManyField("Antwort", blank=True)
 
     @property
     def role(self):
@@ -54,7 +56,7 @@ class Frage(models.Model):
                                on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255)
     text = models.TextField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
     class Meta:
         managed = False
@@ -87,7 +89,7 @@ class Antwort(models.Model):
     last_edited = models.DateTimeField(auto_now=True)
     flagged = models.BooleanField(default=0)
     text = models.TextField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
     class Meta:
         managed = False

@@ -25,4 +25,8 @@ urlpatterns = [
     path("meine-inhalte/", include("MeineInhalte.urls")),
     path("frage/<int:frage_id>/", include("FrageAnzeigen.urls")),
     path("frage/<int:frage_id>/edit/", include("FrageBearbeiten.urls")),
+    path("frage/<int:frage_id>/antwort/", include("AntwortErstellen.urls")),
+    path("frage/<int:frage_id>/antwort/<int:antwort_id>/edit/",
+         include("AntwortBearbeiten.urls")),
+    path("dashboard/", include("DashboardApp.urls")),
 ]
