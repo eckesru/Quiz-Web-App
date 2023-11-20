@@ -25,7 +25,8 @@ function frageLiken(frageId) {
   console.log("Frage ID:", frageId);
   xhr.open("POST", "/frage/" + frageId + "/like/", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
+  xhr.setRequestHeader("X-CSRFToken", csrf_token);
+  console.log(xhr.responseText);
 }
 
 /*

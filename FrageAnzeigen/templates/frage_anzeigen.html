@@ -51,6 +51,9 @@
     </button>
 
     <!--Button Frage liken-->
+    <script>
+      var csrf_token = "{{ csrf_token }}";
+    </script>
     <button type="button" class="btn btn_light_blue" id="likeButton" onclick="frageLiken({{ frage.id }})">
       <i class="fas fa-thumbs-up"></i> Like
     </button>
