@@ -3,7 +3,7 @@
   <form id="antwortBearbeitenFormular" method="post">
     {% csrf_token %}
     <textarea id="antwortText" name="antwortText">{{ antwort.text|safe }}</textarea>
-    <button type="submit" id="antwortSpeichern-button">Antwort speichern</button>
+    <button type="submit" class="btn btn_blue">Antwort speichern</button>
   </form>
 </div>
 {% endblock %}
