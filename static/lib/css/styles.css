@@ -112,6 +112,23 @@ body {
   background-color: #bb0000;
 }
 
+#frageSpeichernButton {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+#frageSpeichernButton:hover {
+  background-color: #0056b3;
+}
+
 /* Frage-Erstellen Formular */
 h2 {
   text-align: center;
@@ -267,11 +284,7 @@ textarea {
   margin-right: 5px;
 }
 
-/* Stil für Buttons (Bearbeiten / Löschen / Like) */
-/*
-#bearbeiten-button,
-#loeschen-button,
-*/
+/* Stil für Like */
 #like-button {
   width: auto;
   padding: 5px 10px;
@@ -284,27 +297,10 @@ textarea {
   transition: background-color 0.3s;
 }
 
-/*
-#bearbeiten-button {
-  background-color: #007bff;
-}
-
-#loeschen-button {
-  background-color: #ff0000;
-}
-*/
 #like-button {
   background-color: #3498db;
 }
-/*
-#bearbeiten-button:hover {
-  background-color: #0056b3;
-}
 
-#loeschen-button:hover {
-  background-color: #bb0000;
-}
-*/
 #like-button:hover {
   background-color: #2980b9;
   transform: scale(1);
