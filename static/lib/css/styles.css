@@ -83,6 +83,27 @@ body {
   font-size: 10px;
 }
 
+/* Buttons */
+.btn {
+  width: auto;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.btn_blue {
+  background-color: #007bff;
+}
+
+.btn_blue:hover {
+  background-color: #0056b3;
+}
+
 /* Frage-Erstellen Formular */
 h2 {
   text-align: center;

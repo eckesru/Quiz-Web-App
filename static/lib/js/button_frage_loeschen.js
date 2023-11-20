@@ -1,4 +1,4 @@
-function bestaetigeLoeschen(frageId) {
+function frageLoeschen(frageId) {
   var bestaetigung = confirm(
     "Bist du sicher, dass du diese Frage löschen möchtest?"
   );

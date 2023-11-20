@@ -5,6 +5,7 @@
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div id="frageAnzeigen">
   <div class="frage-meta">
     <span class="frage-username">{{ frage.user.username }}</span>
@@ -31,11 +32,10 @@
     <button
       type="submit"
       id="loeschen-button"
-      onclick="bestaetigeLoeschen('{{ frage.id }}')"
+      onclick="frageLoeschen('{{ frage.id }}')"
     >
       Löschen
     </button>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <button
       type="submit"
       id="like-button"
@@ -45,29 +45,6 @@
       <i class="fas fa-thumbs-up"></i> Like
       <span id="like-count">{{ frage.likes }}</span>
     </button>
-    <script>
-      $(document).ready(function () {
-        $("#like-button").click(function () {
-          var frage_id = $(this).data("frage-id");
-          $.ajax({
-            url: "like/",
-            data: {
-              frage_id: frage_id,
-            },
-            dataType: "json",
-            type: "POST",
-            headers: {
-              "X-CSRFToken": "{{ csrf_token }}",
-            },
-            success: function (response) {
-              if (response.liked) {
-                // Aktualisieren Sie hier die Anzeige, z.B. Like-Zähler oder Button-Stil
-              }
-            },
-          });
-        });
-      });
-    </script>
   </div>
 </div>
 {% for antwort in antwort %}
@@ -79,18 +56,18 @@
     >
   </div>
   <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
-  <div class="frage-actions">
+  <div class="antwort-actions">
     <button
       type="submit"
       id="bearbeiten-button"
-      onclick="frageBearbeiten('{{ frage.id }}')"
+      onclick="antwortBearbeiten('{{ frage.id, antwort.id }}')"
     >
       Bearbeiten
     </button>
     <button
       type="submit"
       id="loeschen-button"
-      onclick="bestaetigeLoeschen('{{ frage.id }}')"
+      onclick="antwortLoeschen('{{ frage.id, antwort.id }}')"
     >
       Löschen
     </button>

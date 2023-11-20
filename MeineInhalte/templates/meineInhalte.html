@@ -29,15 +29,15 @@
       <div class="frage-actions">
         <button
           type="submit"
-          id="bearbeiten-button"
-          onclick="antwortBearbeiten('{{ frage.id, antwort.id }}')"
+          class="btn btn_blue"
+          onclick="frageBearbeiten('{{ frage.id }}')"
         >
           Bearbeiten
         </button>
         <button
           type="submit"
           id="loeschen-button"
-          onclick="antwortloeschen('{{ frage.id, antwort.id }}')"
+          onclick="frageLoeschen('{{ frage.id }}')"
         >
           Löschen
         </button>
@@ -64,18 +64,18 @@
         >
       </div>
       <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
-      <div class="frage-actions">
+      <div class="antwort-actions">
         <button
           type="submit"
           id="bearbeiten-button"
-          onclick="frageBearbeiten('{{ frage.id }}')"
+          onclick="antwortBearbeiten('{{ frage.id, antwort.id }}')"
         >
           Bearbeiten
         </button>
         <button
           type="submit"
           id="loeschen-button"
-          onclick="bestaetigeLoeschen('{{ frage.id }}')"
+          onclick="antwortLoeschen('{{ frage.id, antwort.id }}')"
         >
           Löschen
         </button>
