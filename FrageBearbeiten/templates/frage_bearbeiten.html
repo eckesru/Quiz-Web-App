@@ -6,7 +6,7 @@
   <form id="frageBearbeitenFormular" method="post">
     {% csrf_token %}
     <textarea id="frageText" name="frageText">{{ frage.text|safe }}</textarea>
-    <button type="submit" id="frageSpeichernButton">Frage speichern</button>
+    <button type="submit" class="btn btn_blue">Frage speichern</button>
   </form>
 </div>
 {% endblock %}
