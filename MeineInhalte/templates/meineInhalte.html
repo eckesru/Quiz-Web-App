@@ -55,7 +55,7 @@
   </div>
   <div class="antwort-container">
     <h2>Meine Antworten</h2>
-    {% for antwort in antwort %}
+    {% for antwort in antworten %}
     <div id="antwort">
       <div class="antwort-meta">
         <span class="antwort-username">{{ antwort.user.username }}</span>
@@ -64,32 +64,32 @@
         >
       </div>
       <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
+      <div class="frage-actions">
+        <button
+          type="submit"
+          id="bearbeiten-button"
+          onclick="frageBearbeiten('{{ frage.id }}')"
+        >
+          Bearbeiten
+        </button>
+        <button
+          type="submit"
+          id="loeschen-button"
+          onclick="bestaetigeLoeschen('{{ frage.id }}')"
+        >
+          Löschen
+        </button>
+        <button
+          type="submit"
+          id="like-button"
+          onclick="likeFrage('{{ frage.id }}')"
+        >
+          <i class="fas fa-thumbs-up"></i> Like
+          <span id="like-count">{{ frage.likes }}</span>
+        </button>
+      </div>
     </div>
     {% endfor %}
-    <div class="frage-actions">
-      <button
-        type="submit"
-        id="bearbeiten-button"
-        onclick="frageBearbeiten('{{ frage.id }}')"
-      >
-        Bearbeiten
-      </button>
-      <button
-        type="submit"
-        id="loeschen-button"
-        onclick="bestaetigeLoeschen('{{ frage.id }}')"
-      >
-        Löschen
-      </button>
-      <button
-        type="submit"
-        id="like-button"
-        onclick="likeFrage('{{ frage.id }}')"
-      >
-        <i class="fas fa-thumbs-up"></i> Like
-        <span id="like-count">{{ frage.likes }}</span>
-      </button>
-    </div>
   </div>
 </div>
 {% endblock %}
