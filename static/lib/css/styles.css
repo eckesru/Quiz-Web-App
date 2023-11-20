@@ -188,7 +188,8 @@ textarea {
 }
 
 /* Stil für jede Frage */
-.frage {
+.frage,
+.antwort {
   width: 100%;
   max-width: 600px;
   margin: 15px auto;
