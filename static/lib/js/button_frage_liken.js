@@ -6,11 +6,12 @@ function frageLiken(button) {
     url: "like/",
     data: {
       frageId: frageId,
+      csrfmiddlewaretoken: csrf_token,
     },
     dataType: "json",
     type: "POST",
     headers: {
-      "X-CSRFToken": csrf_token,
+      "X-CSRF-Token": csrf_token,
     },
   })
     .done(function (response) {
