@@ -2,7 +2,7 @@ function frageLiken(frageId) {
   // Hier wird die Like-Funktion aufgerufen, wenn der Benutzer auf "Like" klickt
   $.ajax({
     //URL frage/ID/like/
-    url: `/frage/${frageId}/like`, // Die URL muss zur View führen, die die Like-Funktion enthält
+    url: `/frage/${frageId}/like/`, // Die URL muss zur View führen, die die Like-Funktion enthält
     type: "POST", // Wir senden eine POST-Anfrage, da Likes Änderungen an den Daten vornehmen
     data: {}, // Hier könntest du zusätzliche Daten senden, wenn benötigt
     success: function (data) {
