@@ -358,7 +358,8 @@ textarea {
 
 /* Stil für "Frage bearbeiten" */
 /* Stil für das Container-Div */
-#frageBearbeiten {
+#frageBearbeiten,
+#antwortBearbeiten {
   width: 100%;
   max-width: 800px;
   margin: 10px auto;
