@@ -22,7 +22,7 @@ function frageLiken(frageId) {
   // URL: frage/ID/like/
 
   //"frage/" + frageId +
-  xhr.open("POST", "/like", true);
+  xhr.open("POST", frageId + "/like", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
 }
