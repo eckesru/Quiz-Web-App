@@ -15,6 +15,9 @@ def frage_anzeigen_view(request, frage_id):
     if request.method == "POST":
         # Falls der antwortErstellen-Button betätigt wurde, dann Antwort-Func.
         if 'antwortErstellen' in request.POST:
+            antwort_text = request.POST.get('antwortText')
+            # antwortText in der Session zwischenspeichern, da er sonst verloren geht.
+            request.session['temp_antwort_text'] = antwort_text
             return redirect("/frage/" + str(frage_id) + "/" + "antwort/")
         
     # Fragen vom Delete-User "entfernt" sollen nicht angezeigt werden
