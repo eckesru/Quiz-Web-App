@@ -3,6 +3,8 @@
 <script src="/static/lib/js/antwort.js"></script>
 <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
+<script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
+<script src="/static/lib/js/button_antwort_loeschen.js"></script>
 <div id="frageAnzeigen">
   <div class="frage-meta">
     <span class="frage-username">{{ frage.user.username }}</span>
@@ -77,6 +79,30 @@
     >
   </div>
   <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
+  <div class="frage-actions">
+    <button
+      type="submit"
+      id="bearbeiten-button"
+      onclick="frageBearbeiten('{{ frage.id }}')"
+    >
+      Bearbeiten
+    </button>
+    <button
+      type="submit"
+      id="loeschen-button"
+      onclick="bestaetigeLoeschen('{{ frage.id }}')"
+    >
+      Löschen
+    </button>
+    <button
+      type="submit"
+      id="like-button"
+      onclick="likeFrage('{{ frage.id }}')"
+    >
+      <i class="fas fa-thumbs-up"></i> Like
+      <span id="like-count">{{ frage.likes }}</span>
+    </button>
+  </div>
 </div>
 {% endfor %}
 <div id="antwort-formular">
