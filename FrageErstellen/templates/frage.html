@@ -1,18 +1,18 @@
 {% extends "base.html" %} {% block content %}
-<!-- Script Import -->
+<!--Script Import-->
 <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
 <script src="/static/lib/js/frage.js"></script>
 
-<!-- Frage Erstellen Formular -->
+<!--Frage Erstellen Formular-->
 <div id="frageErstellen">
   <form id="frageErstellenFormular" method="post" action="/frage-erstellen/">
-    <!-- Überschrift -->
+    <!--Überschrift-->
     <h2>Frage erstellen</h2>
 
-    <!--Django Token Übergabe -->
+    <!--Django Token Übergabe-->
     {% csrf_token %}
 
-    <!-- Eingabe Frage Titel -->
+    <!--Eingabe Frage Titel-->
     <label for="frageTitel">Fragetitel:</label>
     <input
       type="text"
@@ -24,7 +24,7 @@
       placeholder="Kurzer und aussagekräftiger Titel"
     />
 
-    <!-- Eingabe Frage Text -->
+    <!--Eingabe Frage Text-->
     <label for="frageText">Fragetext:</label>
     <textarea
       id="frageText"
@@ -32,7 +32,7 @@
       placeholder="Bitte stellen Sie Ihre Frage in vollständiger Form dar."
     ></textarea>
 
-    <!-- Auswahl Frage Tags -->
+    <!--Auswahl Frage Tags-->
     <label for="frageTags">Tag:</label>
     <select id="frageTags" name="frageTags" required multiple size="5">
       {% for tag in tag_choices %}
@@ -40,7 +40,7 @@
       {% endfor %}
     </select>
 
-    <!-- Auswahl Frage Modul -->
+    <!--Auswahl Frage Modul-->
     <label for="frageModul">Modul:</label>
     <select id="frageModul" name="frageModul" required>
       {% for modul in module_choices %}
@@ -48,7 +48,7 @@
       {% endfor %}
     </select>
 
-    <!-- Button Frage speichern-->
+    <!--Button Frage speichern-->
     <button type="submit" class="btn btn_blue">Frage speichern</button>
 
   </form>

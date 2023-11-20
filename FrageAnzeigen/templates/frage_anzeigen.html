@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block content %}
+<!--Script Import-->
 <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
 <script src="/static/lib/js/antwort.js"></script>
 <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
@@ -6,17 +7,21 @@
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--
-  Fragen
--->
+
+<!--Frage anzeigen-->
 <div id="frageAnzeigen">
+  <!--Frage Metaangaben-->
   <div class="frage-meta">
     <span class="frage-username">{{ frage.user.username }}</span>
     <span class="frage-erstelldatum"
       >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
     >
   </div>
+
+  <!--Frage Überschrift-->
   <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+
+  <!--Frage Text-->
   <div class="frageAnzeigen-frage-text">{{ frage.text|safe }}</div>
   <div class="tags">
     <i class="fas fa-tags"></i>
@@ -24,13 +29,10 @@
     <span class="tag">{{ tag.text }}</span>
     {% endfor %}
   </div>
-  <!--
-    Buttons für Fragen
-  -->
+
+  <!--Frage Buttons-->
   <div class="frage-actions">
-    <!--
-      Button Frage bearbeiten
-    -->
+    <!--Button Frage bearbeiten-->
     <button
       type="submit"
       class="btn btn_blue"
@@ -38,9 +40,8 @@
     >
       Bearbeiten
     </button>
-    <!--
-      Button Frage löschen
-    -->
+
+    <!--Button Frage löschen-->
     <button
       type="submit"
       class="btn btn_red"
@@ -48,9 +49,8 @@
     >
       Löschen
     </button>
-    <!--
-      Button Frage liken
-    -->
+
+    <!--Button Frage liken-->
     <button
       type="submit"
       class="btn btn_light_blue"
@@ -62,25 +62,24 @@
     </button>
   </div>
 </div>
-<!--
-  Antworten
--->
+
+<!--Antworten anzeigen-->
 {% for antwort in antwort %}
 <div id="antwort">
+  <!--Antwort Metaangaben-->
   <div class="antwort-meta">
     <span class="antwort-username">{{ antwort.user.username }}</span>
     <span class="antwort-erstelldatum"
       >{{ antwort.creation_date|date:"Y-m-d H:i" }}</span
     >
   </div>
+
+  <!--Antwort Text-->
   <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
-  <!--
-    Buttons für Antworten
-  -->
+
+  <!--Antwort Buttons-->
   <div class="antwort-actions">
-    <!--
-      Button Antwort bearbeiten
-    -->
+    <!--Button Antwort bearbeiten-->
     <button
       type="submit"
       class="btn btn_blue"
@@ -88,9 +87,8 @@
     >
       Bearbeiten
     </button>
-    <!--
-      Button Antwort löschen
-    -->
+
+    <!--Button Antwort löschen-->
     <button
       type="submit"
       class="btn btn_red"
@@ -101,20 +99,23 @@
   </div>
 </div>
 {% endfor %}
-<!--
-  Antwort Erstellen
--->
+
+<!--Antwort erstellen Formular-->
 <div id="antwort-formular">
   <form id="antwortErstellenFormular" method="post">
+    <!--Django Token Übergabe-->
     {% csrf_token %}
+
+    <!--Eingabe Antwort Text-->
     <textarea
       id="antwortText"
       name="antwortText"
       placeholder="Antwort schreiben..."
-      minlength="6"
     ></textarea>
+
+    <!--Button Antwort speichern-->
     <button type="submit" class="btn btn_blue" name="antwortErstellen">
-      Absenden
+      Antwort speichern
     </button>
   </form>
 </div>
