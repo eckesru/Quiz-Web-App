@@ -54,8 +54,7 @@ def frage_anzeigen_view_delete(request, frage_id):
 def like_frage(request, frage_id):
     if request.method == 'POST':
         user = request.user
-        frage = get_object_or_404(Frage, id=frage_id)
-        #frage = Frage.objects.filter(id=frage_id).get()
+        frage = Frage.objects.filter(id=frage_id).get()
 
         if frage in user.liked_fragen.all():
             likes_new = frage.likes - 1
