@@ -20,10 +20,12 @@ function frageLiken(frageId) {
   };
 
   // URL: frage/ID/like/
-  xhr.open("POST", "frage/" + frageId + "/like", true);
+
+  //"frage/" + frageId +
+  xhr.open("POST", "/like", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
-};
+}
 
 console.log("Skript geladen");
 /*
