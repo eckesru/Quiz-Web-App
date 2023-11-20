@@ -1,3 +1,4 @@
+/*
 function frageLiken(button) {
   var frageId = button.getAttribute("data-frage-id");
   var csrf_token = "{{ csrf_token }}";
@@ -11,7 +12,7 @@ function frageLiken(button) {
     dataType: "json",
     type: "POST",
     headers: {
-      "X-CSRF-Token": csrf_token,
+      "X-CSRFToken": csrf_token,
     },
   })
     .done(function (response) {
@@ -23,3 +24,4 @@ function frageLiken(button) {
       console.error("AJAX request failed:", status, error);
     });
 }
+*/

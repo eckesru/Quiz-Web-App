@@ -5,7 +5,9 @@
 <script src="/static/lib/js/antwort.js"></script>
 <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
+<!--
 <script src="/static/lib/js/button_frage_liken.js"></script>
+-->
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
 
@@ -56,11 +58,35 @@
       type="submit"
       class="btn btn_light_blue"
       data-frage-id="{{ frage.id }}"
-      onclick="frageLiken(this)"
+      onclick="likeFrage('{{ frage.id }}')"
     >
       <i class="fas fa-thumbs-up"></i> Like
       <span id="like-count">{{ frage.likes }}</span>
     </button>
+
+    <script>
+      $(document).ready(function () {
+        $("#like-button").click(function () {
+          var frage_id = $(this).data("frage-id");
+          $.ajax({
+            url: "like/",
+            data: {
+              frage_id: frage_id,
+            },
+            dataType: "json",
+            type: "POST",
+            headers: {
+              "X-CSRFToken": "{{ csrf_token }}",
+            },
+            success: function (response) {
+              if (response.liked) {
+                // Aktualisieren Sie hier die Anzeige, z.B. Like-Zähler oder Button-Stil
+              }
+            },
+          });
+        });
+      });
+    </script>
   </div>
 </div>
 
