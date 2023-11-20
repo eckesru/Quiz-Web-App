@@ -188,7 +188,7 @@ textarea {
 }
 
 /* Stil für jede Frage */
-.frage{
+.frage {
   width: 100%;
   max-width: 600px;
   margin: 15px auto;
@@ -265,7 +265,8 @@ textarea {
 }
 
 /* Stil für den like-count */
-#like-count {
+#frage-like-count,
+#antwort-like-count {
   margin-left: 5px;
   font-weight: bold;
   transition: color 0.3s ease;

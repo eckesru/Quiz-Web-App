@@ -54,7 +54,7 @@
     <!--Button Frage liken-->
     <button type="submit" class="btn btn_light_blue">
       <i class="fas fa-thumbs-up"></i> Like
-      <span id="like-count">{{ frage.likes }}</span>
+      <span id="frage-like-count">{{ frage.likes }}</span>
     </button>
   </div>
 </div>
@@ -71,7 +71,7 @@
   </div>
 
   <!--Antwort Text-->
-  <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
+  <div class="frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
 
   <!--Antwort Buttons-->
   <div class="antwort-actions">
@@ -95,7 +95,7 @@
 
     <!--Button Antwort als hilfreich markieren-->
     <button type="submit" class="btn btn_light_blue">
-      Hilfreich <span id="like-count">{{ antwort.likes }}</span>
+      Hilfreich <span id="antwort-like-count">{{ antwort.likes }}</span>
     </button>
   </div>
 </div>
