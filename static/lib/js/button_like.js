@@ -1,7 +1,8 @@
-function frageLiken(frageId) {
+function frageLiken(frageId, csrf_token) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
+      console.log(xhr.responseText);
       if (xhr.status === 200) {
         var responseData = JSON.parse(xhr.responseText);
         var likeCountElement = document.getElementById("like-count");
@@ -26,7 +27,6 @@ function frageLiken(frageId) {
   xhr.open("POST", "/frage/" + frageId + "/like/", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.setRequestHeader("X-CSRFToken", csrf_token);
-  console.log(xhr.responseText);
 }
 
 /*
