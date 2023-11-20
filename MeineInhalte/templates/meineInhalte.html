@@ -29,7 +29,7 @@
       <div class="frage-actions">
         <button
           type="submit"
-          class="btn btn_blue"
+          class="btn"
           onclick="frageBearbeiten('{{ frage.id }}')"
         >
           Bearbeiten
@@ -69,7 +69,6 @@
           type="submit"
           id="bearbeiten-button"
           onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-
         >
           Bearbeiten
         </button>
@@ -77,7 +76,6 @@
           type="submit"
           id="loeschen-button"
           onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-
         >
           Löschen
         </button>
