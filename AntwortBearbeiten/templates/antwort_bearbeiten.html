@@ -1,4 +1,6 @@
 {% extends "base.html" %} {% block content %}
+<script src="/static/lib/js/tinymce/tinymce.min.js"></script>
+<script src="/static/lib/js/antwort.js"></script>
 <div id="antwortBearbeiten">
   <form id="antwortBearbeitenFormular" method="post">
     {% csrf_token %}
