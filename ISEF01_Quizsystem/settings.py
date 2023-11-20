@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 # TODO: DEBUG auf false setzen
 
-ALLOWED_HOSTS = ["isef01quiz.ddns.net", "localhost"]
+ALLOWED_HOSTS = ["isef01quiz.pro", "localhost"]
 # TODO: localhost in ALLOWED_HOST rausnehmen
 
 
