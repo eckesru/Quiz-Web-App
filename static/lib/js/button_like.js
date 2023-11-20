@@ -21,13 +21,14 @@ function frageLiken(frageId) {
 
   // URL: frage/ID/like/
 
-  //"frage/" + frageId +
-  xhr.open("POST", frageId + "/like", true);
+  //"frage/" + frageId + "/like"
+  console.log("Frage ID:", frageId);
+  xhr.open("POST", frageId, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
 }
 
-console.log(frageId);
+console.log("Skript geladen");
 /*
 $(document).ready(function () {
   $("#like-button").click(function () {
