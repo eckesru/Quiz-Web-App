@@ -6,6 +6,7 @@
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
+<script src="/static/lib/js/button_like.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!--Frage anzeigen-->
@@ -51,7 +52,12 @@
     </button>
 
     <!--Button Frage liken-->
-    <button
+    <button type="button" class="btn btn_light_blue" id="likeButton">
+      <i class="fas fa-thumbs-up"></i> Like
+    </button>
+    <span id="like-count">{{ frage.likes }}</span>
+    <!--
+<button
       type="submit"
       class="btn btn_light_blue"
       data-frage-id="{{ frage.id }}"
@@ -60,6 +66,7 @@
       <i class="fas fa-thumbs-up"></i> Like
       <span id="like-count">{{ frage.likes }}</span>
     </button>
+    -->
   </div>
 </div>
 
@@ -96,6 +103,12 @@
     >
       Löschen
     </button>
+
+    <!--Button Antwort als hilfreich markieren-->
+    <button type="submit" class="btn btn_light_blue">Hilfreich</button>
+
+    <!--Anzahl der Markierungen als hilfreich-->
+    <span id="hilfreich-count">{{ antwort.likes }}</span>
   </div>
 </div>
 {% endfor %}
