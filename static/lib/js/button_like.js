@@ -1,5 +1,4 @@
-document.getElementById("likeButton").addEventListener("click", function () {
-  // Sende eine AJAX-Anfrage an den Server, um den Like zu aktualisieren
+function frageLiken(frageId) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -24,7 +23,7 @@ document.getElementById("likeButton").addEventListener("click", function () {
   xhr.open("POST", "frage/" + frage.id + "/like", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
-});
+};
 
 console.log("Skript geladen");
 /*
