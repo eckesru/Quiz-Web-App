@@ -3,6 +3,7 @@ function bestaetigeLoeschen(frageId) {
     "Bist du sicher, dass du diese Frage löschen möchtest?"
   );
   if (bestaetigung) {
+    // URL: frage/ID/delete/
     window.location.href = "/frage/" + frageId + "/delete/";
   }
 }
