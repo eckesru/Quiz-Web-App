@@ -4,9 +4,9 @@
 <script src="/static/lib/js/antwort.js"></script>
 <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
+<script src="/static/lib/js/button_frage_liken.js"></script>
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!--Frage anzeigen-->
 <div id="frageAnzeigen">
@@ -52,25 +52,14 @@
 
     <!--Button Frage liken-->
     <button
-      type="button"
-      class="btn btn_light_blue"
-      id="likeButton"
-      onclick="frageLiken('{{ frage.id }}', '{{ csrf_token }}')"
-    >
-      <i class="fas fa-thumbs-up"></i> Like
-    </button>
-    <span id="like-count">{{ frage.likes }}</span>
-    <!--
-<button
       type="submit"
       class="btn btn_light_blue"
       data-frage-id="{{ frage.id }}"
-      onclick="likeFrage('{{ frage.id }}')"
+      onclick="frageLiken(this)"
     >
       <i class="fas fa-thumbs-up"></i> Like
       <span id="like-count">{{ frage.likes }}</span>
     </button>
-    -->
   </div>
 </div>
 
