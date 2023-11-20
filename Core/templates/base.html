@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Online Quizsystem">
-    <link rel="icon" type="image/jpg" href="/static/lib/images/favicon.jpg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Online Quizsystem" />
+    <link rel="icon" type="image/jpg" href="/static/lib/images/favicon.jpg" />
     <title>quiz-brauer-eckes-weder</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
-    <link rel="stylesheet" href="/static/lib/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/static/lib/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <header class="header">
-        <img src="/static/lib/images/logo.png" alt="Logo" class="logo" height="100">
-        <nav class="navbar">
-            <a href="#">Dashboard</a>
-            <a href="{% url 'frage-erstellen' %}">Frage erstellen</a>
-            <a href="{% url 'meine-inhalte' %}">Meine Inhalte</a>
-            <a href="#">Frage des Tages</a>
-            <a href="#">Quiz</a>
-            <a href="{% url 'logout' %}">Logout</a>
-        </nav>
+      <img
+        src="/static/lib/images/logo.png"
+        alt="Logo"
+        class="logo"
+        height="100"
+      />
+      <nav class="navbar">
+        <a href="#">Dashboard</a>
+        <a href="{% url 'frage-erstellen' %}">Frage erstellen</a>
+        <a href="{% url 'meine-inhalte' %}">Meine Inhalte</a>
+        <a href="#">Frage des Tages</a>
+        <a href="#">Quiz</a>
+        <a href="{% url 'logout' %}">Logout</a>
+      </nav>
     </header>
     <main class="main">
-        <div class="content">
-            {% block content %}{% endblock %}
-        </div>
+      <div class="content">{% block content %}{% endblock %}</div>
     </main>
     <footer class="footer">
-        <hr>
-        <br>
-        <a href="">Impressum</a>
-        <a href="">Datenschutz</a>
-        <br>
-        <br>
-        <p>&copy; 2023 IU Internationale Hochschule - Alle Rechte vorbehalten</p>
+      <hr />
+      <br />
+      <a href="">Impressum</a>
+      <a href="">Datenschutz</a>
+      <br />
+      <br />
+      <p>&copy; 2023 IU Internationale Hochschule - Alle Rechte vorbehalten</p>
     </footer>
-</body>
+    <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
+    <script src="/static/lib/js/frage.js"></script>
+    <script src="/static/lib/js/antwort.js"></script>
+    <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
+    <script src="/static/lib/js/button_frage_loeschen.js"></script>
+    <script src="/static/lib/js/button_frage_liken.js"></script>
+    <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
+    <script src="/static/lib/js/button_antwort_loeschen.js"></script>
+    <script src="/static/lib/js/button_antwort_liken.js"></script>
+    <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
+  </body>
 </html>

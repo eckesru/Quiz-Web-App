@@ -4,20 +4,18 @@ function frageLiken(frageId) {
 
   // Hier wird die Like-Funktion aufgerufen, wenn der Benutzer auf "Like" klickt
   $.ajax({
-    //URL frage/ID/like/
-    url: `/frage/${frageId}/like/`, // Die URL muss zur View führen, die die Like-Funktion enthält
-    type: "POST", // Wir senden eine POST-Anfrage, da Likes Änderungen an den Daten vornehmen
+    //URL: frage/ID/like/
+    url: `/frage/${frageId}/like/`,
+    type: "POST",
     headers: { "X-CSRFToken": csrftoken },
-    data: {}, // Hier könntest du zusätzliche Daten senden, wenn benötigt
+    // data: {}, // Hier könntest du zusätzliche Daten senden, wenn benötigt
     success: function (data) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
-        // Du kannst die Anzeige entsprechend aktualisieren
         updateLikeCount(frageId, data.liked);
       } else {
         // Der Benutzer hat den Like entfernt
-        // Du kannst die Anzeige entsprechend aktualisieren
         updateLikeCount(frageId, data.liked);
       }
     },
@@ -53,8 +51,7 @@ function updateLikeCount(frageId, liked) {
   if (likeCountElement) {
     const currentLikes = parseInt(likeCountElement.innerText, 10);
 
-    // Je nachdem, ob der Benutzer geliked oder den Like entfernt hat,
-    // aktualisieren wir die Like-Anzeige entsprechend
+    // Je nachdem, ob der Benutzer geliked oder den Like entfernt hat, aktualisieren wir die Like-Anzeige entsprechend
     likeCountElement.innerText = liked ? currentLikes + 1 : currentLikes - 1;
   }
 }
