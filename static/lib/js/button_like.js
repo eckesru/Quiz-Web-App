@@ -27,7 +27,7 @@ function frageLiken(frageId) {
   xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
 }
 
-console.log("Skript geladen");
+console.log(frageId);
 /*
 $(document).ready(function () {
   $("#like-button").click(function () {
