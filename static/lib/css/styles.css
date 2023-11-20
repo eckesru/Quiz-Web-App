@@ -112,21 +112,18 @@ body {
   background-color: #bb0000;
 }
 
-#frageSpeichernButton {
-  width: 100%;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s;
+.btn_light_blue {
+  background-color: #3498db;
 }
 
-#frageSpeichernButton:hover {
-  background-color: #0056b3;
+.btn_light_blue:hover {
+  background-color: #2980b9;
+  transform: scale(1);
+}
+
+.btn_light_blue.clicked {
+  background-color: #2ecc71;
+  transform: scale(1);
 }
 
 /* Frage-Erstellen Formular */
@@ -164,23 +161,6 @@ textarea {
   height: 150px;
 }
 
-#frageSpeichernButton {
-  width: 100%;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s;
-}
-
-#frageSpeichernButton:hover {
-  background-color: #0056b3;
-}
-
 /* Stil für "Meine Inhalte" */
 /* Stil für das Container-Div */
 #meineInhalte {
@@ -197,14 +177,14 @@ textarea {
 
 /* Stil für den Frage-Container */
 .frage-container {
-  width: 50%; /* 50% Breite, um sie nebeneinander anzuordnen */
-  padding: 10px; /* Optional: Fügen Sie Abstand hinzu */
+  width: 50%;
+  padding: 10px;
 }
 
 /* Stil für den Antwort-Container */
 .antwort-container {
-  width: 50%; /* 50% Breite, um sie nebeneinander anzuordnen */
-  padding: 10px; /* Optional: Fügen Sie Abstand hinzu */
+  width: 50%;
+  padding: 10px;
 }
 
 /* Stil für jede Frage */
@@ -284,33 +264,6 @@ textarea {
   margin-right: 5px;
 }
 
-/* Stil für Like */
-#like-button {
-  width: auto;
-  padding: 5px 10px;
-  margin-top: 10px;
-  border: none;
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-#like-button {
-  background-color: #3498db;
-}
-
-#like-button:hover {
-  background-color: #2980b9;
-  transform: scale(1);
-}
-
-#like-button.clicked {
-  background-color: #2ecc71;
-  transform: scale(1);
-}
-
 /* Stil für den like-count */
 #like-count {
   margin-left: 5px;
@@ -344,23 +297,6 @@ textarea {
 /* Stil für das Antwortformular */
 #antwortErstellenFormular {
   margin-top: 5px;
-}
-
-/* Stil für den Absenden-Button */
-#antwortSpeichern-button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-#antwortSpeichern-button-button:hover {
-  background-color: #0056b3;
 }
 
 /* Stil für "Frage bearbeiten" */
