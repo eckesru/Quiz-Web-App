@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["isef01quiz.pro", "localhost"]
 # TODO: localhost in ALLOWED_HOST rausnehmen
-
+#
 
 # Application definition
 
