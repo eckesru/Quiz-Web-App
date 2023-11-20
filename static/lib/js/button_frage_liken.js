@@ -1,9 +1,13 @@
 function frageLiken(frageId) {
+  // CSRF-Token abrufen
+  const csrftoken = getCookie("csrftoken");
+
   // Hier wird die Like-Funktion aufgerufen, wenn der Benutzer auf "Like" klickt
   $.ajax({
     //URL frage/ID/like/
     url: `/frage/${frageId}/like/`, // Die URL muss zur View führen, die die Like-Funktion enthält
     type: "POST", // Wir senden eine POST-Anfrage, da Likes Änderungen an den Daten vornehmen
+    headers: { "X-CSRFToken": csrftoken },
     data: {}, // Hier könntest du zusätzliche Daten senden, wenn benötigt
     success: function (data) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
@@ -22,6 +26,22 @@ function frageLiken(frageId) {
       console.log("Fehler beim Senden des Like-Requests:", error);
     },
   });
+}
+
+// CSRF-Token aus den Cookies abrufen
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
 
 // Funktion zum Aktualisieren der Like-Anzeige
