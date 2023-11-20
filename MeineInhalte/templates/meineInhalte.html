@@ -4,6 +4,9 @@
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
 <div id="meineInhalte" class="meineInhalte-container">
+  <!--
+    Fragen
+  -->
   <div class="frage-container">
     <h2>Meine Fragen</h2>
     {% for frage in fragen %}
@@ -26,6 +29,9 @@
         <span class="tag">{{ tag.text }}</span>
         {% endfor %}
       </div>
+      <!--
+        Buttons für Fragen
+      -->
       <div class="frage-actions">
         <button
           type="submit"
@@ -36,7 +42,7 @@
         </button>
         <button
           type="submit"
-          id="loeschen-button"
+          class="btn btn_red"
           onclick="frageLoeschen('{{ frage.id }}')"
         >
           Löschen
@@ -53,6 +59,9 @@
     </div>
     {% endfor %}
   </div>
+  <!--
+    Antworten
+  -->
   <div class="antwort-container">
     <h2>Meine Antworten</h2>
     {% for antwort in antworten %}
@@ -64,28 +73,23 @@
         >
       </div>
       <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
+      <!--
+        Buttons für Antworten
+      -->
       <div class="antwort-actions">
         <button
           type="submit"
-          id="bearbeiten-button"
+          class="btn btn_blue"
           onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
         >
           Bearbeiten
         </button>
         <button
           type="submit"
-          id="loeschen-button"
+          class="btn btn_red"
           onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
         >
           Löschen
-        </button>
-        <button
-          type="submit"
-          id="like-button"
-          onclick="likeFrage('{{ frage.id }}')"
-        >
-          <i class="fas fa-thumbs-up"></i> Like
-          <span id="like-count">{{ frage.likes }}</span>
         </button>
       </div>
     </div>

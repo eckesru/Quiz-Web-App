@@ -104,6 +104,14 @@ body {
   background-color: #0056b3;
 }
 
+.btn_red {
+  background-color: #ff0000;
+}
+
+.btn_red:hover {
+  background-color: #bb0000;
+}
+
 /* Frage-Erstellen Formular */
 h2 {
   text-align: center;
@@ -260,8 +268,10 @@ textarea {
 }
 
 /* Stil für Buttons (Bearbeiten / Löschen / Like) */
+/*
 #bearbeiten-button,
 #loeschen-button,
+*/
 #like-button {
   width: auto;
   padding: 5px 10px;
@@ -274,6 +284,7 @@ textarea {
   transition: background-color 0.3s;
 }
 
+/*
 #bearbeiten-button {
   background-color: #007bff;
 }
@@ -281,11 +292,11 @@ textarea {
 #loeschen-button {
   background-color: #ff0000;
 }
-
+*/
 #like-button {
   background-color: #3498db;
 }
-
+/*
 #bearbeiten-button:hover {
   background-color: #0056b3;
 }
@@ -293,7 +304,7 @@ textarea {
 #loeschen-button:hover {
   background-color: #bb0000;
 }
-
+*/
 #like-button:hover {
   background-color: #2980b9;
   transform: scale(1);

@@ -6,6 +6,9 @@
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--
+  Fragen
+-->
 <div id="frageAnzeigen">
   <div class="frage-meta">
     <span class="frage-username">{{ frage.user.username }}</span>
@@ -21,17 +24,26 @@
     <span class="tag">{{ tag.text }}</span>
     {% endfor %}
   </div>
+  <!--
+    Buttons für Fragen
+  -->
   <div class="frage-actions">
+    <!--
+      Button Frage bearbeiten
+    -->
     <button
       type="submit"
-      id="bearbeiten-button"
+      class="btn btn_blue"
       onclick="frageBearbeiten('{{ frage.id }}')"
     >
       Bearbeiten
     </button>
+    <!--
+      Button Frage löschen
+    -->
     <button
       type="submit"
-      id="loeschen-button"
+      class="btn btn_red"
       onclick="frageLoeschen('{{ frage.id }}')"
     >
       Löschen
@@ -47,6 +59,9 @@
     </button>
   </div>
 </div>
+<!--
+  Antworten
+-->
 {% for antwort in antwort %}
 <div id="antwort">
   <div class="antwort-meta">
@@ -56,32 +71,36 @@
     >
   </div>
   <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
+  <!--
+    Buttons für Antworten
+  -->
   <div class="antwort-actions">
+    <!--
+      Button Antwort bearbeiten
+    -->
     <button
       type="submit"
-      id="bearbeiten-button"
+      class="btn btn_blue"
       onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
     >
       Bearbeiten
     </button>
+    <!--
+      Button Antwort löschen
+    -->
     <button
       type="submit"
-      id="loeschen-button"
+      class="btn btn_red"
       onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
     >
       Löschen
     </button>
-    <button
-      type="submit"
-      id="like-button"
-      onclick="likeFrage('{{ frage.id }}')"
-    >
-      <i class="fas fa-thumbs-up"></i> Like
-      <span id="like-count">{{ frage.likes }}</span>
-    </button>
   </div>
 </div>
 {% endfor %}
+<!--
+  Antwort Erstellen
+-->
 <div id="antwort-formular">
   <form id="antwortErstellenFormular" method="post">
     {% csrf_token %}
@@ -89,10 +108,9 @@
       id="antwortText"
       name="antwortText"
       placeholder="Antwort schreiben..."
-      required
       minlength="6"
     ></textarea>
-    <button type="submit" id="antwortSpeichern-button" name="antwortErstellen">
+    <button type="submit" class="btn btn_blue" name="antwortErstellen">
       Absenden
     </button>
   </form>
