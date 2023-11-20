@@ -1,15 +1,13 @@
 {% extends "base.html" %} {% block content %}
 <!--Script Import-->
 <script src="/static/lib/js/tinymce/tinymce.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/static/lib/js/antwort.js"></script>
 <script src="/static/lib/js/button_frage_bearbeiten.js"></script>
 <script src="/static/lib/js/button_frage_loeschen.js"></script>
-<!--
 <script src="/static/lib/js/button_frage_liken.js"></script>
--->
 <script src="/static/lib/js/button_antwort_bearbeiten.js"></script>
 <script src="/static/lib/js/button_antwort_loeschen.js"></script>
+<script src="/static/lib/js/button_antwort_liken.js"></script>
 
 <!--Frage anzeigen-->
 <div id="frageAnzeigen">
@@ -54,39 +52,10 @@
     </button>
 
     <!--Button Frage liken-->
-    <button
-      type="submit"
-      class="btn btn_light_blue"
-      id="like-button"
-      data-frage-id="{{ frage.id }}"
-    >
+    <button type="submit" class="btn btn_light_blue">
       <i class="fas fa-thumbs-up"></i> Like
       <span id="like-count">{{ frage.likes }}</span>
     </button>
-
-    <script>
-      $(document).ready(function () {
-        $("#like-button").click(function () {
-          var frage_id = $(this).data("frage-id");
-          $.ajax({
-            url: "like/",
-            data: {
-              frage_id: frage_id,
-            },
-            dataType: "json",
-            type: "POST",
-            headers: {
-              "X-CSRFToken": "{{ csrf_token }}",
-            },
-            success: function (response) {
-              if (response.liked) {
-                // Aktualisieren Sie hier die Anzeige, z.B. Like-Zähler oder Button-Stil
-              }
-            },
-          });
-        });
-      });
-    </script>
   </div>
 </div>
 
@@ -125,10 +94,9 @@
     </button>
 
     <!--Button Antwort als hilfreich markieren-->
-    <button type="submit" class="btn btn_light_blue">Hilfreich</button>
-
-    <!--Anzahl der Markierungen als hilfreich-->
-    <span id="hilfreich-count">{{ antwort.likes }}</span>
+    <button type="submit" class="btn btn_light_blue">
+      Hilfreich <span id="hilfreich-count">{{ antwort.likes }}</span>
+    </button>
   </div>
 </div>
 {% endfor %}
