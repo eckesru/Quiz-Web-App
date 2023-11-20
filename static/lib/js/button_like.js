@@ -26,6 +26,7 @@ document.getElementById("likeButton").addEventListener("click", function () {
   xhr.send("csrfmiddlewaretoken={{ csrf_token }}"); // Füge den CSRF-Token hinzu
 });
 
+console.log("Skript geladen");
 /*
 $(document).ready(function () {
   $("#like-button").click(function () {
