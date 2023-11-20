@@ -60,14 +60,14 @@
     <button
       type="submit"
       id="bearbeiten-button"
-      onclick="antwortBearbeiten('{{ frage.id, antwort.id }}')"
+      onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
     >
       Bearbeiten
     </button>
     <button
       type="submit"
       id="loeschen-button"
-      onclick="antwortLoeschen('{{ frage.id, antwort.id }}')"
+      onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
     >
       Löschen
     </button>
