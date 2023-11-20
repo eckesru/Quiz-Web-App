@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect, JsonResponse
 from Core.models import Frage, Benutzer, Antwort
 # from .models import KLASSENNAME, Hier Models importieren!
 
@@ -54,7 +54,8 @@ def frage_anzeigen_view_delete(request, frage_id):
 def like_frage(request, frage_id):
     if request.method == 'POST':
         user = request.user
-        frage = Frage.objects.filter(id=frage_id).get()
+        #frage = Frage.objects.filter(id=frage_id).get()
+        frage = get_object_or_404(Frage, id=frage_id)
 
         if frage in user.liked_fragen.all():
             likes_new = frage.likes - 1
