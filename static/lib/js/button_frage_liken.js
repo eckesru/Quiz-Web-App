@@ -53,8 +53,10 @@ function updateLikeCount(frageId, liked) {
   if (likeCountElement) {
     const currentLikes = parseInt(likeCountElement.innerText, 10);
     console.log('currentLikes:', currentLikes);
-    
+
     // Je nachdem, ob der Benutzer geliked oder den Like entfernt hat, aktualisieren wir die Like-Anzeige entsprechend
     likeCountElement.innerText = liked ? currentLikes + 1 : currentLikes - 1;
   }
 }
+
+console.log("Button_frage_like geladen")

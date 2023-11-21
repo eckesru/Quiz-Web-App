@@ -55,3 +55,5 @@ function updateLikeCount(antwortID, liked) {
     likeCountElement.innerText = liked ? currentLikes + 1 : currentLikes - 1;
   }
 }
+
+console.log("button_antwort_liken.js geladen")

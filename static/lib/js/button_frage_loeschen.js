@@ -7,3 +7,5 @@ function frageLoeschen(frageId) {
     window.location.href = "/frage/" + frageId + "/delete/";
   }
 }
+
+console.log("button_frage_loeschen.js geladen")

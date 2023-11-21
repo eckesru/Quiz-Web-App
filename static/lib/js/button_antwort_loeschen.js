@@ -8,3 +8,5 @@ function antwortLoeschen(frageId, antwortID) {
       "/frage/" + frageId + "/antwort/" + antwortID + "/delete/";
   }
 }
+
+console.log("button_antwort_loeschen.js geladen")
