@@ -11,16 +11,18 @@ function frageLiken(frageId) {
     data: {}, // Hier könnten zusätzliche Daten gesendet werden, wenn benötigt
     success: function (data) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
-      console.log('AJAX success response:', data);
+      console.log("AJAX success response:", data);
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
-        console.log("es wurde geliket")
+        console.log("es wurde geliket");
         updateLikeCount(frageId, data.liked);
       } else {
         // Der Benutzer hat den Like entfernt
-        console.log("es wurde entliket")
+        console.log("es wurde entliket");
         updateLikeCount(frageId, data.liked);
       }
+
+      updateLikeCount(frageId, data.liked);
     },
     error: function (error) {
       // Es ist ein Fehler beim Senden der Like-Anfrage aufgetreten
@@ -56,11 +58,11 @@ function updateLikeCount(frageId, liked) {
 
   if (likeCountElement) {
     const currentLikes = parseInt(likeCountElement.innerText, 10);
-    console.log('currentLikes:', currentLikes);
+    console.log("currentLikes:", currentLikes);
 
     // Je nachdem, ob der Benutzer geliked oder den Like entfernt hat, aktualisieren wir die Like-Anzeige entsprechend
     likeCountElement.innerText = liked ? currentLikes + 1 : currentLikes - 1;
   }
 }
 
-console.log("button_frage_like geladen")
+console.log("button_frage_like geladen");
