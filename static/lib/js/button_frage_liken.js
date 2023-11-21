@@ -21,8 +21,6 @@ function frageLiken(frageId) {
         console.log("es wurde entliket");
         updateLikeCount(frageId, data.liked);
       }
-
-      updateLikeCount(frageId, data.liked);
     },
     error: function (error) {
       // Es ist ein Fehler beim Senden der Like-Anfrage aufgetreten
