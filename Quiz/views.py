@@ -8,6 +8,8 @@ from Core.models import Benutzer
 
 from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/login/')
+
 def welcome_page(request):
     # Annahme: Der Benutzer ist angemeldet
     user_id = request.user.id
