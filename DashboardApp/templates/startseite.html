@@ -3,8 +3,8 @@
   <!--Fragen Container-->
   <div class="frage-container">
     <h2>Aktuelle Fragen</h2>
+    
     <!--Schleife durch Fragen-->
-
     {% for frage in frage %}
     <div class="frage">
       <!--Frage Metaangaben-->
@@ -38,8 +38,9 @@
 
   <!--Profil Container-->
   <div class="profil-container">
+    <h2>Profil</h2>
+
     <div class="profil">
-      <h2>Profil</h2>
       <!--Benutzername-->
       <p>Benutzername: {{ user.username }}</p>
 
