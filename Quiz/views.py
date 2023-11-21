@@ -1,21 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, logout, authenticate
-from .forms import *
 from .models import QuizCategory, QuesModel, QuizResults
 from datetime import datetime
-from django.db.models import Max
 from Core.models import Benutzer
-
+import random
 from django.contrib.auth.decorators import login_required
 
+
 @login_required(login_url='/login/')
-
 def welcome_page(request):
-    # Annahme: Der Benutzer ist angemeldet
-    user_id = request.user.id
-
     # Hole die bereits gespielten Quizzes des Benutzers
-    quiz_results = QuizResults.objects.filter(user_id=request.user.id).order_by('-when_played')
+    quiz_results = QuizResults.objects.filter(
+        user_id=request.user.id).order_by('-when_played')
 
     # Hole alle verfügbaren Quiz-Kategorien
     categories = QuizCategory.objects.all()
@@ -23,7 +18,8 @@ def welcome_page(request):
     # Rangliste für jede Quiz-Kategorie (sortiert nach Punktzahl absteigend)
     leaderboard = []
     for category in categories:
-        top_results = QuizResults.objects.filter(quiz_id=category.id).order_by('-points')[:3]  # Hier 3 für die Top 3, passe es an deine Bedürfnisse an
+        top_results = QuizResults.objects.filter(quiz_id=category.id).order_by(
+            '-points')[:3]  # Hier [:3] für die Top 3
         for result in top_results:
             user = Benutzer.objects.get(id=result.user_id)
             leaderboard.append({
@@ -32,7 +28,8 @@ def welcome_page(request):
                 'points': result.points,
             })
 
-    # Erstelle eine Dictionary-Struktur, um die Daten nach Kategorien zu gruppieren
+    # Erstelle eine Dictionary-Struktur,
+    # um die Daten nach Kategorien zu gruppieren
     grouped_leaderboard = {}
     for entry in leaderboard:
         category_name = entry['category_name']
@@ -42,13 +39,21 @@ def welcome_page(request):
 
     # Sortiere die Rangliste für jede Kategorie absteigend nach Punktzahl
     for category_name, entries in grouped_leaderboard.items():
-        grouped_leaderboard[category_name] = sorted(entries, key=lambda x: x['points'], reverse=True)
+        grouped_leaderboard[category_name] = sorted(entries,
+                                                    key=lambda x: x['points'],
+                                                    reverse=True)
 
-    return render(request, 'welcome_page.html', {'categories': categories, 'quiz_results': quiz_results, 'grouped_leaderboard': grouped_leaderboard})
+    return render(request, 'welcome_page.html',
+                  {'categories': categories,
+                   'quiz_results': quiz_results,
+                   'grouped_leaderboard': grouped_leaderboard})
 
+
+@login_required(login_url='/login/')
 def quiz_page(request, category_id):
     category = get_object_or_404(QuizCategory, pk=category_id)
-    questions = QuesModel.objects.filter(category=category)
+    questions = sorted(QuesModel.objects.filter(category=category),
+                       key=lambda x: random.random())
 
     correct_answers = 0
 
@@ -63,9 +68,11 @@ def quiz_page(request, category_id):
         quiz_id = category_id  # Annahme: Die quiz_id ist die category_id
 
         # Hier sollte deine Logik für die Berechnung der erreichten Punkte sein
-        # Ich nehme an, dass die erreichten Punkte als Variable "correct_answers" verfügbar sind
+        # Ich nehme an, dass die erreichten Punkte als Variable
+        #  "correct_answers" verfügbar sind
 
-        # Erstelle ein neues QuizResult-Objekt und speichere es in der Datenbank
+        # Erstelle ein neues QuizResult-Objekt
+        #  und speichere es in der Datenbank
         quiz_result = QuizResults(
             user_id=user_id,
             quiz_id=quiz_id,
@@ -81,8 +88,11 @@ def quiz_page(request, category_id):
         # Redirect to the quiz_result page
         return redirect('quiz:quiz_result', category_id=category_id)
 
-    return render(request, 'quiz_page.html', {'category': category, 'questions': questions})
+    return render(request, 'quiz_page.html', {'category': category, 
+                                              'questions': questions})
 
+
+@login_required(login_url='/login/')
 def quiz_result(request, category_id):
     category = get_object_or_404(QuizCategory, pk=category_id)
 
@@ -94,4 +104,7 @@ def quiz_result(request, category_id):
     request.session.pop('correct_answers', None)
     request.session.pop('total_questions', None)
 
-    return render(request, 'quiz_result.html', {'category': category, 'correct_answers': correct_answers, 'total_questions': total_questions})
+    return render(request, 'quiz_result.html',
+                  {'category': category, 
+                   'correct_answers': correct_answers,
+                   'total_questions': total_questions})
