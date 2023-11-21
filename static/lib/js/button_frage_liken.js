@@ -8,7 +8,7 @@ function frageLiken(frageId) {
     url: `/frage/${frageId}/like/`,
     type: "POST",
     headers: { "X-CSRFToken": csrftoken },
-    // data: {}, Hier könnten zusätzliche Daten gesendet werden, wenn benötigt
+    data: {}, // Hier könnten zusätzliche Daten gesendet werden, wenn benötigt
     success: function (data) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
       if (data.liked) {
