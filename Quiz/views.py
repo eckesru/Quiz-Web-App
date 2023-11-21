@@ -6,6 +6,8 @@ from datetime import datetime
 from django.db.models import Max
 from Core.models import Benutzer
 
+from django.contrib.auth.decorators import login_required
+
 def welcome_page(request):
     # Annahme: Der Benutzer ist angemeldet
     user_id = request.user.id

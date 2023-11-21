@@ -29,4 +29,5 @@ urlpatterns = [
     path("frage/<int:frage_id>/antwort/<int:antwort_id>/edit/",
          include("AntwortBearbeiten.urls")),
     path("dashboard/", include("DashboardApp.urls")),
+    path("quiz/", include("Quiz.urls")),
 ]

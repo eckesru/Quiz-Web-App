@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'AntwortErstellen',
     'AntwortBearbeiten',
     'DashboardApp',
+    'Quiz',
 ]
 
 MIDDLEWARE = [
