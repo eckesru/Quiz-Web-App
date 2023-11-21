@@ -9,11 +9,13 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
 def dashboard_view(request):
-    frage = Frage.objects.all()
+    del_user = Benutzer.objects.get(username="entfernt")
+
+    frage = Frage.objects.all().exclude(user=del_user)
 
     # Sortierung des QuerySets. "-" bedeutet absteigend, "" aufsteigend.
     frage.order_by("-likes", "-creation_date")
 
-    context = {"frage": frage, }
+    context = {"frage": frage}
     return render(request, 'startseite.html', context)
     # TODO: Name der HTML-Datei anpassen.
