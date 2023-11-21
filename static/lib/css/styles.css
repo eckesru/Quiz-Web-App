@@ -177,6 +177,11 @@ textarea {
   flex-wrap: wrap;
 }
 
+#startseite {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* Stil für den Frage-Container */
 .frage-container,
 .antwort-container,
