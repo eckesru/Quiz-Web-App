@@ -52,4 +52,5 @@ input {
 .nonfield {
     color: red;
     list-style-type: none;
+    text-align: left;
 }
