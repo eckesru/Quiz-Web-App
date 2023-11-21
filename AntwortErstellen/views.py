@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 def frage_anzeigen_view_antwort_erstellen(request, frage_id):
     user = request.user
     frage = Frage.objects.get(id=frage_id)
-    antwort_text = request.session.get('temp_antwort_text')
+    antwort_text = request.session.pop('temp_antwort_text')
 
     # Erzeugung des Antwort-Objekts
     antwort = Antwort.objects.create(

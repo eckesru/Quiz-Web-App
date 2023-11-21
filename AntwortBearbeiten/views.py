@@ -24,4 +24,3 @@ def antwort_edit_view(request, frage_id, antwort_id):
 
     context = {"antwort": antwort}
     return render(request, 'antwort_bearbeiten.html', context)
-# TODO: Name der tatsaechlichen HTML-Datei ergänzen
