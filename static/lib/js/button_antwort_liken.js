@@ -13,10 +13,10 @@ function antwortLiken(frageId, antwortID) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
-        updateLikeCount(antwortID, data.liked);
+        updateAntwortLikeCount(antwortID, data.liked);
       } else {
         // Der Benutzer hat den Like entfernt
-        updateLikeCount(antwortID, data.liked);
+        updateAntwortLikeCount(antwortID, data.liked);
       }
     },
     error: function (error) {
@@ -43,7 +43,7 @@ function getCookie(name) {
 }
 
 // Funktion zum Aktualisieren der Like-Anzeige
-function updateLikeCount(antwortID, liked) {
+function updateAntwortLikeCount(antwortID, liked) {
   const likeCountElement = document.getElementById(
     `antwort-like-count-${antwortID}`
   );
