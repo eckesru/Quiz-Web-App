@@ -15,5 +15,5 @@ def dashboard_view(request):
     frage.order_by("-likes", "-creation_date")
 
     context = {"frage": frage, }
-    return render(request, 'dashboard.html', context)
+    return render(request, 'startseite.html', context)
     # TODO: Name der HTML-Datei anpassen.
