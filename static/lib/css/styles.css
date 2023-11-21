@@ -191,7 +191,7 @@ textarea {
 .frage,
 .antwort {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 15px auto;
   padding: 15px;
   border: 1px solid #ddd;
