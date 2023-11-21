@@ -320,4 +320,5 @@ textarea {
 /* Stil für die Anzahl der Antworten */
 .antwort-anzahl {
   text-align: center;
+  color: #fff;
 }
