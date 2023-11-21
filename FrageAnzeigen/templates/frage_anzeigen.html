@@ -58,12 +58,12 @@
 <!-- Anzeige der Anzahl der Antworten -->
 {% if antwort %}
   {% if antwort|length == 1 %}
-    <p>1 Antwort vorhanden</p>
+    <p class="antwort-anzahl">1 Antwort vorhanden</p>
   {% else %}
-    <p>{{ antwort|length }} Antworten vorhanden</p>
+    <p class="antwort-anzahl">{{ antwort|length }} Antworten vorhanden</p>
   {% endif %}
 {% else %}
-  <p>Noch keine Antworten vorhanden</p>
+  <p class="antwort-anzahl">Noch keine Antworten vorhanden</p>
 {% endif %}
 
 <!--Antworten anzeigen-->

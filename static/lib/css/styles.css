@@ -316,3 +316,8 @@ textarea {
 #frageBearbeiten h3 {
   margin-bottom: 10px;
 }
+
+/* Stil für die Anzahl der Antworten */
+.antwort-anzahl {
+  text-align: center;
+}
