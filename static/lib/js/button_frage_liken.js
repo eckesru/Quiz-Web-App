@@ -11,6 +11,7 @@ function frageLiken(frageId) {
     data: {}, // Hier könnten zusätzliche Daten gesendet werden, wenn benötigt
     success: function (data) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
+      console.log('AJAX success response:', data);
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
         updateLikeCount(frageId, data.liked);
@@ -59,4 +60,4 @@ function updateLikeCount(frageId, liked) {
   }
 }
 
-console.log("Button_frage_like geladen")
+console.log("button_frage_like geladen")

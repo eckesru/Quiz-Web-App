@@ -8,4 +8,4 @@ function frageLoeschen(frageId) {
   }
 }
 
-console.log("button_frage_loeschen.js geladen")
+//console.log("button_frage_loeschen.js geladen")

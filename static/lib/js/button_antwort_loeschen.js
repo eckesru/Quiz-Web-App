@@ -9,4 +9,4 @@ function antwortLoeschen(frageId, antwortID) {
   }
 }
 
-console.log("button_antwort_loeschen.js geladen")
+//console.log("button_antwort_loeschen.js geladen")

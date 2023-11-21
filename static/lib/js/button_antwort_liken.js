@@ -56,4 +56,4 @@ function updateLikeCount(antwortID, liked) {
   }
 }
 
-console.log("button_antwort_liken.js geladen")
+//console.log("button_antwort_liken.js geladen")

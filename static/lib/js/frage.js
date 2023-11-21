@@ -9,4 +9,4 @@ tinymce.init({
   height: 300,
 });
 
-console.log("frage.js geladen")
+//console.log("frage.js geladen")
