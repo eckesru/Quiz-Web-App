@@ -88,7 +88,11 @@
     </button>
 
     <!--Button Antwort als hilfreich markieren-->
-    <button type="submit" class="btn btn_light_blue">
+    <button
+      type="button"
+      class="btn btn_light_blue"
+      onclick="frageLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+    >
       Hilfreich <span id="antwort-like-count">{{ antwort.likes }}</span>
     </button>
   </div>
