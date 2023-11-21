@@ -1,34 +1,41 @@
 {% extends "base.html" %} {% block content %}
 <div id="meineInhalte" class="meineInhalte-container">
-  <!--
-    Fragen
-  -->
+  <!--Fragen Container-->
   <div class="frage-container">
     <h2>Meine Fragen</h2>
+
+    <!--Schleife durch einzelne Fragen des Users-->
     {% for frage in fragen %}
     <div class="frage">
+      <!--Frage Metaangaben-->
       <div class="frage-meta">
         <span class="frage-username">{{ frage.user.username }}</span>
         <span class="frage-erstelldatum"
           >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
         >
       </div>
+
+      <!--Frage Überschrift mit Link zur Frage anzeigen-->
       <h3>
         <a href="{% url 'frage-anzeigen' frage.id %}"
           >{{ frage.module.text }}: {{ frage.title }}</a
         >
       </h3>
+
+      <!--Frage Text-->
       <div class="frage-text">{{ frage.text|safe }}</div>
+
+      <!--Frage Tags-->
       <div class="tags">
         <i class="fas fa-tags"></i>
         {% for tag in frage.tag.all %}
         <span class="tag">{{ tag.text }}</span>
         {% endfor %}
       </div>
-      <!--
-        Buttons für Fragen
-      -->
+
+      <!--Frage Buttons-->
       <div class="frage-actions">
+        <!--Button Frage bearbeiten-->
         <button
           type="submit"
           class="btn btn_blue"
@@ -36,6 +43,8 @@
         >
           Bearbeiten
         </button>
+
+        <!--Button Frage löschen-->
         <button
           type="submit"
           class="btn btn_red"
@@ -43,36 +52,42 @@
         >
           Löschen
         </button>
+
+        <!--Button Frage liken-->
         <button
-          type="submit"
+          type="button"
           class="btn btn_light_blue"
-          onclick="likeFrage('{{ frage.id }}')"
+          onclick="frageLiken('{{ frage.id }}')"
         >
           <i class="fas fa-thumbs-up"></i> Like
-          <span id="like-count">{{ frage.likes }}</span>
+          <span id="frage-like-count-{{ frage.id }}">{{ frage.likes }}</span>
         </button>
       </div>
     </div>
     {% endfor %}
   </div>
-  <!--
-    Antworten
-  -->
+
+  <!--Antworten Container-->
   <div class="antwort-container">
     <h2>Meine Antworten</h2>
+
+    <!--Schleife durch einzelne Antworten des Users-->
     {% for antwort in antworten %}
     <div id="antwort">
+      <!--Antwort Metaangaben-->
       <div class="antwort-meta">
         <span class="antwort-username">{{ antwort.user.username }}</span>
         <span class="antwort-erstelldatum"
           >{{ antwort.creation_date|date:"Y-m-d H:i" }}</span
         >
       </div>
+
+      <!--Antwort Text-->
       <div class=".frageAnzeigen-antwort-text">{{ antwort.text|safe }}</div>
-      <!--
-        Buttons für Antworten
-      -->
+
+      <!--Buttons für Antworten-->
       <div class="antwort-actions">
+        <!--Button Antwort bearbeiten-->
         <button
           type="submit"
           class="btn btn_blue"
@@ -80,12 +95,26 @@
         >
           Bearbeiten
         </button>
+
+        <!--Button Antwort löschen-->
         <button
           type="submit"
           class="btn btn_red"
           onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
         >
           Löschen
+        </button>
+
+        <!--Button Antwort als hilfreich markieren-->
+        <button
+          type="button"
+          class="btn btn_light_blue"
+          onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+        >
+          Hilfreich
+          <span id="antwort-like-count-{{ antwort.id }}"
+            >{{ antwort.likes }}</span
+          >
         </button>
       </div>
     </div>

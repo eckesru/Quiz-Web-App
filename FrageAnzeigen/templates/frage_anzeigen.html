@@ -14,6 +14,8 @@
 
   <!--Frage Text-->
   <div class="frageAnzeigen-frage-text">{{ frage.text|safe }}</div>
+
+  <!--Frage Tags-->
   <div class="tags">
     <i class="fas fa-tags"></i>
     {% for tag in frage.tag.all %}
