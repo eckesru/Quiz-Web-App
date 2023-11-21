@@ -48,9 +48,12 @@ function updateLikeCount(frageId, liked) {
     `frage-like-count-${frageId}`
   );
 
+  console.log("likeCountElement:", likeCountElement);
+
   if (likeCountElement) {
     const currentLikes = parseInt(likeCountElement.innerText, 10);
-
+    console.log('currentLikes:', currentLikes);
+    
     // Je nachdem, ob der Benutzer geliked oder den Like entfernt hat, aktualisieren wir die Like-Anzeige entsprechend
     likeCountElement.innerText = liked ? currentLikes + 1 : currentLikes - 1;
   }
