@@ -47,7 +47,7 @@ function getCookie(name) {
 
 // Funktion zum Aktualisieren der Like-Anzeige
 function updateLikeCount(frageId, liked) {
-  onsole.log("updateLikeCount wird aufgerufen");
+  console.log("updateLikeCount wird aufgerufen");
   const likeCountElement = document.getElementById(
     `frage-like-count-${frageId}`
   );
