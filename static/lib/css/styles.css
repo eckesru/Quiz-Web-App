@@ -199,6 +199,20 @@ textarea {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/*
+#frageAnzeigen,
+#antwortAnzeige,
+#antwort-formular {
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+*/
+
 /* Stil für die Metaangaben zur Frage */
 .frage-meta,
 .antwort-meta {

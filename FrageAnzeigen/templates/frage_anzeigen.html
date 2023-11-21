@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <!--Frage anzeigen-->
-<div id="frageAnzeigen">
+<div class="frage">
   <!--Frage Metaangaben-->
   <div class="frage-meta">
     <span class="frage-username">{{ frage.user.username }}</span>
@@ -68,7 +68,7 @@
 
 <!--Antworten anzeigen-->
 {% for antwort in antwort %}
-<div id="antwortAnzeige">
+<div class="antwort">
   <!--Antwort Metaangaben-->
   <div class="antwort-meta">
     <span class="antwort-username">{{ antwort.user.username }}</span>
@@ -114,7 +114,7 @@
 {% endfor %}
 
 <!--Antwort erstellen Formular-->
-<div id="antwort-formular">
+<div class="antwort">
   <form id="antwortErstellenFormular" method="post">
     <!--Django Token Übergabe-->
     {% csrf_token %}
