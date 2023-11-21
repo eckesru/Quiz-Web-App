@@ -14,9 +14,11 @@ function frageLiken(frageId) {
       console.log('AJAX success response:', data);
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
+        console.log("es wurde geliket")
         updateLikeCount(frageId, data.liked);
       } else {
         // Der Benutzer hat den Like entfernt
+        console.log("es wurde entliket")
         updateLikeCount(frageId, data.liked);
       }
     },
@@ -45,6 +47,7 @@ function getCookie(name) {
 
 // Funktion zum Aktualisieren der Like-Anzeige
 function updateLikeCount(frageId, liked) {
+  onsole.log("updateLikeCount wird aufgerufen");
   const likeCountElement = document.getElementById(
     `frage-like-count-${frageId}`
   );
