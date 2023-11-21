@@ -283,13 +283,6 @@ textarea {
   line-height: 1.6;
 }
 
-/* Stil für das Antwortformular */
-/*
-#antwortErstellenFormular {
-  margin-top: 5px;
-}
-*/
-
 /* Stil für die Anzahl der Antworten */
 .antwort-anzahl {
   text-align: center;
