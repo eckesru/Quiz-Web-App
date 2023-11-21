@@ -49,16 +49,7 @@ input {
     background-color: #0056b3;
 }
 
-.alert-success {
-    margin-top: 10px;
-    color: green;
-}
-
-.alert-error {
-    margin-top: 10px;
-    color: red;
-}
-
 .nonfield {
     color: red;
+    list-style-type: none;
 }
