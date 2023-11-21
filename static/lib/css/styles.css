@@ -165,19 +165,22 @@ textarea {
 
 /* Stil für "Meine Inhalte" */
 /* Stil für das Container-Div */
+/*
 #meineInhalte {
   max-width: 1800px;
   margin: 0 auto;
   padding: 10px;
 }
 
-/* Stil für den Container der Frage- und Antwort-Container */
+/* Stil für den Container der Frage- und Antwort-Container 
 .meineInhalte-container {
   display: flex;
   flex-wrap: wrap;
 }
+*/
 
-#startseite {
+#startseite,
+#meineInhalte {
   display: flex;
   flex-wrap: wrap;
   max-width: 1800px;
