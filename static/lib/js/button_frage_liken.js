@@ -11,14 +11,11 @@ function frageLiken(frageId) {
     data: {}, // Hier könnten zusätzliche Daten gesendet werden, wenn benötigt
     success: function (data) {
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
-      console.log("AJAX success response:", data);
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
-        console.log("es wurde geliket");
         updateLikeCount(frageId, data.liked);
       } else {
         // Der Benutzer hat den Like entfernt
-        console.log("es wurde entliket");
         updateLikeCount(frageId, data.liked);
       }
     },
@@ -47,20 +44,16 @@ function getCookie(name) {
 
 // Funktion zum Aktualisieren der Like-Anzeige
 function updateLikeCount(frageId, liked) {
-  console.log("updateLikeCount wird aufgerufen");
   const likeCountElement = document.getElementById(
     `frage-like-count-${frageId}`
   );
 
-  console.log("likeCountElement:", likeCountElement);
-
   if (likeCountElement) {
     const currentLikes = parseInt(likeCountElement.innerText, 10);
-    console.log("currentLikes:", currentLikes);
 
     // Je nachdem, ob der Benutzer geliked oder den Like entfernt hat, aktualisieren wir die Like-Anzeige entsprechend
     likeCountElement.innerText = liked ? currentLikes + 1 : currentLikes - 1;
   }
 }
 
-console.log("button_frage_like geladen");
+//console.log("button_frage_like geladen");
