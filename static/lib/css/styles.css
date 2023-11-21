@@ -163,7 +163,6 @@ textarea {
 
 /* Stil für Startseite */
 
-
 /* Stil für "Meine Inhalte" */
 /* Stil für das Container-Div */
 #meineInhalte {
@@ -179,13 +178,9 @@ textarea {
 }
 
 /* Stil für den Frage-Container */
-.frage-container {
-  width: 50%;
-  padding: 10px;
-}
-
-/* Stil für den Antwort-Container */
-.antwort-container {
+.frage-container,
+.antwort-container,
+.profil-container {
   width: 50%;
   padding: 10px;
 }
