@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<div id="frageBearbeiten">
+<div class="frage">
   <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
   <form id="frageBearbeitenFormular" method="post">
     {% csrf_token %}

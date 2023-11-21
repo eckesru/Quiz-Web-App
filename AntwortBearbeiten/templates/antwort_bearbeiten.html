@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<div id="antwortBearbeiten">
+<div class="antwort">
   <form id="antwortBearbeitenFormular" method="post">
     {% csrf_token %}
     <textarea id="antwortText" name="antwortText">{{ antwort.text|safe }}</textarea>

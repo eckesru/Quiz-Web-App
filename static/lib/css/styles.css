@@ -199,14 +199,14 @@ textarea {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/* Stil für das Container-Div */
 /*
-#frageAnzeigen,
-#antwortAnzeige,
-#antwort-formular {
+#frageBearbeiten,
+#antwortBearbeiten {
   width: 100%;
   max-width: 800px;
   margin: 10px auto;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -288,19 +288,6 @@ textarea {
 }
 
 /* Stil für "Frage anzeigen" */
-/* Stil für das Container-Div */
-#frageAnzeigen,
-#antwortAnzeige,
-#antwort-formular {
-  width: 100%;
-  max-width: 800px;
-  margin: 10px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
 /* Stil für den Fragetext */
 .frageAnzeigen-frage-text,
 .frageAnzeigen-antwort-text {
@@ -316,18 +303,6 @@ textarea {
 }
 
 /* Stil für "Frage bearbeiten" */
-/* Stil für das Container-Div */
-#frageBearbeiten,
-#antwortBearbeiten {
-  width: 100%;
-  max-width: 800px;
-  margin: 10px auto;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
 #frageBearbeiten h3 {
   margin-bottom: 10px;
 }
