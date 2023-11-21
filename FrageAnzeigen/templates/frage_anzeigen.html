@@ -57,9 +57,13 @@
 
 <!-- Anzeige der Anzahl der Antworten -->
 {% if antwort %}
-<p>{{ antwort|length }} Antwort(en) vorhanden</p>
+  {% if antwort|length == 1 %}
+    <p>1 Antwort vorhanden</p>
+  {% else %}
+    <p>{{ antwort|length }} Antworten vorhanden</p>
+  {% endif %}
 {% else %}
-<p>Noch keine Antworten vorhanden</p>
+  <p>Noch keine Antworten vorhanden</p>
 {% endif %}
 
 <!--Antworten anzeigen-->
