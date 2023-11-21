@@ -191,7 +191,7 @@ textarea {
 .frage,
 .antwort {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 15px auto;
   padding: 15px;
   border: 1px solid #ddd;
@@ -279,7 +279,7 @@ textarea {
 #antwortAnzeige,
 #antwort-formular {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 10px auto;
   padding: 20px;
   border: 1px solid #ddd;
