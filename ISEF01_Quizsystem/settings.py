@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'FrageBearbeiten',
     'AntwortErstellen',
     'AntwortBearbeiten',
-    'Dashboard',
+    'Startseite',
     'Quiz',
 ]
 
