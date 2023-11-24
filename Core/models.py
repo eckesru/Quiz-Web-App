@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from utils import update_points_for_user
 
 
 class Benutzer(AbstractUser):
     _role = models.SmallIntegerField(default=0)
-    points = models.IntegerField(default=0)
+    _points = models.IntegerField(default=0)
     liked_fragen = models.ManyToManyField("Frage", blank=True)
     liked_antworten = models.ManyToManyField("Antwort", blank=True)
 
@@ -15,6 +16,19 @@ class Benutzer(AbstractUser):
     @role.setter
     def role(self, points):
         pass
+
+    @property
+    def points(self):
+        return self._points
+
+    @points.setter
+    def points(self, points):
+        raise AttributeError("Punkte dürfen nicht manuell gesetzt werden. \
+                              Verwende statische calculate_points-Methode!")
+
+    @staticmethod
+    def update_points(user):
+        update_points_for_user(user)
 
     class Meta:
         managed = False

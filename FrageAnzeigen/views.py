@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from Core.models import Frage, Benutzer, Antwort
+
 # from .models import KLASSENNAME, Hier Models importieren!
-
-from django.http import JsonResponse
-
 from django.contrib.auth.decorators import login_required
-# Zur Umleitung auf /login/ benötigt
 
 
 @login_required(login_url='/login/')
@@ -44,6 +41,10 @@ def frage_anzeigen_view_delete(request, frage_id):
     Frage.objects.filter(id=frage_id).update(title="[entfernt]",
                                              text="[entfernt]",
                                              user=del_user)
+
+    # Aktualisieren der Punkte für den Ersteller
+    Benutzer.update_points(frage_user)
+
     reverse_url = request.META.get("HTTP_REFERER")
     if reverse_url is None:
         return redirect("/frage/" + str(frage_id) + "/")
@@ -61,11 +62,19 @@ def like_frage(request, frage_id):
             likes_new = frage.likes - 1
             Frage.objects.filter(id=frage_id).update(likes=likes_new)
             user.liked_fragen.remove(frage)
+
+            # Aktualisieren der Punkte für den Ersteller
+            Benutzer.update_points(frage.user)
+
             return JsonResponse({'liked': False})
 
         likes_new = frage.likes + 1
         Frage.objects.filter(id=frage_id).update(likes=likes_new)
         user.liked_fragen.add(frage)
+
+        # Aktualisieren der Punkte für den Ersteller
+        Benutzer.update_points(frage.user)
+
         return JsonResponse({'liked': True})
 
     return JsonResponse({'liked': False})

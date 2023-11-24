@@ -23,6 +23,10 @@ def frage_anzeigen_view_antwort_erstellen(request, frage_id):
     )
 
     antwort.save()
+
+    # Aktualisieren der Punkte für den Ersteller
+    Benutzer.update_points(user)
+
     return redirect("/frage/" + str(frage_id) + "/")
 
 
@@ -36,6 +40,9 @@ def frage_anzeigen_view_antwort_delete(request, frage_id, antwort_id):
     del_user = Benutzer.objects.get(username="entfernt")
     Antwort.objects.filter(id=antwort_id).update(text="[entfernt]",
                                                  user=del_user)
+    # Aktualisieren der Punkte für den Ersteller
+    Benutzer.update_points(antwort_user)
+
     reverse_url = request.META.get("HTTP_REFERER")
     if reverse_url is None:
         return redirect("/frage/" + str(frage_id) + "/")
@@ -52,11 +59,19 @@ def like_antwort(request, frage_id, antwort_id):
             likes_new = antwort.likes - 1
             Antwort.objects.filter(id=antwort_id).update(likes=likes_new)
             user.liked_antworten.remove(antwort)
+
+            # Aktualisieren der Punkte für den Ersteller
+            Benutzer.update_points(antwort.user)
+
             return JsonResponse({'liked': False})
 
         likes_new = antwort.likes + 1
         Antwort.objects.filter(id=antwort_id).update(likes=likes_new)
         user.liked_antworten.add(antwort)
+
+        # Aktualisieren der Punkte für den Ersteller
+        Benutzer.update_points(antwort.user)
+
         return JsonResponse({'liked': True})
 
     return JsonResponse({'liked': False})

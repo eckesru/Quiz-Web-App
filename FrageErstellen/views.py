@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Core.models import Frage, Modul, Tag
+from Core.models import Frage, Modul, Tag, Benutzer
 # from .models import KLASSENNAME, Hier Models importieren!
 
 from django.contrib.auth.decorators import login_required
@@ -32,6 +32,9 @@ def frage_erstellen_view(request):
         # Hinzufügen der Tags zur Frage
         frage.tag.set(selected_tags)
         frage.save()
+
+        # Aktualisieren der Punkte für den Ersteller
+        Benutzer.update_points(user)
 
         return redirect("/frage/" + str(frage.id) + "/")
     module_choices = Modul.objects.all().values()
