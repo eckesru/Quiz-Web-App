@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from utils import update_points_for_user
 
 
 class Benutzer(AbstractUser):
@@ -28,6 +27,7 @@ class Benutzer(AbstractUser):
 
     @staticmethod
     def update_points(user):
+        from utils import update_points_for_user
         update_points_for_user(user)
 
     class Meta:
