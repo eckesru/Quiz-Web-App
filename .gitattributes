@@ -1,0 +1,2 @@
+# Ignoriert tinymce-Plugin in der Git Language-Distribution / * = Alle Dateien im Verzeichnis, ** = Alle Dateien und Subverzeichnisse
+static\lib\js\tinymce\** -linguist-detectable
