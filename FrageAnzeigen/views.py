@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from Core.models import Frage, Benutzer, Antwort
-
-# from .models import KLASSENNAME, Hier Models importieren!
 from django.contrib.auth.decorators import login_required
 
 
@@ -13,10 +11,11 @@ def frage_anzeigen_view(request, frage_id):
         # Falls der antwortErstellen-Button betätigt wurde, dann Antwort-Func.
         if 'antwortErstellen' in request.POST:
             antwort_text = request.POST.get('antwortText')
-            # antwortText in der Session zwischenspeichern, da er sonst verloren geht.
+            # antwortText in der Session zwischenspeichern,
+            # da er sonst verloren geht.
             request.session['temp_antwort_text'] = antwort_text
             return redirect("/frage/" + str(frage_id) + "/" + "antwort/")
-        
+
     # Fragen vom Delete-User "entfernt" sollen nicht angezeigt werden
     del_user = Benutzer.objects.get(username="entfernt")
     frage = Frage.objects.get(id=frage_id)

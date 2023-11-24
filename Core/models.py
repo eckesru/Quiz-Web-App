@@ -7,6 +7,9 @@ class Benutzer(AbstractUser):
     _points = models.IntegerField(default=0)
     liked_fragen = models.ManyToManyField("Frage", blank=True)
     liked_antworten = models.ManyToManyField("Antwort", blank=True)
+    study_area = models.ForeignKey("StudyArea",
+                                   blank=False,
+                                   on_delete=models.DO_NOTHING)
 
     @property
     def role(self):
@@ -27,7 +30,7 @@ class Benutzer(AbstractUser):
 
     @staticmethod
     def update_points(user):
-        from utils import update_points_for_user
+        from .utils import update_points_for_user
         update_points_for_user(user)
 
     class Meta:
@@ -108,3 +111,15 @@ class Antwort(models.Model):
     class Meta:
         managed = False
         db_table = "Antwort"
+
+
+class StudyArea(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        managed = False
+        db_table = "StudyArea"

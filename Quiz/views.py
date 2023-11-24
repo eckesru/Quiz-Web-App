@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import QuizCategory, QuesModel, QuizResults
+from .models import QuesModel, QuizResults
 from datetime import datetime
-from Core.models import Benutzer
+from Core.models import Benutzer, StudyArea
 import random
 from django.contrib.auth.decorators import login_required
 
@@ -13,7 +13,7 @@ def welcome_page(request):
         user_id=request.user.id).order_by('-when_played')
 
     # Hole alle verfügbaren Quiz-Kategorien
-    categories = QuizCategory.objects.all()
+    categories = StudyArea.objects.all()
 
     # Rangliste für jede Quiz-Kategorie (sortiert nach Punktzahl absteigend)
     leaderboard = []
@@ -51,9 +51,9 @@ def welcome_page(request):
 
 @login_required(login_url='/login/')
 def quiz_page(request, category_id):
-    category = get_object_or_404(QuizCategory, pk=category_id)
+    category = get_object_or_404(StudyArea, pk=category_id)
     questions = sorted(QuesModel.objects.filter(category=category),
-                       key=lambda x: random.random())
+                       key=lambda x: random.random())  # Zufällige Sortierung
 
     correct_answers = 0
 
@@ -88,13 +88,13 @@ def quiz_page(request, category_id):
         # Redirect to the quiz_result page
         return redirect('quiz:quiz_result', category_id=category_id)
 
-    return render(request, 'quiz_page.html', {'category': category, 
+    return render(request, 'quiz_page.html', {'category': category,
                                               'questions': questions})
 
 
 @login_required(login_url='/login/')
 def quiz_result(request, category_id):
-    category = get_object_or_404(QuizCategory, pk=category_id)
+    category = get_object_or_404(StudyArea, pk=category_id)
 
     # Retrieve correct answers from the session
     correct_answers = request.session.get('correct_answers', 0)
@@ -105,6 +105,6 @@ def quiz_result(request, category_id):
     request.session.pop('total_questions', None)
 
     return render(request, 'quiz_result.html',
-                  {'category': category, 
+                  {'category': category,
                    'correct_answers': correct_answers,
                    'total_questions': total_questions})

@@ -1,12 +1,8 @@
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from Core.models import Frage, Benutzer, Antwort
-# from .models import KLASSENNAME, Hier Models importieren!
-
 from django.http import JsonResponse
-
 from django.contrib.auth.decorators import login_required
-# Zur Umleitung auf /login/ benötigt
 
 
 @login_required(login_url='/login/')
