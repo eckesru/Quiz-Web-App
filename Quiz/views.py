@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import QuesModel, QuizResults
-from datetime import datetime
+from django.utils import timezone
 from Core.models import Benutzer, StudyArea
 import random
 from django.contrib.auth.decorators import login_required
@@ -77,7 +77,7 @@ def quiz_page(request, category_id):
             user_id=user_id,
             quiz_id=quiz_id,
             points=correct_answers,
-            when_played=datetime.now()  # Aktuelles Datum und Uhrzeit
+            when_played=timezone.now()  # Aktuelles Datum und Uhrzeit
         )
         quiz_result.save()
 

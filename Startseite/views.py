@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from Core.models import Frage, Benutzer
 from django.contrib.auth.decorators import login_required
-from .utils import get_hot_frage, get_frage_des_tages
+from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users
 
 
 @login_required(login_url='/login/')
@@ -18,8 +18,11 @@ def startseite_view(request):
 
     frage_des_tages = get_frage_des_tages(request.user)
 
+    top_5_users = get_top_5_users()
+
     context = {"frage": frage,
                "hot_frage": hot_frage,
-               "frage_des_tages": frage_des_tages}
+               "frage_des_tages": frage_des_tages,
+               "top_5_users": top_5_users}
+
     return render(request, 'startseite.html', context)
-    # TODO: Name der HTML-Datei anpassen.

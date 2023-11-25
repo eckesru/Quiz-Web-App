@@ -2,7 +2,7 @@
 from Core.models import Benutzer, Frage, Antwort
 from Quiz.models import QuesModel
 import random
-from datetime import datetime
+from django.utils import timezone
 
 
 def get_hot_frage():
@@ -29,7 +29,7 @@ def get_antwort_count_for_frage(frage):
 
 
 def get_frage_des_tages(user):
-    today = datetime.now()
+    today = timezone.now()
 
     # Seed definieren, welcher sich nur täglich ändert
     seed = (today.day + today.weekday()) * \
@@ -45,3 +45,20 @@ def get_frage_des_tages(user):
     frage_des_tages = random.choice(question_list)
 
     return frage_des_tages
+
+
+def get_top_5_users():
+
+    today = timezone.now()
+    one_year_before = today.replace(year=today.year - 1)
+
+    print(today, " + ", one_year_before)
+
+    # Nur Benutzer, deren letztes Login-Datum maximal ein Jahr her ist.
+    # __gte = greater than equal
+    # Sortierung nach Punkten, absteigend.
+    # Es werden nur die obersten 5 Ergebnisse benötigt.
+    top_5_users = Benutzer.objects.filter(last_login__gte=one_year_before)\
+                                  .order_by("-_points")[:5]
+
+    return top_5_users
