@@ -7,6 +7,7 @@ from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
 def startseite_view(request):
+
     del_user = Benutzer.objects.get(username="entfernt")
 
     frage = Frage.objects.all().exclude(user=del_user)

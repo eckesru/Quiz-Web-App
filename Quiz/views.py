@@ -3,6 +3,7 @@ from .models import QuesModel, QuizResults
 from django.utils import timezone
 from Core.models import Benutzer, StudyArea
 import random
+from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
 
@@ -19,7 +20,7 @@ def welcome_page(request):
     leaderboard = []
     for category in categories:
         top_results = QuizResults.objects.filter(quiz_id=category.id).order_by(
-            '-points')[:3]  # Hier [:3] für die Top 3
+            '-points')[:10]  # Hier [:10] für die Top 10
         for result in top_results:
             user = Benutzer.objects.get(id=result.user_id)
             leaderboard.append({
@@ -51,14 +52,38 @@ def welcome_page(request):
 
 @login_required(login_url='/login/')
 def quiz_page(request, category_id):
-    category = get_object_or_404(StudyArea, pk=category_id)
-    questions = sorted(QuesModel.objects.filter(category=category),
-                       key=lambda x: random.random())  # Zufällige Sortierung
 
-    correct_answers = 0
+    if request.method == 'GET':
+        category = get_object_or_404(StudyArea, pk=category_id)
+
+        # Seed definieren, welcher sich nur immer ändert
+        now = timezone.now()
+        seed = (now.hour + now.minute + now.second + now.microsecond)
+
+        # Random mit dem berechneten seed initialisieren
+        random.seed(seed)
+
+        # Zufällige Sortierung, Limit 20.
+        limit = 5
+        questions = sorted(QuesModel.objects.filter(category=category),
+                           key=lambda x: random.random())[:limit]
+
+        request.session['total_questions'] = limit
+        request.session['questions_quiz'] = \
+            serializers.serialize('json', questions)
+        print(1, questions)
+        print(2, request.session.get('questions_quiz'))
+        return render(request, 'quiz_page.html', {'category': category,
+                                                  'questions': questions})
 
     if request.method == 'POST':
-        for question in questions:
+        questions_json = request.session.get('questions_quiz')
+        print(3, questions_json)
+        questions = serializers.deserialize('json', questions_json)
+        print(4, questions)
+        correct_answers = 0
+        for deserialized_question in questions:
+            question = deserialized_question.object
             user_answer = request.POST.get(f'answer_{question.id}')
             if user_answer == question.ans:
                 correct_answers += 1
@@ -83,13 +108,11 @@ def quiz_page(request, category_id):
 
         # Store correct answers in the session
         request.session['correct_answers'] = correct_answers
-        request.session['total_questions'] = len(questions)
 
         # Redirect to the quiz_result page
-        return redirect('quiz:quiz_result', category_id=category_id)
+        return redirect(f'/quiz/{category_id}/result/')
 
-    return render(request, 'quiz_page.html', {'category': category,
-                                              'questions': questions})
+    return redirect("/quiz/")
 
 
 @login_required(login_url='/login/')
@@ -97,12 +120,8 @@ def quiz_result(request, category_id):
     category = get_object_or_404(StudyArea, pk=category_id)
 
     # Retrieve correct answers from the session
-    correct_answers = request.session.get('correct_answers', 0)
-    total_questions = request.session.get('total_questions', 0)
-
-    # Clear the session to prevent re-submission
-    request.session.pop('correct_answers', None)
-    request.session.pop('total_questions', None)
+    correct_answers = request.session.get('correct_answers')
+    total_questions = request.session.get('total_questions')
 
     return render(request, 'quiz_result.html',
                   {'category': category,

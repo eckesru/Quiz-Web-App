@@ -52,8 +52,6 @@ def get_top_5_users():
     today = timezone.now()
     one_year_before = today.replace(year=today.year - 1)
 
-    print(today, " + ", one_year_before)
-
     # Nur Benutzer, deren letztes Login-Datum maximal ein Jahr her ist.
     # __gte = greater than equal
     # Sortierung nach Punkten, absteigend.
