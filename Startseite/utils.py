@@ -32,7 +32,9 @@ def get_frage_des_tages(user):
     today = datetime.now()
 
     # Seed definieren, welcher sich nur täglich ändert
-    seed = today.day * today.month * today.year
+    seed = (today.day + today.weekday) * \
+           (today.month + today.year) * \
+           (today.year + today.weekday - (today.month * today.day))
 
     # Random mit dem berechneten seed initialisieren
     random.seed(seed)
