@@ -140,7 +140,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-SESSION_COOKIE_AGE = 3600  # 1-Stunde-Session (Sekunden)
+SESSION_COOKIE_AGE = 7200  # 2-Stunden-Session (Sekunden)
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Session nach schließen nicht löschen
 

@@ -71,16 +71,14 @@ def quiz_page(request, category_id):
         request.session['total_questions'] = limit
         request.session['questions_quiz'] = \
             serializers.serialize('json', questions)
-        print(1, questions)
-        print(2, request.session.get('questions_quiz'))
+
         return render(request, 'quiz_page.html', {'category': category,
                                                   'questions': questions})
 
     if request.method == 'POST':
         questions_json = request.session.get('questions_quiz')
-        print(3, questions_json)
         questions = serializers.deserialize('json', questions_json)
-        print(4, questions)
+
         correct_answers = 0
         for deserialized_question in questions:
             question = deserialized_question.object
