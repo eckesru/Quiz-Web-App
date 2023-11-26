@@ -63,8 +63,8 @@ def quiz_page(request, category_id):
         # Random mit dem berechneten seed initialisieren
         random.seed(seed)
 
-        # Zufällige Sortierung, Limit 20.
-        limit = 5
+        # Zufällige Sortierung, Limit 10.
+        limit = 10
         questions = sorted(QuesModel.objects.filter(category=category),
                            key=lambda x: random.random())[:limit]
 

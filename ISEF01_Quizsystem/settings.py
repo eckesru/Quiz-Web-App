@@ -97,7 +97,9 @@ DATABASES = {
     'PORT': os.environ.get('DB_PORT'),
     'USER': os.environ.get('DB_USER'),
     'PASSWORD': os.environ.get('DB_PASSWORD'),
-    'OPTIONS': {'ssl': {'disabled': True},
+    # Zum lokalen Testen bzgl. SSL:  {'disabled': True}
+    # Korrekt: SSL: {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')
+    'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')},
                 'charset': 'utf8mb4'}
   }
 }
@@ -140,11 +142,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-SESSION_COOKIE_AGE = 7200  # 2-Stunden-Session (Sekunden)
+SESSION_COOKIE_AGE = 14400  # 4-Stunden-Session (Sekunden)
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Session nach schließen nicht löschen
 
 # Static files (CSS, JavaScript, Images)
+
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'

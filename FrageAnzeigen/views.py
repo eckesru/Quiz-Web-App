@@ -57,6 +57,9 @@ def like_frage(request, frage_id):
         # frage = Frage.objects.filter(id=frage_id).get()
         frage = get_object_or_404(Frage, id=frage_id)
 
+        if frage.user == user:
+            return JsonResponse({'allowed': False})
+
         if frage in user.liked_fragen.all():
             likes_new = frage.likes - 1
             Frage.objects.filter(id=frage_id).update(likes=likes_new)
@@ -65,7 +68,7 @@ def like_frage(request, frage_id):
             # Aktualisieren der Punkte für den Ersteller
             Benutzer.update_points(frage.user)
 
-            return JsonResponse({'liked': False})
+            return JsonResponse({'liked': False, 'allowed': True})
 
         likes_new = frage.likes + 1
         Frage.objects.filter(id=frage_id).update(likes=likes_new)
@@ -74,6 +77,6 @@ def like_frage(request, frage_id):
         # Aktualisieren der Punkte für den Ersteller
         Benutzer.update_points(frage.user)
 
-        return JsonResponse({'liked': True})
+        return JsonResponse({'liked': True, 'allowed': True})
 
-    return JsonResponse({'liked': False})
+    return JsonResponse({'allowed': False})

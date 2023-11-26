@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from Core.models import Frage, Benutzer
 from django.contrib.auth.decorators import login_required
+from django.db.models.functions import TruncDate
 from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users
 
 
@@ -10,10 +11,12 @@ def startseite_view(request):
 
     del_user = Benutzer.objects.get(username="entfernt")
 
-    frage = Frage.objects.all().exclude(user=del_user)
-
     # Sortierung des QuerySets. "-" bedeutet absteigend, "" aufsteigend.
-    frage.order_by("-likes", "-creation_date")
+    # TruncDate von Django holt nur Date, ignoriert Time.
+    frage = Frage.objects.\
+        exclude(user=del_user).\
+        annotate(creation_date_only=TruncDate('creation_date')).\
+        order_by("-creation_date_only", "-likes")
 
     hot_frage = get_hot_frage()
 

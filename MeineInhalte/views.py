@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import login_required
 # Leitet User zum Login, wenn nicht eingeloggt
 def meine_inhalte_view(request):
     user = request.user
-    user_fragen = Frage.objects.filter(user_id=user)
-    user_antworten = Antwort.objects.filter(user_id=user)
+
+    user_fragen = Frage.objects.filter(user_id=user).\
+        order_by("-creation_date")
+
+    user_antworten = Antwort.objects.filter(user_id=user).\
+        order_by("-creation_date")
+
     context = {"fragen": user_fragen, "antworten": user_antworten}
     return render(request, 'meineInhalte.html', context)
