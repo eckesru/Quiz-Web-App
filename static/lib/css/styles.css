@@ -235,6 +235,10 @@ textarea {
 }
 
 /* Stil für den Fragetext */
+.frage-text-container {
+  position: relative;
+}
+
 .frage-text {
   max-height: 3.5em;
   overflow: hidden;
@@ -252,7 +256,11 @@ textarea {
   left: 0;
   width: 100%;
   height: 1em;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
   pointer-events: none;
 }
 
