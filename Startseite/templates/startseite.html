@@ -128,7 +128,8 @@
           <td class="name">{{ top_user.username }}</td>
           <td class="points">{{ top_user.points }}</td>
         </tr>
-        {% with counter=counter|add:1 %} {% endfor %} {% endwith %}
+        {% with counter=counter|add:1 %} {% endwith %} {% endfor %} {% endwith
+        %}
       </table>
     </div>
   </div>
