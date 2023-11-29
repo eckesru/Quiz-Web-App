@@ -298,7 +298,7 @@ textarea {
 
 /* Stil für Rangliste */
 table {
-  /*width: 100%;*/
+  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   color: #141a39;
