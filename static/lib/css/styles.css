@@ -234,30 +234,11 @@ textarea {
   color: #000000;
 }
 
-/* Stil für "Frage anzeigen" */
-/* Stil für den Fragetext */
-/*
-.frageAnzeigen-frage-text,
-.frageAnzeigen-antwort-text {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  line-height: 1.6;
-}
-*/
-
-/* Stil für den Fragetext */
-/*
-.frage-text-container {
-  position: relative;
-}
-*/
-
 .frage-text,
 .antwort-text {
   margin-top: 5px;
   margin-bottom: 5px;
   line-height: 1.6;
-  /*position: relative;*/
 }
 
 .frage-text_overflow,
