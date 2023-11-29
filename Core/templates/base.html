@@ -20,13 +20,13 @@
   </head>
   <body>
     <header class="header">
-      <img
+      <a href="{% url 'startseite-view' %}"><img
         src="/static/lib/images/logo.png"
         alt="Logo"
         class="logo"
         height="100"
-        href="{% url 'startseite-view' %}"
-      />
+        
+      /></a>
       <nav class="navbar">
         <a href="{% url 'startseite-view' %}">Startseite</a>
         <a href="{% url 'frage-erstellen' %}">Frage stellen</a>
