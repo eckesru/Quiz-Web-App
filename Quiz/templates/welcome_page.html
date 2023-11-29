@@ -1,12 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISEF01 Quiz</title>
     <style>
         /* Gemeinsamer Stil für die Formulare */
         #frageErstellenFormular,
@@ -55,9 +49,7 @@
             border-bottom: 1px solid #ddd;
         }
     </style>
-</head>
 
-<body class="welcome-body">
     <!-- Willkommensformular -->
     <form id="frageErstellenFormular">
         <h1 class="welcome-heading">Willkommen im Quiz-Bereich</h1>
@@ -136,7 +128,5 @@
             <p>Keine Rangliste verfügbar.</p>
         {% endif %}
     </form>
-</body>
 
-</html>
 {% endblock %}
