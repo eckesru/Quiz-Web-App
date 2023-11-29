@@ -122,14 +122,13 @@
     <div id="leaderboard">
       <div class="ribbon"></div>
       <table>
-        {% with counter=1 %} {% for top_user in top_5_user %}
+        {% for top_user in top_5_user with counter=1 %}
         <tr>
           <td class="number">{{ counter }}</td>
           <td class="name">{{ top_user.username }}</td>
           <td class="points">{{ top_user.points }}</td>
         </tr>
-        {% with counter=counter|add:1 %} {% endwith %} {% endfor %} {% endwith
-        %}
+        {% with counter=counter|add:1 %} {% endwith %} {% endfor %}
       </table>
     </div>
   </div>
