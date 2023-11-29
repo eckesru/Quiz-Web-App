@@ -234,12 +234,25 @@ textarea {
   color: #000000;
 }
 
+/* Stil für "Frage anzeigen" */
+/* Stil für den Fragetext */
+/*
+.frageAnzeigen-frage-text,
+.frageAnzeigen-antwort-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+*/
+
 /* Stil für den Fragetext */
 .frage-text-container {
   position: relative;
 }
 
-.frage-text {
+.frage-text,
+.antwort-text {
   max-height: 3.5em;
   overflow: hidden;
   white-space: normal;
@@ -279,16 +292,6 @@ textarea {
   margin-left: 5px;
   font-weight: bold;
   transition: color 0.3s ease;
-}
-
-/* Stil für "Frage anzeigen" */
-/* Stil für den Fragetext */
-.frageAnzeigen-frage-text,
-.frageAnzeigen-antwort-text {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 16px;
-  line-height: 1.6;
 }
 
 /* Stil für die Anzahl der Antworten */
