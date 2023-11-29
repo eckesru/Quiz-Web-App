@@ -1,0 +1,34 @@
+<!--Antwort Buttons-->
+<div class="antwort-actions">
+  <!--Button Antwort als hilfreich markieren-->
+  <button
+    type="button"
+    class="btn btn_light_blue"
+    onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+  >
+    Hilfreich
+    <span id="antwort-like-count-{{ antwort.id }}">{{ antwort.likes }}</span>
+  </button>
+
+  <!--Nur Anzeigen, wenn User berechtigt-->
+  {% if request.user == antwort.user %}
+
+  <!--Button Antwort bearbeiten-->
+  <button
+    type="submit"
+    class="btn btn_blue"
+    onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+  >
+    Bearbeiten
+  </button>
+
+  <!--Button Antwort löschen-->
+  <button
+    type="submit"
+    class="btn btn_red"
+    onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+  >
+    Löschen
+  </button>
+  {% endif %}
+</div>
