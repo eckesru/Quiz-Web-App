@@ -104,16 +104,15 @@
     <div class="frage-des-tages-container">
       <p>Frage des Tages:</p>
       {{frage_des_tages}}
+      <!--Quiz Starten Button-->
+      <p>Stelle jetzt ein vollständiges Quiz und messe dich mit anderen!</p>
+      <button
+        onclick="window.location.href='{% url 'quiz:welcome_page' %}'"
+        class="btn btn_blue"
+      >
+        Zum Quiz
+      </button>
     </div>
-
-    <!--Quiz Starten Button-->
-    <p>Stelle jetzt ein vollständiges Quiz und messe dich mit anderen!</p>
-    <button
-      onclick="window.location.href='{% url 'quiz:welcome_page' %}'"
-      class="btn btn_blue"
-    >
-      Zum Quiz
-    </button>
 
     <!--Top 5 User (Rangliste)-->
     <div class="top5-user">

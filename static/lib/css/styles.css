@@ -192,7 +192,9 @@ textarea {
 /* Stil für jede Frage & Antwort */
 .frage,
 .antwort,
-.profil {
+.profil,
+.frage-des-tages-container,
+.top5-user {
   width: 100%;
   max-width: 800px;
   margin: 15px auto;
