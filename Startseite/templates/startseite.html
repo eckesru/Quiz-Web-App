@@ -4,7 +4,7 @@
   <div class="aktuelle-frage-container">
     <!--Heiße Frage Container-->
     <div class="hot-frage-container">
-      <h2>Frage des Tages</h2>
+      <h2>Heiße Frage</h2>
       <p>Sei der erste, der Antwortet!</p>
 
       <!--Abfrage, ob eine heiße Frage vorhanden ist-->
@@ -89,6 +89,11 @@
 
       <!--Punkte des Users-->
       <p>Punkte: {{ user.points }}</p>
+    </div>
+
+    <div class="frage-des-tages-container">
+      <p>Frage des Tages:</p>
+      {{frage_des_tages}}
     </div>
   </div>
 </div>
