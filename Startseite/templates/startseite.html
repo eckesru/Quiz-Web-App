@@ -2,11 +2,13 @@
 <div id="startseite">
   <!--Fragen Container-->
   <div class="aktuelle-frage-container">
-
     <!--Heiße Frage Container-->
     <div class="hot-frage-container">
       <h2>Frage des Tages</h2>
       <p>Sei der erste, der Antwortet!</p>
+
+      <!--Abfrage, ob eine heiße Frage vorhanden ist-->
+      {% if hot_frage %}
 
       <!--Anzeige der heißen Frage-->
       <div class="frage">
@@ -36,6 +38,10 @@
           {% endfor %}
         </div>
       </div>
+      {% else %}
+      <!-- Anzeige, wenn keine heiße Frage vorhanden ist -->
+      <p>Oh, wie es aussieht, haben schon alle eine Antwort. Sehr gut! :]</p>
+      {% endif %}
     </div>
 
     <!--Aktuelle Fragen-->
