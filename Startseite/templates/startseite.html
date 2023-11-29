@@ -1,9 +1,44 @@
 {% extends "base.html" %} {% block content %}
 <div id="startseite">
+  <!--Heiße Frage Container-->
+  <div class="hot-frage-container">
+    <h2>Frage des Tages</h2>
+    <p>Sei der erste, der Antwortet!</p>
+
+    <!--Anzeige der heißen Frage-->
+    <div class="frage">
+      <!--Frage Metaangaben-->
+      <div class="frage-meta">
+        <span class="frage-username">{{ hot_frage.user.username }}</span>
+        <span class="frage-erstelldatum"
+          >{{ hot_frage.creation_date|date:"Y-m-d H:i" }}</span
+        >
+      </div>
+
+      <!--Frage Überschrift mit Link zur Frage anzeigen-->
+      <h3>
+        <a href="{% url 'frage-anzeigen' frage.id %}"
+          >{{ hot_frage.module.text }}: {{ hot_frage.title }}</a
+        >
+      </h3>
+
+      <!--Frage Text-->
+      <div class="frage-text">{{ hot_frage.text|safe }}</div>
+
+      <!--Frage Tags-->
+      <div class="tags">
+        <i class="fas fa-tags"></i>
+        {% for tag in hot_frage.tag.all %}
+        <span class="tag">{{ tag.text }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
   <!--Fragen Container-->
   <div class="aktuelle-frage-container">
     <h2>Aktuelle Fragen</h2>
-    
+
     <!--Schleife durch Fragen-->
     {% for frage in frage %}
     <div class="frage">
@@ -45,8 +80,8 @@
       <h3>{{ user.username }}</h3>
 
       <!--Anzahl der Markierungen als Hilfreich & Anzahl der Likes-->
-      <p>Hilfreiche Antworten: </p>
-      <p>Likes: </p>
+      <p>Hilfreiche Antworten:</p>
+      <p>Likes:</p>
     </div>
   </div>
 </div>
