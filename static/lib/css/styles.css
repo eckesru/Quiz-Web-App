@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: url(/static/lib/images/background.svg) no-repeat;
+  /* background: url(/static/lib/images/background.svg) no-repeat; */
   background-size: cover;
   background-position: center;
 }
