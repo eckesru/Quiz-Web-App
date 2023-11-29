@@ -19,4 +19,4 @@ document
     }
   });
 
-console.log("frage.js geladen")
+//console.log("frage.js geladen")
