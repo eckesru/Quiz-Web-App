@@ -4,7 +4,7 @@
   <div class="aktuelle-frage-container">
     <!--Heiße Frage Container-->
     <div class="hot-frage-container">
-      <h2>🔥Heiße Frage🔥 Sei der erste, der Antwortet!</h2>
+      <h2>🔥 Heiße Frage 🔥 Sei der erste, der Antwortet!</h2>
 
       <!--Abfrage, ob eine heiße Frage vorhanden ist-->
       {% if hot_frage %}
@@ -36,20 +36,21 @@
           <span class="tag">{{ tag.text }}</span>
           {% endfor %}
         </div>
-      </div>
-      {% else %}
-      <!-- Anzeige, wenn keine heiße Frage vorhanden ist -->
-      <p>Oh, wie es aussieht, haben schon alle eine Antwort. Sehr gut! :]</p>
-      {% endif %}
+        {% else %}
 
-      <!--Frage stellen Button-->
-      <p>Stelle jetzt deine Frage!</p>
-      <button
-        onclick="window.location.href='{% url 'frage-erstellen' %}'"
-        class="btn btn_blue"
-      >
-        Frage stellen
-      </button>
+        <!-- Anzeige, wenn keine heiße Frage vorhanden ist -->
+        <p>Oh, wie es aussieht, haben schon alle eine Antwort. Sehr gut! :]</p>
+        {% endif %}
+
+        <!--Frage stellen Button-->
+        <p>Stelle jetzt deine Frage!</p>
+        <button
+          onclick="window.location.href='{% url 'frage-erstellen' %}'"
+          class="btn btn_blue"
+        >
+          Frage stellen
+        </button>
+      </div>
     </div>
 
     <!--Aktuelle Fragen-->
