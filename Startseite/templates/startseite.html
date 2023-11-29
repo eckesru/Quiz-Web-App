@@ -108,9 +108,7 @@
       <!--Quiz Starten Button-->
       <br />
       <br />
-      <span
-        >Starte jetzt ein Quiz und messe dich mit anderen!</span
-      >
+      <span>Starte jetzt ein Quiz und messe dich mit anderen!</span>
       <button
         onclick="window.location.href='{% url 'quiz:welcome_page' %}'"
         class="btn btn_blue"
@@ -121,12 +119,17 @@
 
     <!--Top 5 User (Rangliste)-->
     <h2>Rangliste</h2>
-    <div class="top5-user">
-      <ul>
-        {% for top_user in top_5_user %}
-        <li>{{ top_user.username }}</li>
+    <div id="leaderboard">
+      <div class="ribbon"></div>
+      <table>
+        {% for i, top_user in enumerate(top_5_user) %}
+        <tr>
+          <td class="number">{{ i+1 }}</td>
+          <td class="name">{{ top_user.username }}</td>
+          <td class="points">{{ top_user.points }}</td>
+        </tr>
         {% endfor %}
-      </ul>
+      </table>
     </div>
   </div>
 </div>
