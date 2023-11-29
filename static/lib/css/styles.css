@@ -121,8 +121,11 @@ body {
   transform: scale(1);
 }
 
-/*Frage erstellen Fomular*/
+#btn_zum_quiz {
+  margin-top: 0px;
+}
 
+/*Frage erstellen Fomular*/
 h2 {
   text-align: center;
   color: #fff;
