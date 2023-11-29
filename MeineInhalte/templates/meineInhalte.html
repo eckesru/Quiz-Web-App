@@ -33,36 +33,8 @@
         {% endfor %}
       </div>
 
-      <!--Frage Buttons-->
-      <div class="frage-actions">
-        <!--Button Frage bearbeiten-->
-        <button
-          type="submit"
-          class="btn btn_blue"
-          onclick="frageBearbeiten('{{ frage.id }}')"
-        >
-          Bearbeiten
-        </button>
-
-        <!--Button Frage löschen-->
-        <button
-          type="submit"
-          class="btn btn_red"
-          onclick="frageLoeschen('{{ frage.id }}')"
-        >
-          Löschen
-        </button>
-
-        <!--Button Frage liken-->
-        <button
-          type="button"
-          class="btn btn_light_blue"
-          onclick="frageLiken('{{ frage.id }}')"
-        >
-          <i class="fas fa-thumbs-up"></i> Like
-          <span id="frage-like-count-{{ frage.id }}">{{ frage.likes }}</span>
-        </button>
-      </div>
+      <!--Frage Buttons laden-->
+      {% include "frage_actions.html" %}
     </div>
     {% endfor %}
   </div>
@@ -83,7 +55,9 @@
       </div>
 
       <!--Antwort Text-->
-      <div class="antwort-text antwort-text_overflow">{{ antwort.text|safe }}</div>
+      <div class="antwort-text antwort-text_overflow">
+        {{ antwort.text|safe }}
+      </div>
 
       <!--Buttons für Antworten-->
       <div class="antwort-actions">
