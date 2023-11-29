@@ -1,198 +1,170 @@
-{% extends "base.html" %} {% block content %}
-<style>
-  .quiz-question-container {
-    transition: opacity 0.5s ease-in-out;
-  }
-</style>
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<form
-  id="frageErstellenFormular"
-  method="post"
-  action="{% url 'quiz:quiz_page' category.id %}"
->
-  {% csrf_token %}
-  <h2 class="quiz-heading">{{ category.name }} Quiz</h2>
-  <br />
-  <div class="quiz-question-container" id="question-container">
-    {% for question in questions %}
-    <div
-      class="question {% if forloop.first %}active{% endif %}"
-      id="question-{{ forloop.counter }}"
-    >
-      <p class="quiz-question">
-        <u><strong>{{ question.question }}</strong></u>
-      </p>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }} Quiz</title>
 
-      <!-- Display question number out of total questions -->
-      <p class="quiz-question-number">
-        Frage {{ forloop.counter }} von {{ questions|length }}
-      </p>
+    <!-- Styles -->
+    <style>
+        .quiz-question-container {
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+    <!-- End Styles -->
+</head>
 
-      <!-- Add a timer element for each question -->
-      <p id="timer-{{ forloop.counter }}" class="quiz-timer">
-        verbleibende Zeit: 30 Sekunden
-      </p>
+<body class="quiz-body">
+    <form id="frageErstellenFormular" method="post" action="{% url 'quiz:quiz_page' category.id %}">
+        {% csrf_token %}
+        <h2 class="quiz-heading">{{ category.name }} Quiz</h2>
+        <br>
+        <div class="quiz-question-container" id="question-container">
+            {% for question in questions %}
+            <div class="question {% if forloop.first %}active{% endif %}" id="question-{{ forloop.counter }}">
+                <p class="quiz-question"><u><strong>{{ question.question }}</strong></u></p>
+                
+                <!-- Display question number out of total questions -->
+                <p class="quiz-question-number">Frage {{ forloop.counter }} von {{ questions|length }}</p>
 
-      <label class="quiz-answer"
-        ><input
-          type="radio"
-          name="answer_{{ question.id }}"
-          value="{{ question.op1 }}"
-        />
-        {{ question.op1 }}</label
-      ><br />
-      <label class="quiz-answer"
-        ><input
-          type="radio"
-          name="answer_{{ question.id }}"
-          value="{{ question.op2 }}"
-        />
-        {{ question.op2 }}</label
-      ><br />
-      <label class="quiz-answer"
-        ><input
-          type="radio"
-          name="answer_{{ question.id }}"
-          value="{{ question.op3 }}"
-        />
-        {{ question.op3 }}</label
-      ><br />
-      <label class="quiz-answer"
-        ><input
-          type="radio"
-          name="answer_{{ question.id }}"
-          value="{{ question.op4 }}"
-        />
-        {{ question.op4 }}</label
-      ><br />
-    </div>
-    {% endfor %}
-  </div>
+                <!-- Add a timer element for each question -->
+                <p id="timer-{{ forloop.counter }}" class="quiz-timer">verbleibende Zeit: 30 Sekunden</p>
+            
+                <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op1 }}"> {{ question.op1 }}</label><br>
+                <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op2 }}"> {{ question.op2 }}</label><br>
+                <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op3 }}"> {{ question.op3 }}</label><br>
+                <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op4 }}"> {{ question.op4 }}</label><br>
+            </div>
+            {% endfor %}
+        </div>
 
-  <button type="button" id="next-question-btn">Nächste Frage</button>
-  <input
-    type="submit"
-    value="Quiz abgeben"
-    id="submit-btn"
-    style="display: none"
-  />
-</form>
+        <button type="button" id="next-question-btn">Nächste Frage</button>
+        <input type="submit" value="Quiz abgeben" id="submit-btn" style="display: none;">
+    </form>
 
-<!-- JavaScript -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-      var currentQuestion = 1;
-      var totalQuestions = {{ questions|length }};
-      var nextBtn = document.getElementById('next-question-btn');
-      var submitBtn = document.getElementById('submit-btn');
-      var timerInterval; // Variable to hold the timer interval
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var currentQuestion = 1;
+            var totalQuestions = {{ questions|length }};
+            var nextBtn = document.getElementById('next-question-btn');
+            var submitBtn = document.getElementById('submit-btn');
+            var timerInterval; // Variable to hold the timer interval
 
-      // Add an array to store correct answers for each question
-      var correctAnswers = [
-          {% for question in questions %}
-          '{{ question.ans }}',
-          {% endfor %}
-      ];
+            // Add an array to store correct answers for each question
+            var correctAnswers = [
+                {% for question in questions %}
+                '{{ question.ans }}',
+                {% endfor %}
+            ];
 
-      function startTimer(duration, display) {
-          var timer = duration, minutes, seconds;
-          timerInterval = setInterval(function () {
-              seconds = parseInt(timer % 60, 10);
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                timerInterval = setInterval(function () {
+                    seconds = parseInt(timer % 60, 10);
 
-              display.textContent = 'verbleibende Zeit: ' + seconds + ' Sekunden';
+                    display.textContent = 'verbleibende Zeit: ' + seconds + ' Sekunden';
 
-              if (--timer < 0) {
-                  clearInterval(timerInterval);
-                  nextQuestion();
-              }
-          }, 1000);
-      }
+                    if (--timer < 0) {
+                        clearInterval(timerInterval);
+                        nextQuestion();
+                    }
+                }, 1000);
+            }
 
-      function showQuestion(questionNumber) {
-          var questionContainer = document.getElementById('question-container');
-          questionContainer.style.opacity = 0;
+            function showQuestion(questionNumber) {
+                var questionContainer = document.getElementById('question-container');
+                questionContainer.style.opacity = 0;
 
-          setTimeout(function () {
-              document.querySelectorAll('.question').forEach(function (question) {
-                  question.style.display = 'none';
-              });
+                setTimeout(function () {
+                    document.querySelectorAll('.question').forEach(function (question) {
+                        question.style.display = 'none';
+                    });
 
-              var currentQuestionElement = document.getElementById('question-' + questionNumber);
-              currentQuestionElement.style.display = 'block';
+                    var currentQuestionElement = document.getElementById('question-' + questionNumber);
+                    currentQuestionElement.style.display = 'block';
 
-              // Start the timer for the current question
-              var timerDisplay = document.getElementById('timer-' + questionNumber);
-              startTimer(30, timerDisplay);
+                    // Start the timer for the current question
+                    var timerDisplay = document.getElementById('timer-' + questionNumber);
+                    startTimer(30, timerDisplay);
 
-              if (questionNumber === totalQuestions) {
-                  nextBtn.style.display = 'none';
-                  submitBtn.style.display = 'inline-block';
-              } else {
-                  nextBtn.style.display = 'inline-block';
-                  submitBtn.style.display = 'none';
-              }
+                    if (questionNumber === totalQuestions) {
+                        nextBtn.style.display = 'none';
+                        submitBtn.style.display = 'inline-block';
+                    } else {
+                        nextBtn.style.display = 'inline-block';
+                        submitBtn.style.display = 'none';
+                    }
 
-              questionContainer.style.opacity = 1;
+                    questionContainer.style.opacity = 1;
 
-              // Reset answer styles from the previous question
-              document.querySelectorAll('.quiz-answer input').forEach(function (input) {
-                  input.parentElement.style.backgroundColor = '';
-              });
-          }, 500);
-      }
+                    // Reset answer styles from the previous question
+                    document.querySelectorAll('.quiz-answer input').forEach(function (input) {
+                        input.parentElement.style.backgroundColor = '';
+                    });
+                }, 500);
+            }
 
-      function nextQuestion() {
-          clearInterval(timerInterval); // Clear the timer interval
+            function nextQuestion() {
+                clearInterval(timerInterval); // Clear the timer interval
 
-          // Highlight both the correct and incorrect answers for the current question
-          var question = document.getElementById('question-' + currentQuestion);
-          var correctAnswer = correctAnswers[currentQuestion - 1];
+                // Highlight both the correct and incorrect answers for the current question
+                var question = document.getElementById('question-' + currentQuestion);
+                var correctAnswer = correctAnswers[currentQuestion - 1];
 
-          question.querySelectorAll('.quiz-answer').forEach(function (answerContainer) {
-              var answerInput = answerContainer.querySelector('input');
-              if (answerInput) {
-                  var isCorrect = answerInput.value === correctAnswer;
-                  answerContainer.style.backgroundColor = isCorrect ? 'green' : 'red';
-              }
-          });
+                question.querySelectorAll('.quiz-answer').forEach(function (answerContainer) {
+                    var answerInput = answerContainer.querySelector('input');
+                    if (answerInput) {
+                        var isCorrect = answerInput.value === correctAnswer;
+                        answerContainer.style.backgroundColor = isCorrect ? 'green' : 'red';
+                    }
+                });
 
-          // Wait for 1 second before moving to the next question or result page
-          setTimeout(function () {
-              currentQuestion++;
-              if (currentQuestion <= totalQuestions) {
-                  showQuestion(currentQuestion);
-              } else {
-                  // If all questions are answered, submit the form
-                  document.getElementById('frageErstellenFormular').submit();
-              }
+                // Wait for 1 second before moving to the next question or result page
+                setTimeout(function () {
+                    currentQuestion++;
+                    if (currentQuestion <= totalQuestions) {
+                        showQuestion(currentQuestion);
+                    } else {
+                        // If all questions are answered, submit the form
+                        document.getElementById('frageErstellenFormular').submit();
+                    }
 
-              // Change the display style after calling showQuestion
-              if (currentQuestion <= totalQuestions) {
-                  nextBtn.style.display = 'inline-block';
-                  submitBtn.style.display = 'none';
-              }
-          }, 1000);
-      }
+                    // Change the display style after calling showQuestion
+                    if (currentQuestion <= totalQuestions) {
+                        nextBtn.style.display = 'inline-block';
+                        submitBtn.style.display = 'none';
+                    }
+                }, 1000);
+            }
 
-      function submitQuiz() {
-          nextQuestion();
-      }
+            function submitQuiz() {
+                nextQuestion();
+            }
 
-      document.getElementById('next-question-btn').addEventListener('click', function () {
-          nextQuestion();
-      });
+            document.getElementById('next-question-btn').addEventListener('click', function () {
+                nextQuestion();
+            });
 
-      document.getElementById('submit-btn').addEventListener('click', function () {
-          submitQuiz();
-      });
+            document.getElementById('submit-btn').addEventListener('click', function () {
+                submitQuiz();
+            });
 
-      // Initially hide all questions except the first one
-      document.querySelectorAll('.question:not(.active)').forEach(function (question) {
-          question.style.display = 'none';
-      });
+            // Initially hide all questions except the first one
+            document.querySelectorAll('.question:not(.active)').forEach(function (question) {
+                question.style.display = 'none';
+            });
 
-      showQuestion(currentQuestion); // Display the first question initially
-  });
-</script>
-<!-- End JavaScript -->
+            showQuestion(currentQuestion); // Display the first question initially
+        });
+    </script>
+    <!-- End JavaScript -->
+
+</body>
+
+</html>
 {% endblock %}
