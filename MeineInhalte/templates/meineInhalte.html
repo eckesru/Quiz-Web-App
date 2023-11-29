@@ -59,38 +59,8 @@
         {{ antwort.text|safe }}
       </div>
 
-      <!--Buttons für Antworten-->
-      <div class="antwort-actions">
-        <!--Button Antwort bearbeiten-->
-        <button
-          type="submit"
-          class="btn btn_blue"
-          onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-        >
-          Bearbeiten
-        </button>
-
-        <!--Button Antwort löschen-->
-        <button
-          type="submit"
-          class="btn btn_red"
-          onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-        >
-          Löschen
-        </button>
-
-        <!--Button Antwort als hilfreich markieren-->
-        <button
-          type="button"
-          class="btn btn_light_blue"
-          onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-        >
-          Hilfreich
-          <span id="antwort-like-count-{{ antwort.id }}"
-            >{{ antwort.likes }}</span
-          >
-        </button>
-      </div>
+      <!--Antwort Buttons laden-->
+      {% include "antwort_actions.html" %}
     </div>
     {% endfor %}
   </div>
