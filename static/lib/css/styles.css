@@ -241,25 +241,30 @@ textarea {
 .frageAnzeigen-antwort-text {
   margin-top: 5px;
   margin-bottom: 5px;
-  font-size: 16px;
   line-height: 1.6;
 }
 */
 
 /* Stil für den Fragetext */
+/*
 .frage-text-container {
   position: relative;
 }
+*/
 
 .frage-text,
 .antwort-text {
-  max-height: 3.5em;
-  overflow: hidden;
-  white-space: normal;
   margin-top: 5px;
   margin-bottom: 5px;
   line-height: 1.6;
-  position: relative;
+  /*position: relative;*/
+}
+
+.frage-text_overflow,
+.antwort-text_overflow {
+  max-height: 3.5em;
+  overflow: hidden;
+  white-space: normal;
 }
 
 .frage-text a {

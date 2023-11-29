@@ -27,7 +27,9 @@
         </h3>
 
         <!--Frage Text-->
-        <div class="frage-text">{{ hot_frage.text|safe }}</div>
+        <div class="frage-text frage-text_overflow">
+          {{ hot_frage.text|safe }}
+        </div>
 
         <!--Frage Tags-->
         <div class="tags">
@@ -75,7 +77,7 @@
       </h3>
 
       <!--Frage Text-->
-      <div class="frage-text">{{ frage.text|safe }}</div>
+      <div class="frage-text frage-text_overflow">{{ frage.text|safe }}</div>
 
       <!--Frage Tags-->
       <div class="tags">
