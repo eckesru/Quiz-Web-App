@@ -1,5 +1,5 @@
 # Datei zur Auslagerung von Methoden
-from .models import Frage, Antwort
+from .models import Frage, Antwort, Benutzer
 
 
 def update_points_for_user(user):
@@ -23,9 +23,9 @@ def update_points_for_user(user):
     likes_amount = frage_likes + antwort_likes
 
     # Gewichte der Punkteberechnung
-    frage_mutiplier = 3
+    frage_mutiplier = 2
     antwort_multiplier = 1
-    like_multiplier = 2
+    like_multiplier = 3
 
     # Berechnung der einzelnen Punkte anhand der Gewichte
     frage_points = fragen_amount * frage_mutiplier
@@ -34,4 +34,6 @@ def update_points_for_user(user):
 
     # Gesamtsumme der Punkte als Ergebnis zurückgeben
     points = frage_points + antwort_points + like_points
-    return points
+
+    # Punkte des Users in der DB aktualisieren
+    Benutzer.objects.filter(id=user.id).update(_points=points)

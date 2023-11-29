@@ -73,7 +73,7 @@ class Frage(models.Model):
                                on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255)
     text = models.TextField()
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=1)
 
     class Meta:
         managed = False
@@ -106,7 +106,7 @@ class Antwort(models.Model):
     last_edited = models.DateTimeField(auto_now=True)
     flagged = models.BooleanField(default=0)
     text = models.TextField()
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=1)
 
     class Meta:
         managed = False
