@@ -238,7 +238,7 @@ textarea {
 .frage-text {
   max-height: 1.8em;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   text-overflow: ellipsis;
   margin-top: 5px;
   margin-bottom: 5px;
