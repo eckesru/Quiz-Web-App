@@ -1,24 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ category.name }} Quiz</title>
-
-    <!-- Styles -->
     <style>
         .quiz-question-container {
             transition: opacity 0.5s ease-in-out;
         }
     </style>
-    <!-- End Styles -->
-</head>
 
-<body class="quiz-body">
     <form id="frageErstellenFormular" method="post" action="{% url 'quiz:quiz_page' category.id %}">
         {% csrf_token %}
         <h2 class="quiz-heading">{{ category.name }} Quiz</h2>
@@ -164,7 +151,4 @@
     </script>
     <!-- End JavaScript -->
 
-</body>
-
-</html>
 {% endblock %}
