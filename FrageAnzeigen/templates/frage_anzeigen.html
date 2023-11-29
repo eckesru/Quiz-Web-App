@@ -24,87 +24,85 @@
   </div>
 
   {% include "frage_actions.html" %}
-
-  <!-- Anzeige der Anzahl der Antworten -->
-  {% if antwort %} {% if antwort|length == 1 %}
-  <p class="antwort-anzahl">1 Antwort vorhanden</p>
-  {% else %}
-  <p class="antwort-anzahl">{{ antwort|length }} Antworten vorhanden</p>
-  {% endif %} {% else %}
-  <p class="antwort-anzahl">Noch keine Antworten vorhanden</p>
-  {% endif %}
-
-  <!--Antworten anzeigen-->
-  {% for antwort in antwort %}
-  <div class="antwort">
-    <!--Antwort Metaangaben-->
-    <div class="antwort-meta">
-      <span class="antwort-username">{{ antwort.user.username }}</span>
-      <span class="antwort-erstelldatum"
-        >{{ antwort.creation_date|date:"Y-m-d H:i" }}</span
-      >
-    </div>
-
-    <!--Antwort Text-->
-    <div class="antwort-text">{{ antwort.text|safe }}</div>
-
-    <!--Antwort Buttons-->
-    <div class="antwort-actions">
-      <!--Button Antwort als hilfreich markieren-->
-      <button
-        type="button"
-        class="btn btn_light_blue"
-        onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-      >
-        Hilfreich
-        <span id="antwort-like-count-{{ antwort.id }}"
-          >{{ antwort.likes }}</span
-        >
-      </button>
-
-      <!--Nur Anzeigen, wenn User berechtigt-->
-      {% if request.user == antwort.user %}
-
-      <!--Button Antwort bearbeiten-->
-      <button
-        type="submit"
-        class="btn btn_blue"
-        onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-      >
-        Bearbeiten
-      </button>
-
-      <!--Button Antwort löschen-->
-      <button
-        type="submit"
-        class="btn btn_red"
-        onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-      >
-        Löschen
-      </button>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
-
-  <!--Antwort erstellen Formular-->
-  <div class="antwort">
-    <form id="antwortErstellenFormular" method="post">
-      <!--Django Token Übergabe-->
-      {% csrf_token %}
-
-      <!--Eingabe Antwort Text-->
-      <textarea
-        id="antwortText"
-        name="antwortText"
-        placeholder="Antwort schreiben..."
-      ></textarea>
-
-      <!--Button Antwort speichern-->
-      <button type="submit" class="btn btn_blue" name="antwortErstellen">
-        Antwort speichern
-      </button>
-    </form>
-  </div>
-  {% endblock %}
 </div>
+
+<!-- Anzeige der Anzahl der Antworten -->
+{% if antwort %} {% if antwort|length == 1 %}
+<p class="antwort-anzahl">1 Antwort vorhanden</p>
+{% else %}
+<p class="antwort-anzahl">{{ antwort|length }} Antworten vorhanden</p>
+{% endif %} {% else %}
+<p class="antwort-anzahl">Noch keine Antworten vorhanden</p>
+{% endif %}
+
+<!--Antworten anzeigen-->
+{% for antwort in antwort %}
+<div class="antwort">
+  <!--Antwort Metaangaben-->
+  <div class="antwort-meta">
+    <span class="antwort-username">{{ antwort.user.username }}</span>
+    <span class="antwort-erstelldatum"
+      >{{ antwort.creation_date|date:"Y-m-d H:i" }}</span
+    >
+  </div>
+
+  <!--Antwort Text-->
+  <div class="antwort-text">{{ antwort.text|safe }}</div>
+
+  <!--Antwort Buttons-->
+  <div class="antwort-actions">
+    <!--Button Antwort als hilfreich markieren-->
+    <button
+      type="button"
+      class="btn btn_light_blue"
+      onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+    >
+      Hilfreich
+      <span id="antwort-like-count-{{ antwort.id }}">{{ antwort.likes }}</span>
+    </button>
+
+    <!--Nur Anzeigen, wenn User berechtigt-->
+    {% if request.user == antwort.user %}
+
+    <!--Button Antwort bearbeiten-->
+    <button
+      type="submit"
+      class="btn btn_blue"
+      onclick="antwortBearbeiten('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+    >
+      Bearbeiten
+    </button>
+
+    <!--Button Antwort löschen-->
+    <button
+      type="submit"
+      class="btn btn_red"
+      onclick="antwortLoeschen('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+    >
+      Löschen
+    </button>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+<!--Antwort erstellen Formular-->
+<div class="antwort">
+  <form id="antwortErstellenFormular" method="post">
+    <!--Django Token Übergabe-->
+    {% csrf_token %}
+
+    <!--Eingabe Antwort Text-->
+    <textarea
+      id="antwortText"
+      name="antwortText"
+      placeholder="Antwort schreiben..."
+    ></textarea>
+
+    <!--Button Antwort speichern-->
+    <button type="submit" class="btn btn_blue" name="antwortErstellen">
+      Antwort speichern
+    </button>
+  </form>
+</div>
+{% endblock %}
