@@ -236,10 +236,10 @@ textarea {
 
 /* Stil für den Fragetext */
 .frage-text {
-  /*max-height: 1.8em;*/
+  max-height: 4.8em;
   overflow: hidden;
   white-space: normal;
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis;*/
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 16px;
