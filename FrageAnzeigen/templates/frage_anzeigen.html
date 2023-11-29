@@ -25,6 +25,19 @@
 
   <!--Frage Buttons-->
   <div class="frage-actions">
+    <!--Button Frage liken-->
+    <button
+      type="button"
+      class="btn btn_light_blue"
+      onclick="frageLiken('{{ frage.id }}')"
+    >
+      <i class="fas fa-thumbs-up"></i> Like
+      <span id="frage-like-count-{{ frage.id }}">{{ frage.likes }}</span>
+    </button>
+
+    <!--Nur Anzeigen, wenn User berechtigt-->
+    {% if request.user == frage.user %}
+
     <!--Button Frage bearbeiten-->
     <button
       type="submit"
@@ -42,28 +55,17 @@
     >
       Löschen
     </button>
-
-    <!--Button Frage liken-->
-    <button
-      type="button"
-      class="btn btn_light_blue"
-      onclick="frageLiken('{{ frage.id }}')"
-    >
-      <i class="fas fa-thumbs-up"></i> Like
-      <span id="frage-like-count-{{ frage.id }}">{{ frage.likes }}</span>
-    </button>
+    {% endif %}
   </div>
 </div>
 
 <!-- Anzeige der Anzahl der Antworten -->
-{% if antwort %}
-  {% if antwort|length == 1 %}
-    <p class="antwort-anzahl">1 Antwort vorhanden</p>
-  {% else %}
-    <p class="antwort-anzahl">{{ antwort|length }} Antworten vorhanden</p>
-  {% endif %}
+{% if antwort %} {% if antwort|length == 1 %}
+<p class="antwort-anzahl">1 Antwort vorhanden</p>
 {% else %}
-  <p class="antwort-anzahl">Noch keine Antworten vorhanden</p>
+<p class="antwort-anzahl">{{ antwort|length }} Antworten vorhanden</p>
+{% endif %} {% else %}
+<p class="antwort-anzahl">Noch keine Antworten vorhanden</p>
 {% endif %}
 
 <!--Antworten anzeigen-->
@@ -82,6 +84,19 @@
 
   <!--Antwort Buttons-->
   <div class="antwort-actions">
+    <!--Button Antwort als hilfreich markieren-->
+    <button
+      type="button"
+      class="btn btn_light_blue"
+      onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
+    >
+      Hilfreich
+      <span id="antwort-like-count-{{ antwort.id }}">{{ antwort.likes }}</span>
+    </button>
+
+    <!--Nur Anzeigen, wenn User berechtigt-->
+    {% if request.user == frage.user %}
+
     <!--Button Antwort bearbeiten-->
     <button
       type="submit"
@@ -99,16 +114,7 @@
     >
       Löschen
     </button>
-
-    <!--Button Antwort als hilfreich markieren-->
-    <button
-      type="button"
-      class="btn btn_light_blue"
-      onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-    >
-      Hilfreich
-      <span id="antwort-like-count-{{ antwort.id }}">{{ antwort.likes }}</span>
-    </button>
+    {% endif %}
   </div>
 </div>
 {% endfor %}
