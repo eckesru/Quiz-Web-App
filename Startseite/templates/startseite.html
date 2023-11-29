@@ -44,7 +44,7 @@
       {% endif %}
     </div>
 
-    <!--Frage erstellen Button-->
+    <!--Frage stellen Button-->
     <p>Stelle jetzt deine Frage!</p>
     <button onclick="window.location.href='{% url 'frage-erstellen' %}'" class="btn btn_blue">Frage stellen</button>
 
@@ -100,6 +100,10 @@
       <p>Frage des Tages:</p>
       {{frage_des_tages}}
     </div>
+
+    <!--Quiz Starten Button-->
+    <p>Stelle jetzt ein vollständiges Quiz und messe dich mit anderen!</p>
+    <button onclick="window.location.href='{% url 'quiz' %}'" class="btn btn_blue">Zum Quiz</button>
 
     <!--Top 5 User (Rangliste)-->
     <div class="top5-user">
