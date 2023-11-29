@@ -109,10 +109,9 @@
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
       {{frage_des_tages}}
-
+    </div>
+    <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
-      <br />
-      <br />
       <span>Starte jetzt ein Quiz und messe dich mit anderen!</span>
       <button
         onclick="window.location.href='{% url 'quiz:welcome_page' %}'"
