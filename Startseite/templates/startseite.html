@@ -5,13 +5,14 @@
     <!--Heiße Frage Container-->
     <div class="hot-frage-container">
       <h2>Heiße Frage</h2>
-      <p>Sei der erste, der Antwortet!</p>
 
       <!--Abfrage, ob eine heiße Frage vorhanden ist-->
       {% if hot_frage %}
 
       <!--Anzeige der heißen Frage-->
       <div class="frage">
+        <p>Sei der erste, der Antwortet!</p>
+
         <!--Frage Metaangaben-->
         <div class="frage-meta">
           <span class="frage-username">{{ hot_frage.user.username }}</span>
