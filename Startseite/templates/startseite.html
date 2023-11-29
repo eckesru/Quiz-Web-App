@@ -101,11 +101,14 @@
     </div>
 
     <!--Frage des Tages-->
+    <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
-      <p>Frage des Tages:</p>
       {{frage_des_tages}}
       <!--Quiz Starten Button-->
-      <p>Stelle jetzt ein vollständiges Quiz und messe dich mit anderen!</p>
+      <br />
+      <span
+        >Stelle jetzt ein vollständiges Quiz und messe dich mit anderen!</span
+      >
       <button
         onclick="window.location.href='{% url 'quiz:welcome_page' %}'"
         class="btn btn_blue"
@@ -115,8 +118,8 @@
     </div>
 
     <!--Top 5 User (Rangliste)-->
+    <h2>Rangliste</h2>
     <div class="top5-user">
-      <p>Top 5 User:</p>
       <ul>
         {% for top_user in top_5_user %}
         <li>{{ top_user.username }}</li>
