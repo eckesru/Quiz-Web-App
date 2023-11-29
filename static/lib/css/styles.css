@@ -121,29 +121,11 @@ body {
   transform: scale(1);
 }
 
-/*
-.btn_light_blue.clicked {
-  background-color: #2ecc71;
-  transform: scale(1);
-}
-*/
+/*Frage erstellen Fomular*/
 
-/* Frage-Erstellen Formular */
 h2 {
   text-align: center;
 }
-
-/*
-#frageErstellenFormular {
-  /*width: 80%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.6);
-}
-*/
 
 label {
   display: block;
@@ -160,12 +142,6 @@ select {
   border-radius: 3px;
   margin-bottom: 10px;
 }
-
-/*
-textarea {
-  height: 150px;
-}
-*/
 
 /* Stil für Startseite */
 .profil-container {
@@ -195,14 +171,13 @@ textarea {
   padding: 10px;
 }
 
-/* Stil für jede Frage & Antwort */
+/* Stil für Container */
 #frageErstellenFormular,
 .frage,
 .antwort,
 .profil,
 .frage-des-tages-container,
 .rangliste {
-  /*width: 100%;*/
   max-width: 800px;
   margin: 15px auto;
   padding: 15px;
