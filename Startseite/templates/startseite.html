@@ -98,7 +98,14 @@
     </div>
 
     <!--Top 5 User (Rangliste)-->
-    <div class="top5-user">{{top_5_user}}</div>
+    <div class="top5-user">
+      <p>Top 5 User:</p>
+      <ol>
+        {% for i, top_user in top_5_user %}
+        <li>{{ i }}. {{ top_user.username }}</li>
+        {% endfor %}
+      </ol>
+    </div>
   </div>
 </div>
 {% endblock %}
