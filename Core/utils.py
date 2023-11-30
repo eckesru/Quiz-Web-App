@@ -35,5 +35,28 @@ def update_points_for_user(user):
     # Gesamtsumme der Punkte als Ergebnis zurückgeben
     points = frage_points + antwort_points + like_points
 
+    # Rang des Nutzers ermitteln
+    rank = get_rank(points)
+
     # Punkte des Users in der DB aktualisieren
-    Benutzer.objects.filter(id=user.id).update(_points=points)
+    Benutzer.objects.filter(id=user.id).update(_points=points, _rank=rank)
+
+
+def get_rank(points):
+        
+    rangstufen = [
+        (10000, "Legende der Lehrbücher"),
+        (5000,  "Professor der Problemlösung"),
+        (2500,  "Doktor der Diskussion"),
+        (1200,  "Gelehrter Guru"),
+        (600,   "Fanatischer Forscher"),
+        (300,   "Wächter des Wissens"),
+        (150,   "Akademischer Adept"),
+        (75,    "Begeisterter Bücherwurm"),
+        (30,    "Ehrgeiziger Akademiker"),
+        (0,     "Neugieriger Student")
+    ]
+
+    for boundary, rank in rangstufen:
+        if points >= boundary:
+            return rank

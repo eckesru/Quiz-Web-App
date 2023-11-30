@@ -3,21 +3,13 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Benutzer(AbstractUser):
-    _role = models.SmallIntegerField(default=0)
     _points = models.IntegerField(default=0)
+    _rank = models.CharField(max_length=255)
     liked_fragen = models.ManyToManyField("Frage", blank=True)
     liked_antworten = models.ManyToManyField("Antwort", blank=True)
     study_area = models.ForeignKey("StudyArea",
                                    blank=False,
                                    on_delete=models.DO_NOTHING)
-
-    @property
-    def role(self):
-        pass
-
-    @role.setter
-    def role(self, points):
-        pass
 
     @property
     def points(self):
@@ -26,7 +18,16 @@ class Benutzer(AbstractUser):
     @points.setter
     def points(self, points):
         raise AttributeError("Punkte dürfen nicht manuell gesetzt werden. \
-                              Verwende statische calculate_points-Methode!")
+                              Verwende update_points_for_user()-Methode!")
+
+    @property
+    def rank(self):
+        return self._rank
+
+    @rank.setter
+    def rank(self, rank):
+        raise AttributeError("Ränge dürfen nicht manuell gesetzt werden. \
+                              Verwende update_points_for_user()-Methode!")
 
     @staticmethod
     def update_points(user):
@@ -67,7 +68,6 @@ class Frage(models.Model):
     # db_constraint=False -> Falls Migrationsprobleme, wieder reinnehmen
     creation_date = models.DateTimeField(auto_now_add=True)
     last_edited = models.DateTimeField(auto_now=True)
-    flagged = models.BooleanField(default=0)
     tag = models.ManyToManyField(Tag)
     module = models.ForeignKey("Modul",
                                on_delete=models.DO_NOTHING)
@@ -104,7 +104,6 @@ class Antwort(models.Model):
                               on_delete=models.DO_NOTHING)
     creation_date = models.DateTimeField(auto_now_add=True)
     last_edited = models.DateTimeField(auto_now=True)
-    flagged = models.BooleanField(default=0)
     text = models.TextField()
     likes = models.IntegerField(default=1)
 
