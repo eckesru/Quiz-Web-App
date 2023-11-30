@@ -2,7 +2,6 @@
 from Core.models import Benutzer, Frage, Antwort
 from Quiz.models import QuesModel
 import random
-from django.utils import timezone
 
 
 def get_hot_frage():
@@ -30,13 +29,12 @@ def get_antwort_count_for_frage(frage):
     return antwort_count
 
 
-def get_frage_des_tages(user):
-    today = timezone.now()
+def get_frage_des_tages(user, timestamp):
 
     # Seed definieren, welcher sich nur täglich ändert
-    seed = (today.day + today.weekday()) * \
-           (today.month + today.year) * \
-           (today.year + today.weekday() - (today.month * today.day))
+    seed = (timestamp.day + timestamp.weekday()) * \
+           (timestamp.month + timestamp.year) * \
+           (timestamp.year + timestamp.weekday() - (timestamp.month * timestamp.day))
 
     # Random mit dem berechneten seed initialisieren
     random.seed(seed)
@@ -49,10 +47,9 @@ def get_frage_des_tages(user):
     return frage_des_tages
 
 
-def get_top_5_users():
+def get_top_5_users(timestamp):
 
-    today = timezone.now()
-    one_year_before = today.replace(year=today.year - 1)
+    one_year_before = timestamp.replace(year=timestamp.year - 1)
 
     # Nur Benutzer, deren letztes Login-Datum maximal ein Jahr her ist.
     # __gte = greater than equal
@@ -62,3 +59,15 @@ def get_top_5_users():
                                   .order_by("-_points")[:5]
 
     return top_5_users
+
+
+def get_answer_frage_des_tages(user, timestamp):
+    date = timestamp.date
+
+    anwer_frage_des_tages = Benutzer.objects.get(date=date, user=user)
+
+    return anwer_frage_des_tages
+
+
+def get_statistics_frage_des_tages(frage_des_tages):
+    pass

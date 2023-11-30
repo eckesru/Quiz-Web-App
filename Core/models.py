@@ -10,6 +10,8 @@ class Benutzer(AbstractUser):
     study_area = models.ForeignKey("StudyArea",
                                    blank=False,
                                    on_delete=models.DO_NOTHING)
+    answered_frage_des_tages = \
+        models.ManyToManyField('Quiz.QuesModel', through='BenutzerQuesModel')
 
     @property
     def points(self):
@@ -122,3 +124,15 @@ class StudyArea(models.Model):
     class Meta:
         managed = False
         db_table = "StudyArea"
+
+
+class BenutzerQuesModel(models.Model):
+    date = models.DateField(auto_now_add=True)
+    user = models.ForeignKey('Benutzer', on_delete=models.DO_NOTHING)
+    quizfrage = models.ForeignKey('Quiz.QuesModel',
+                                  on_delete=models.DO_NOTHING)
+    answer = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = "Benutzer_Quesmodel"
