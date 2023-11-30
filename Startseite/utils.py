@@ -10,12 +10,14 @@ def get_hot_frage():
     del_user = Benutzer.objects.get(username="entfernt")
     fragen = Frage.objects.all().exclude(user=del_user)
 
-    # Aufsteigend nach Anzahl der Antworten sortieren (Fremdschlüssel),
-    # dannach nach creation_date
-    sorted_fragen = sorted(fragen,
+    # Frage in Liste hinzufügen, wenn keine Antworten gibt (Fremdschlüssel)
+    fragen_ohne_antworten = [frage for frage in fragen
+                             if get_antwort_count_for_frage(frage) == 0]
+
+    # Aufsteigend nach creation_date sortieren
+    sorted_fragen = sorted(fragen_ohne_antworten,
                            key=lambda frage:
-                           (get_antwort_count_for_frage(frage),
-                            frage.creation_date),
+                           frage.creation_date,
                            reverse=False)
 
     return sorted_fragen[0]
