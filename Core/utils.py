@@ -14,11 +14,11 @@ def update_points_for_user(user):
     # Anzahl der Likes für Fragen und Antworten berechnen, dann Summieren
     frage_likes = 0
     for frage in fragen:
-        frage_likes += frage.likes
+        frage_likes += (frage.likes - 1)
 
     antwort_likes = 0
     for antwort in antworten:
-        antwort_likes += antwort.likes
+        antwort_likes += (antwort.likes - 1)
 
     likes_amount = frage_likes + antwort_likes
 
