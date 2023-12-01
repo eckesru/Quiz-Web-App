@@ -5,7 +5,7 @@ from django.db.models.functions import TruncDate
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users, \
-                   get_answer_frage_des_tages, get_statistics_frage_des_tages
+                   get_user_answer_frage_des_tages, get_statistics_frage_des_tages
 
 
 @login_required(login_url='/login/')
@@ -35,10 +35,12 @@ def startseite_view(request):
     frage_des_tages = get_frage_des_tages(request.user,
                                           timestamp)
 
-    answer_frage_des_tages = get_answer_frage_des_tages(request.user,
-                                                        timestamp)
+    answer_frage_des_tages = get_user_answer_frage_des_tages(request.user,
+                                                             frage_des_tages,
+                                                             timestamp)
 
-    statistics_frage_des_tages = get_statistics_frage_des_tages(timestamp)
+    statistics_frage_des_tages = get_statistics_frage_des_tages(
+        frage_des_tages, timestamp)
 
     top_5_user = get_top_5_users(timestamp)
 
