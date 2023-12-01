@@ -2,6 +2,7 @@
 from Core.models import Benutzer, Frage, Antwort, BenutzerQuesModel
 from Quiz.models import QuesModel
 import random
+from collections import Counter
 
 
 def get_hot_frage():
@@ -87,25 +88,19 @@ def get_statistics_frage_des_tages(frage_des_tages, timestamp):
     quizfrage_answers_list = \
         [frage.answer for frage in antworten_frage_des_tages]
 
-    op1, op2, op3, op4, sum = 0
-    for answer in quizfrage_answers_list:
-        if answer == "op1":
-            op1 += 1
-        elif answer == "op2":
-            op2 += 1
-        elif answer == "op3":
-            op3 += 1
-        elif answer == "op4":
-            op4 += 1
+    # Counter: Zählt automatisch die Werte und erstellt Dictionary dazu
+    counter_answers = Counter(quizfrage_answers_list)
 
-    sum = len(quizfrage_answers_list)
+    total = counter_answers.total()
+    options = ['op1', 'op2', 'op3', 'op4']
 
-    if sum != 0:
-        op1_stats = round(op1 / sum, 2)
-        op2_stats = round(op2 / sum, 2)
-        op3_stats = round(op3 / sum, 2)
-        op4_stats = round(op4 / sum, 2)
+    if total != 0:
+        statistics = {key: x for key, x in counter_answers}
+
+        # Wenn eins der op fehlt, mit Wert 0 hinzufügen
+        for option in options:
+            statistics.setdefault(option, 0)
     else:
-        op1_stats, op2_stats, op3_stats, op4_stats = None
+        statistics = {key: 0 for key in options}
 
-    return [op1_stats, op2_stats, op3_stats, op4_stats]
+    return statistics
