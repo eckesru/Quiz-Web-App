@@ -95,7 +95,7 @@ def get_statistics_frage_des_tages(frage_des_tages, timestamp):
     options = ['op1', 'op2', 'op3', 'op4']
 
     if total != 0:
-        statistics = {key: x for key, x in counter_answers}
+        statistics = {key: round(x / total, 2) for key, x in counter_answers}
 
         # Wenn eins der op fehlt, mit Wert 0 hinzufügen
         for option in options:

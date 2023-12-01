@@ -81,8 +81,8 @@ def update_answer_and_statistics(request):
         statistics_frage_des_tages = get_statistics_frage_des_tages(
             frage_des_tages, timestamp)
 
-        return JsonResponse({'statistics_frage_des_tages':
-                             statistics_frage_des_tages,
-                             'allowed': True})
+        statistics_frage_des_tages['allowed'] = True
+
+        return JsonResponse(statistics_frage_des_tages)
 
     return JsonResponse({'allowed': False})
