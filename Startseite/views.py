@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from Core.models import Frage, Benutzer
+from django.http import JsonResponse
+from Core.models import Frage, Benutzer, BenutzerQuesModel
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import TruncDate
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users, \
-                   get_user_answer_frage_des_tages, get_statistics_frage_des_tages
+                   get_user_answer_frage_des_tages, \
+                   get_statistics_frage_des_tages
 
 
 @login_required(login_url='/login/')
@@ -52,3 +54,35 @@ def startseite_view(request):
                "top_5_user": top_5_user}
 
     return render(request, 'startseite.html', context)
+
+
+@login_required(login_url='/login/-')
+def update_answer_and_statistics(request):
+    if request.method == 'POST':
+        user = request.user
+
+        timestamp = timezone.now()
+        date = timestamp.date()
+
+        frage_des_tages = get_frage_des_tages(request.user,
+                                              timestamp)
+
+        user_answer = request.POST.get('user_answer')
+
+        # Antwort des Users in ManyToMany-Tabelle speichern
+        user_answer_obj = BenutzerQuesModel.objects.create(
+            date=date,
+            user=user,
+            quizfrage=frage_des_tages,
+            answer=user_answer)
+
+        user_answer_obj.save()
+
+        statistics_frage_des_tages = get_statistics_frage_des_tages(
+            frage_des_tages, timestamp)
+
+        return JsonResponse({'statistics_frage_des_tages':
+                             statistics_frage_des_tages,
+                             'allowed': True})
+
+    return JsonResponse({'allowed': False})

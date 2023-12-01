@@ -43,7 +43,7 @@ def update_points_for_user(user):
 
 
 def get_rank(points):
-        
+ 
     rangstufen = [
         (10000, "Legende der Lehrbücher"),
         (5000,  "Professor der Problemlösung"),

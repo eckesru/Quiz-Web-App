@@ -87,7 +87,7 @@ def get_statistics_frage_des_tages(frage_des_tages, timestamp):
     quizfrage_answers_list = \
         [frage.answer for frage in antworten_frage_des_tages]
 
-    op1, op2, op3, op4 = 0
+    op1, op2, op3, op4, sum = 0
     for answer in quizfrage_answers_list:
         if answer == "op1":
             op1 += 1
@@ -98,7 +98,7 @@ def get_statistics_frage_des_tages(frage_des_tages, timestamp):
         elif answer == "op4":
             op4 += 1
 
-    sum = op1 + op2 + op3 + op4
+    sum = len(quizfrage_answers_list)
 
     if sum != 0:
         op1_stats = round(op1 / sum, 2)
