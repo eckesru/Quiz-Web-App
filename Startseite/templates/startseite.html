@@ -101,7 +101,8 @@
         {% endif %}
 
         <span class="current">
-          Seite {{ page_frage.number }} von { page_frage.paginator.num_pages }.
+          Seite {{ page_frage.number }} von {{ page_frage.paginator.num_pages
+          }}.
         </span>
 
         {% if page_frage.has_next %}
