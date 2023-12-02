@@ -37,9 +37,10 @@ def startseite_view(request):
     frage_des_tages = get_frage_des_tages(request.user,
                                           timestamp)
 
-    answer_frage_des_tages = get_user_answer_frage_des_tages(request.user,
-                                                             frage_des_tages,
-                                                             timestamp)
+    answer_user_frage_des_tages = get_user_answer_frage_des_tages(
+                                  request.user,
+                                  frage_des_tages,
+                                  timestamp)
 
     statistics_frage_des_tages = get_statistics_frage_des_tages(
         frage_des_tages, timestamp)
@@ -49,7 +50,7 @@ def startseite_view(request):
     context = {"page_frage": page_frage,
                "hot_frage": hot_frage,
                "frage_des_tages": frage_des_tages,
-               "answer_frage_des_tages": answer_frage_des_tages,
+               "answer_user_frage_des_tages": answer_user_frage_des_tages,
                "statistics_frage_des_tages": statistics_frage_des_tages,
                "top_5_user": top_5_user}
 
@@ -67,22 +68,30 @@ def update_answer_and_statistics(request):
         frage_des_tages = get_frage_des_tages(request.user,
                                               timestamp)
 
-        user_answer = request.POST.get('user_answer')
+        answer_user_frage_des_tages = get_user_answer_frage_des_tages(
+                                      request.user,
+                                      frage_des_tages,
+                                      timestamp)
 
-        # Antwort des Users in ManyToMany-Tabelle speichern
-        user_answer_obj = BenutzerQuesModel.objects.create(
-            date=date,
-            user=user,
-            quizfrage=frage_des_tages,
-            answer=user_answer)
+        if answer_user_frage_des_tages:
+            return JsonResponse({'allowed': False})
+        else:
+            user_answer = request.POST.get('user_answer')
 
-        user_answer_obj.save()
+            # Antwort des Users in ManyToMany-Tabelle speichern
+            user_answer_obj = BenutzerQuesModel.objects.create(
+                date=date,
+                user=user,
+                quizfrage=frage_des_tages,
+                answer=user_answer)
 
-        statistics_frage_des_tages = get_statistics_frage_des_tages(
-            frage_des_tages, timestamp)
+            user_answer_obj.save()
 
-        statistics_frage_des_tages['allowed'] = True
+            statistics_frage_des_tages = get_statistics_frage_des_tages(
+                frage_des_tages, timestamp)
 
-        return JsonResponse(statistics_frage_des_tages)
+            statistics_frage_des_tages['allowed'] = True
+
+            return JsonResponse(statistics_frage_des_tages)
 
     return JsonResponse({'allowed': False})

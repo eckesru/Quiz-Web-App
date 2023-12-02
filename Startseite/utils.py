@@ -80,10 +80,10 @@ def get_user_answer_frage_des_tages(user, frage_des_tages, timestamp):
 
 
 def get_statistics_frage_des_tages(frage_des_tages, timestamp):
-    date = timestamp.date
+    date = timestamp.date()
 
     antworten_frage_des_tages = BenutzerQuesModel.objects.filter(
-        date=date, frage_des_tages=frage_des_tages)
+        date=date, quizfrage=frage_des_tages)
 
     quizfrage_answers_list = \
         [frage.answer for frage in antworten_frage_des_tages]
