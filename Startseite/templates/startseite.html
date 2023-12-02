@@ -108,7 +108,39 @@
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
-      {{frage_des_tages}}
+      {{frage_des_tages}}<br />
+      <label class="quiz-answer"
+        ><input
+          type="radio"
+          name="answer_{{ frage_des_tages.id }}"
+          value="{{ frage_des_tages.op1 }}"
+        />
+        {{ frage_des_tages.op1 }}</label
+      ><br />
+      <label class="quiz-answer"
+        ><input
+          type="radio"
+          name="answer_{{ frage_des_tages.id }}"
+          value="{{ frage_des_tages.op2 }}"
+        />
+        {{ frage_des_tages.op2 }}</label
+      ><br />
+      <label class="quiz-answer"
+        ><input
+          type="radio"
+          name="answer_{{ frage_des_tages.id }}"
+          value="{{ frage_des_tages.op3 }}"
+        />
+        {{ frage_des_tages.op3 }}</label
+      ><br />
+      <label class="quiz-answer"
+        ><input
+          type="radio"
+          name="answer_{{ frage_des_tages.id }}"
+          value="{{ frage_des_tages.op4 }}"
+        />
+        {{ frage_des_tages.op4 }}</label
+      ><br />
     </div>
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
