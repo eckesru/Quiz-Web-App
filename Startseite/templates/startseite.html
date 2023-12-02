@@ -91,6 +91,26 @@
       {% include "frage_actions.html" %}
     </div>
     {% endfor %}
+
+    <!-- Paginator -->
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_frage.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_frage.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Seite {{ page_frage.number }} von {{ page_frage.paginator.num_pages
+          }}.
+        </span>
+
+        {% if page_frage.has_next %}
+        <a href="?page={{ page_frage.next_page_number }}">next</a>
+        <a href="?page={{ page_frage.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
   </div>
 
   <!--Profil Container-->
@@ -108,8 +128,12 @@
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
+      <!--Anzeige der Frage-->
       {{frage_des_tages}}
+
+      <!--Anzeigen der Auswahlmöglichkeiten-->
       <div class="radio-btns">
+        <!--Antwortmöglichkeit 1-->
         <label class="radio-btn"
           ><input
             type="radio"
@@ -119,6 +143,8 @@
           <div class="radio-circle"></div>
           <span class="radio-label">{{ frage_des_tages.op1 }}</span>
         </label>
+
+        <!--Antwortmöglichkeit 2-->
         <label class="radio-btn"
           ><input
             type="radio"
@@ -128,6 +154,8 @@
           <div class="radio-circle"></div>
           <span class="radio-label">{{ frage_des_tages.op2 }}</span>
         </label>
+
+        <!--Antwortmöglichkeit 3-->
         <label class="radio-btn"
           ><input
             type="radio"
@@ -137,6 +165,8 @@
           <div class="radio-circle"></div>
           <span class="radio-label">{{ frage_des_tages.op3 }}</span>
         </label>
+
+        <!--Antwortmöglichkeit 4-->
         <label class="radio-btn"
           ><input
             type="radio"
