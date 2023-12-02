@@ -125,6 +125,26 @@ body {
   margin-top: 0px;
 }
 
+.radio-btns {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.radio-btn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 0x;
+  cursor: pointer;
+}
+
+.radio-btn input[type="radio"] {
+  display: none;
+}
+
+
+
 /*Frage erstellen Fomular*/
 h2 {
   text-align: center;

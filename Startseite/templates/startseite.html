@@ -108,39 +108,45 @@
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
-      {{frage_des_tages}}<br />
-      <label class=""
-        ><input
-          type="radio"
-          name="answer_{{ frage_des_tages.id }}"
-          value="{{ frage_des_tages.op1 }}"
-        />
-        {{ frage_des_tages.op1 }}</label
-      ><br />
-      <label class=""
-        ><input
-          type="radio"
-          name="answer_{{ frage_des_tages.id }}"
-          value="{{ frage_des_tages.op2 }}"
-        />
-        {{ frage_des_tages.op2 }}</label
-      ><br />
-      <label class=""
-        ><input
-          type="radio"
-          name="answer_{{ frage_des_tages.id }}"
-          value="{{ frage_des_tages.op3 }}"
-        />
-        {{ frage_des_tages.op3 }}</label
-      ><br />
-      <label class=""
-        ><input
-          type="radio"
-          name="answer_{{ frage_des_tages.id }}"
-          value="{{ frage_des_tages.op4 }}"
-        />
-        {{ frage_des_tages.op4 }}</label
-      ><br />
+      {{frage_des_tages}}
+      <div class="radio-btns">
+        <label class="radio-btn"
+          ><input
+            type="radio"
+            name="answer_{{ frage_des_tages.id }}"
+            value="{{ frage_des_tages.op1 }}"
+          />
+          <div class="radio-circle"></div>
+          <span class="radio-label">{{ frage_des_tages.op1 }}</span>
+        </label>
+        <label class="radio-btn"
+          ><input
+            type="radio"
+            name="answer_{{ frage_des_tages.id }}"
+            value="{{ frage_des_tages.op2 }}"
+          />
+          <div class="radio-circle"></div>
+          <span class="radio-label">{{ frage_des_tages.op2 }}</span>
+        </label>
+        <label class="radio-btn"
+          ><input
+            type="radio"
+            name="answer_{{ frage_des_tages.id }}"
+            value="{{ frage_des_tages.op3 }}"
+          />
+          <div class="radio-circle"></div>
+          <span class="radio-label">{{ frage_des_tages.op3 }}</span>
+        </label>
+        <label class="radio-btn"
+          ><input
+            type="radio"
+            name="answer_{{ frage_des_tages.id }}"
+            value="{{ frage_des_tages.op4 }}"
+          />
+          <div class="radio-circle"></div>
+          <span class="radio-label">{{ frage_des_tages.op4 }}</span>
+        </label>
+      </div>
     </div>
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
