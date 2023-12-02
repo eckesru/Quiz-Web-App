@@ -134,7 +134,6 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  /*margin-top: 0x;*/
   cursor: pointer;
 }
 
@@ -172,6 +171,44 @@ body {
 .radio-btn:hover .radio-circle {
   border-color: #555;
 }
+
+/* Allgemeine Stildefinitionen für den Paginator */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.step-links a {
+  color: #ffffff; /* Weißer Textfarbe */
+  padding: 5px 10px;
+  margin: 0 5px;
+  text-decoration: none;
+  border: 1px solid #ffffff; /* Weißer Rahmen */
+  border-radius: 5px;
+}
+
+.current {
+  color: #ffffff; /* Weißer Textfarbe für die aktuelle Seitenzahl */
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #007bff; /* Hervorgehobener Hintergrundfarbe für die aktuelle Seitenzahl */
+  border: 1px solid #007bff; /* Rahmenfarbe für die aktuelle Seitenzahl */
+  border-radius: 5px;
+}
+
+/* Stile für die Navigationsschaltflächen */
+.step-links a:hover,
+.step-links a:active {
+  background-color: #007bff; /* Hervorgehobener Hintergrund bei Hover und Klick */
+  border: 1px solid #007bff; /* Rahmenfarbe bei Hover und Klick */
+}
+
+/* Verstecke vorherige und nächste Schaltflächen, wenn nicht verfügbar */
+.step-links .disabled {
+  display: none;
+}
+
 
 /*Frage erstellen Fomular*/
 h2 {
