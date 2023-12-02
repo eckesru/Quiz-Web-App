@@ -180,20 +180,19 @@ body {
 }
 
 .step-links a {
-  color: #ffffff; /* Weißer Textfarbe */
+  color: #ffffff;
   padding: 5px 10px;
   margin: 0 5px;
   text-decoration: none;
-  border: 1px solid #ffffff; /* Weißer Rahmen */
+  border: 1px solid #ffffff;
   border-radius: 5px;
 }
 
 .current {
-  color: #ffffff; /* Weißer Textfarbe für die aktuelle Seitenzahl */
+  color: #ffffff;
   padding: 5px 10px;
   margin: 0 5px;
-  background-color: #007bff; /* Hervorgehobener Hintergrundfarbe für die aktuelle Seitenzahl */
-  border: 1px solid #007bff; /* Rahmenfarbe für die aktuelle Seitenzahl */
+  border: 1px solid #ffffff; /* Rahmenfarbe für die aktuelle Seitenzahl */
   border-radius: 5px;
 }
 
@@ -208,7 +207,6 @@ body {
 .step-links .disabled {
   display: none;
 }
-
 
 /*Frage erstellen Fomular*/
 h2 {
