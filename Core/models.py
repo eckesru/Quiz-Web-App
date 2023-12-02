@@ -3,21 +3,15 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Benutzer(AbstractUser):
-    _role = models.SmallIntegerField(default=0)
     _points = models.IntegerField(default=0)
+    _rank = models.CharField(max_length=255)
     liked_fragen = models.ManyToManyField("Frage", blank=True)
     liked_antworten = models.ManyToManyField("Antwort", blank=True)
     study_area = models.ForeignKey("StudyArea",
                                    blank=False,
                                    on_delete=models.DO_NOTHING)
-
-    @property
-    def role(self):
-        pass
-
-    @role.setter
-    def role(self, points):
-        pass
+    answered_frage_des_tages = \
+        models.ManyToManyField('Quiz.QuesModel', through='BenutzerQuesModel')
 
     @property
     def points(self):
@@ -26,7 +20,16 @@ class Benutzer(AbstractUser):
     @points.setter
     def points(self, points):
         raise AttributeError("Punkte dürfen nicht manuell gesetzt werden. \
-                              Verwende statische calculate_points-Methode!")
+                              Verwende update_points_for_user()-Methode!")
+
+    @property
+    def rank(self):
+        return self._rank
+
+    @rank.setter
+    def rank(self, rank):
+        raise AttributeError("Ränge dürfen nicht manuell gesetzt werden. \
+                              Verwende update_points_for_user()-Methode!")
 
     @staticmethod
     def update_points(user):
@@ -67,13 +70,12 @@ class Frage(models.Model):
     # db_constraint=False -> Falls Migrationsprobleme, wieder reinnehmen
     creation_date = models.DateTimeField(auto_now_add=True)
     last_edited = models.DateTimeField(auto_now=True)
-    flagged = models.BooleanField(default=0)
     tag = models.ManyToManyField(Tag)
     module = models.ForeignKey("Modul",
                                on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255)
     text = models.TextField()
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=1)
 
     class Meta:
         managed = False
@@ -104,9 +106,8 @@ class Antwort(models.Model):
                               on_delete=models.DO_NOTHING)
     creation_date = models.DateTimeField(auto_now_add=True)
     last_edited = models.DateTimeField(auto_now=True)
-    flagged = models.BooleanField(default=0)
     text = models.TextField()
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=1)
 
     class Meta:
         managed = False
@@ -123,3 +124,15 @@ class StudyArea(models.Model):
     class Meta:
         managed = False
         db_table = "StudyArea"
+
+
+class BenutzerQuesModel(models.Model):
+    date = models.DateField(auto_now_add=True)
+    user = models.ForeignKey('Benutzer', on_delete=models.DO_NOTHING)
+    quizfrage = models.ForeignKey('Quiz.QuesModel',
+                                  on_delete=models.DO_NOTHING)
+    answer = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = "Benutzer_Quesmodel"
