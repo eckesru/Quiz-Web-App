@@ -129,7 +129,7 @@
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
-      <form id="antwort-form" method="post" action="{% url 'statistics' %}">
+      <form id="antwort-form" method="post" action="{% url 'antwort-einreichen' %}">
         <!--Django Token Übergabe-->
         {% csrf_token %}
 
@@ -208,7 +208,7 @@
           formData.append("user_answer", userAnswer.value);
 
           // AJAX-Anfrage senden
-          fetch("{% url 'statistics' %}", {
+          fetch("{% url 'antwort-einreichen' %}", {
             method: "POST",
             body: formData,
             credentials: "same-origin",
