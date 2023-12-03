@@ -62,16 +62,16 @@ def update_points_for_user(user):
 def get_rank(points):
 
     rangstufen = [
-        (10000, "Legende der Lehrbücher 🦸‍♂️"),
-        (5000,  "Professor der Problemlösung 👨‍🏫"),
-        (2500,  "Doktor der Diskussion 👨‍⚕️"),
-        (1200,  "Gelehrter Guru 👼"),
-        (600,   "Fanatischer Forscher 👩‍🔬"),
-        (300,   "Wächter des Wissens 💂‍♀️"),
-        (150,   "Akademischer Adept 😎"),
-        (75,    "Begeisterter Bücherwurmn 📖"),
-        (30,    "Ehrgeiziger Akademiker 🧐"),
-        (0,     "Neugieriger Student 🤓")
+        (10000, "Legende der Lehrbücher"),
+        (5000,  "Professor der Problemlösung"),
+        (2500,  "Doktor der Diskussion"),
+        (1200,  "Gelehrter Guru"),
+        (600,   "Fanatischer Forscher"),
+        (300,   "Wächter des Wissens"),
+        (150,   "Akademischer Adept"),
+        (75,    "Begeisterter Bücherwurm"),
+        (30,    "Ehrgeiziger Akademiker"),
+        (0,     "Neugieriger Student")
     ]
 
     for boundary, rank in rangstufen:
