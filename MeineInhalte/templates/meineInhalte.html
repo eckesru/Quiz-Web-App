@@ -61,12 +61,7 @@
     {% for antwort in page_antwort %}
     <div class="antwort">
       <!--Antwort Metaangaben-->
-      <div class="antwort-meta">
-        <span class="antwort-username">{{ antwort.user.username }}</span>
-        <span class="antwort-erstelldatum"
-          >{{ antwort.creation_date|date:"Y-m-d H:i" }}</span
-        >
-      </div>
+      {% include "antwort_meta.html" %}
 
       <!--Antwort Text-->
       <div class="antwort-text antwort-text_overflow">
