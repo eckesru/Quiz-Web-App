@@ -121,7 +121,8 @@ body {
   transform: scale(1);
 }
 
-#btn_zum_quiz {
+#btn_zum_quiz,
+#btn_frage_stellen {
   margin-top: 0px;
 }
 
