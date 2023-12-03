@@ -43,19 +43,6 @@ function submitAntwort() {
     .catch((error) => {
       console.error("Fehler bei der Anfrage:", error);
     });
-
-  // Überprüfe die Antwort und zeige das Feedback an
-  var selectedAnswer = document.querySelector(
-    'input[name="answer_{{ frage_des_tages.id }}"]:checked'
-  ).value;
-  var richtigeAntwort = "{{ frage_des_tages.ans }}";
-
-  var feedbackContainer = document.getElementById("feedback-container");
-  if (selectedAnswer === richtigeAntwort) {
-    feedbackContainer.innerHTML = "Die Antwort ist richtig";
-  } else {
-    feedbackContainer.innerHTML = "Die Antwort ist falsch";
-  }
 }
 
 // Funktion, um das CSRF-Token aus den Cookies zu erhalten
