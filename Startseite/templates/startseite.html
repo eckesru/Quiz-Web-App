@@ -129,9 +129,10 @@
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
-      <form id="antwort-form" method="post" action="{% url 'statistics' %}">
+      <!-- action="{% url 'statistics' %}"-->
+      <form id="antwort-form" method="post">
         <!--Django Token Übergabe-->
-        {% csrf_token %}
+        <!--{% csrf_token %}-->
 
         <!--Anzeige der Frage-->
         {{frage_des_tages}}
