@@ -179,26 +179,6 @@ body {
   border-color: #555;
 }
 
-.statistics {
-  display: flex;
-  justify-content: space-between;
-}
-
-.statistics p {
-  display: flex;
-  align-items: center;
-  margin: 0;
-}
-
-.statistics p::before {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 10px;
-  background-color: #007bff;
-  margin-right: 5px;
-}
-
 /* Allgemeine Stildefinitionen für den Paginator */
 .pagination {
   display: flex;
