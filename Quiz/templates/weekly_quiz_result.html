@@ -1,0 +1,11 @@
+<!-- weekly_quiz_result.html -->
+{% extends "base.html" %}
+{% block content %}
+    <form id="frageErstellenFormular" class="form-container">
+        <h2>Wöchentliches Quiz Ergebnisse</h2>
+        <p>Du hast {{ correct_answers }} von {{ total_questions }} Fragen richtig beantwortet!</p>
+        
+        <!-- Hier den Button zur Welcome Page einfügen -->
+        <a href="{% url 'quiz:welcome_page' %}">Zurück zur Quiz Auswahl</a>
+    </form>
+{% endblock %}
