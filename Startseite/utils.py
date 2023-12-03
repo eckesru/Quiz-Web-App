@@ -81,6 +81,7 @@ def get_user_answer_frage_des_tages(user, frage_des_tages, timestamp):
 
 def get_statistics_frage_des_tages(frage_des_tages, timestamp):
     date = timestamp.date()
+    options = ['op1', 'op2', 'op3', 'op4']
 
     try:
         antworten_frage_des_tages = BenutzerQuesModel.objects.filter(
@@ -93,7 +94,6 @@ def get_statistics_frage_des_tages(frage_des_tages, timestamp):
         counter_answers = Counter(quizfrage_answers_list)
 
         total = counter_answers.total()
-        options = ['op1', 'op2', 'op3', 'op4']
 
         statistics = {key: round((counter_answers[key] / total) * 100, 2)
                       for key in counter_answers}
