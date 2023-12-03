@@ -12,7 +12,7 @@ function antwortLiken(frageId, antwortID) {
     success: function (data) {
       // Überprüfen, ob der Benutzer berechtigt ist zu liken
       if (!data.allowed) {
-        console.log("Benutzer hat keine Erlaubnis zu liken.");
+        //console.log("Benutzer hat keine Erlaubnis zu liken.");
         return;
       }
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert

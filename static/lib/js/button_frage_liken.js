@@ -10,6 +10,11 @@ function frageLiken(frageId) {
     headers: { "X-CSRFToken": csrftoken },
     data: {}, // Hier könnten zusätzliche Daten gesendet werden, wenn benötigt
     success: function (data) {
+      // Überprüfen, ob der Benutzer berechtigt ist zu liken
+      if (!data.allowed) {
+        console.log("Benutzer hat keine Erlaubnis zu liken.");
+        return;
+      }
       // Der Server hat erfolgreich auf die Like-Anfrage reagiert
       if (data.liked) {
         // Der Benutzer hat die Frage geliked
