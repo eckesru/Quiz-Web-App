@@ -194,15 +194,18 @@
           Prüfen
         </button>
       </form>
-      <!-- Statistiken anzeigen -->
-      <div class="statistics">
-        Statistiken:
-        <!-- Zeige die Statistiken für jede Option an -->
-        {% for option, percentage in statistics_frage_des_tages.items %}
-        <p>{{ option }}: {{ percentage }}%</p>
-        {% endfor %}
-      </div>
     </div>
+
+    <!-- Statistiken anzeigen -->
+    <div class="statistics">
+      So haben andere User abgestimmt: <br>
+      <!-- Zeige die Statistiken für jede Option an -->
+      <p>op1: {{ statistics_frage_des_tages.op1|floatformat:2 }}%</p>
+      <p>op2: {{ statistics_frage_des_tages.op2|floatformat:2 }}%</p>
+      <p>op3: {{ statistics_frage_des_tages.op3|floatformat:2 }}%</p>
+      <p>op4: {{ statistics_frage_des_tages.op4|floatformat:2 }}%</p>
+    </div>
+
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
       <span>Starte jetzt ein Quiz und messe dich mit anderen!</span>
