@@ -41,6 +41,14 @@ def startseite_view(request):
                                   request.user,
                                   frage_des_tages,
                                   timestamp)
+    
+    if answer_user_frage_des_tages is not None and frage_des_tages is not None:
+        if answer_user_frage_des_tages == frage_des_tages.ans:
+            antwort_feedback = 'Die Antwort ist richtig'
+        else:
+            antwort_feedback = 'Die Antwort ist falsch'
+    else:
+        antwort_feedback = 'Du hast noch keine Frage des Tages beantwortet.'
 
     statistics_frage_des_tages = get_statistics_frage_des_tages(
         frage_des_tages, timestamp)
@@ -52,7 +60,8 @@ def startseite_view(request):
                "frage_des_tages": frage_des_tages,
                "answer_user_frage_des_tages": answer_user_frage_des_tages,
                "statistics_frage_des_tages": statistics_frage_des_tages,
-               "top_5_user": top_5_user}
+               "top_5_user": top_5_user,
+               "antwort_feedback": antwort_feedback}
 
     return render(request, 'startseite.html', context)
 
