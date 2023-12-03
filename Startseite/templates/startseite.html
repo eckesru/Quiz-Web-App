@@ -193,13 +193,13 @@
 
       <script>
         function submitAntwort() {
-          // Hier kannst du die ausgewählte Antwort abrufen (nur als Beispiel)
+          // Ausgewählte Antwort abrufen
           var userAnswer = document.querySelector(
             'input[name="answer_{{ frage_des_tages.id }}"]:checked'
           );
 
           if (!userAnswer) {
-            // Der Benutzer hat keine Antwort ausgewählt, handle dies nach Bedarf
+            // Der Benutzer hat keine Antwort ausgewählt
             alert("Bitte wähle eine Antwort aus.");
             return;
           }
@@ -223,11 +223,9 @@
               if (data.allowed) {
                 // Erfolgreich durchgeführt
                 console.log("Aktion erfolgreich durchgeführt");
-                // Hier kannst du weitere Aktionen ausführen, z.B. die aktualisierten Statistiken anzeigen
               } else {
                 // Aktion wurde nicht durchgeführt
                 console.log("Aktion nicht durchgeführt");
-                // Hier kannst du entsprechende Maßnahmen ergreifen
               }
             })
             .catch((error) => {
