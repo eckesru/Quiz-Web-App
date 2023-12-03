@@ -182,7 +182,7 @@ body {
 /*Style für Statistik zur Frage des Tages*/
 
 .statistics-heading {
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .option-label {
@@ -199,7 +199,7 @@ body {
 
 .bar {
   height: 100%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   position: relative;
   overflow: hidden;
 }
@@ -301,13 +301,13 @@ select {
 }
 
 /* Stil für Container */
+/*.statistics*/
 #frageErstellenFormular,
 .frage,
 .antwort,
 .profil,
 .frage-des-tages-container,
-.rangliste,
-.statistics {
+.rangliste {
   max-width: 800px;
   margin: 15px auto;
   padding: 15px;
