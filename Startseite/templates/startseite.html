@@ -129,55 +129,64 @@
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
-      <!--Anzeige der Frage-->
-      {{frage_des_tages}}
+      <form method="post" action="{% url 'update_answer_and_statistics' %}">
+        <!--Django Token Übergabe-->
+        {% csrf_token %}
 
-      <!--Anzeigen der Auswahlmöglichkeiten-->
-      <div class="radio-btns">
-        <!--Antwortmöglichkeit 1-->
-        <label class="radio-btn"
-          ><input
-            type="radio"
-            name="answer_{{ frage_des_tages.id }}"
-            value="{{ frage_des_tages.op1 }}"
-          />
-          <div class="radio-circle"></div>
-          <span class="radio-label">{{ frage_des_tages.op1 }}</span>
-        </label>
+        <!--Anzeige der Frage-->
+        {{frage_des_tages}}
 
-        <!--Antwortmöglichkeit 2-->
-        <label class="radio-btn"
-          ><input
-            type="radio"
-            name="answer_{{ frage_des_tages.id }}"
-            value="{{ frage_des_tages.op2 }}"
-          />
-          <div class="radio-circle"></div>
-          <span class="radio-label">{{ frage_des_tages.op2 }}</span>
-        </label>
+        <!--Anzeigen der Auswahlmöglichkeiten-->
+        <div class="radio-btns">
+          <!--Antwortmöglichkeit 1-->
+          <label class="radio-btn"
+            ><input
+              type="radio"
+              name="answer_{{ frage_des_tages.id }}"
+              value="{{ frage_des_tages.op1 }}"
+            />
+            <div class="radio-circle"></div>
+            <span class="radio-label">{{ frage_des_tages.op1 }}</span>
+          </label>
 
-        <!--Antwortmöglichkeit 3-->
-        <label class="radio-btn"
-          ><input
-            type="radio"
-            name="answer_{{ frage_des_tages.id }}"
-            value="{{ frage_des_tages.op3 }}"
-          />
-          <div class="radio-circle"></div>
-          <span class="radio-label">{{ frage_des_tages.op3 }}</span>
-        </label>
+          <!--Antwortmöglichkeit 2-->
+          <label class="radio-btn"
+            ><input
+              type="radio"
+              name="answer_{{ frage_des_tages.id }}"
+              value="{{ frage_des_tages.op2 }}"
+            />
+            <div class="radio-circle"></div>
+            <span class="radio-label">{{ frage_des_tages.op2 }}</span>
+          </label>
 
-        <!--Antwortmöglichkeit 4-->
-        <label class="radio-btn"
-          ><input
-            type="radio"
-            name="answer_{{ frage_des_tages.id }}"
-            value="{{ frage_des_tages.op4 }}"
-          />
-          <div class="radio-circle"></div>
-          <span class="radio-label">{{ frage_des_tages.op4 }}</span>
-        </label>
-      </div>
+          <!--Antwortmöglichkeit 3-->
+          <label class="radio-btn"
+            ><input
+              type="radio"
+              name="answer_{{ frage_des_tages.id }}"
+              value="{{ frage_des_tages.op3 }}"
+            />
+            <div class="radio-circle"></div>
+            <span class="radio-label">{{ frage_des_tages.op3 }}</span>
+          </label>
+
+          <!--Antwortmöglichkeit 4-->
+          <label class="radio-btn"
+            ><input
+              type="radio"
+              name="answer_{{ frage_des_tages.id }}"
+              value="{{ frage_des_tages.op4 }}"
+            />
+            <div class="radio-circle"></div>
+            <span class="radio-label">{{ frage_des_tages.op4 }}</span>
+          </label>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn_blue">Prüfen</button>
+        </div>
+      </form>
     </div>
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
