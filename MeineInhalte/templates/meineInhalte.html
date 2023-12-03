@@ -42,8 +42,8 @@
     <div class="pagination">
       <span class="step-links">
         {% if page_frage.has_previous %}
-        <a href="?seite=1">&laquo; first</a>
-        <a href="?seite={{ page_frage.previous_page_number }}">previous</a>
+        <a href="?seite=1">&laquo; erste</a>
+        <a href="?seite={{ page_frage.previous_page_number }}">vorherige</a>
         {% endif %}
 
         <span class="current">
@@ -51,8 +51,8 @@
         </span>
 
         {% if page_frage.has_next %}
-        <a href="?seite={{ page_frage.next_page_number }}">next</a>
-        <a href="?seite={{ page_frage.paginator.num_pages }}">last &raquo;</a>
+        <a href="?seite={{ page_frage.next_page_number }}">nächste</a>
+        <a href="?seite={{ page_frage.paginator.num_pages }}">letzte &raquo;</a>
         {% endif %}
       </span>
     </div>
@@ -87,8 +87,8 @@
     <div class="pagination">
       <span class="step-links">
         {% if page_antwort.has_previous %}
-        <a href="?seite=1">&laquo; first</a>
-        <a href="?seite={{ page_antwort.previous_page_number }}">previous</a>
+        <a href="?seite=1">&laquo; erste</a>
+        <a href="?seite={{ page_antwort.previous_page_number }}">vorherige</a>
         {% endif %}
 
         <span class="current">
@@ -96,8 +96,10 @@
         </span>
 
         {% if page_antwort.has_next %}
-        <a href="?seite={{ page_antwort.next_page_number }}">next</a>
-        <a href="?seite={{ page_antwort.paginator.num_pages }}">last &raquo;</a>
+        <a href="?seite={{ page_antwort.next_page_number }}">nächste</a>
+        <a href="?seite={{ page_antwort.paginator.num_pages }}"
+          >letzte &raquo;</a
+        >
         {% endif %}
       </span>
     </div>

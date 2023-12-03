@@ -59,45 +59,45 @@
     <h2>Aktuelle Fragen</h2>
 
     <!--Schleife durch Fragen-->
-      {% for frage in page_frage %}
-      <div class="frage">
-        <!--Frage Metaangaben-->
-        <div class="frage-meta">
-          <span class="frage-username">{{ frage.user.username }}</span>
-          <span class="frage-erstelldatum"
-            >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
-          >
-        </div>
-
-        <!--Frage Überschrift mit Link zur Frage anzeigen-->
-        <h3>
-          <a href="{% url 'frage-anzeigen' frage.id %}"
-            >{{ frage.module.text }}: {{ frage.title }}</a
-          >
-        </h3>
-
-        <!--Frage Text-->
-        <div class="frage-text frage-text_overflow">{{ frage.text|safe }}</div>
-
-        <!--Frage Tags-->
-        <div class="tags">
-          <i class="fas fa-tags"></i>
-          {% for tag in frage.tag.all %}
-          <span class="tag">{{ tag.text }}</span>
-          {% endfor %}
-        </div>
-
-        <!--Frage Buttons laden-->
-        {% include "frage_actions.html" %}
+    {% for frage in page_frage %}
+    <div class="frage">
+      <!--Frage Metaangaben-->
+      <div class="frage-meta">
+        <span class="frage-username">{{ frage.user.username }}</span>
+        <span class="frage-erstelldatum"
+          >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
+        >
       </div>
+
+      <!--Frage Überschrift mit Link zur Frage anzeigen-->
+      <h3>
+        <a href="{% url 'frage-anzeigen' frage.id %}"
+          >{{ frage.module.text }}: {{ frage.title }}</a
+        >
+      </h3>
+
+      <!--Frage Text-->
+      <div class="frage-text frage-text_overflow">{{ frage.text|safe }}</div>
+
+      <!--Frage Tags-->
+      <div class="tags">
+        <i class="fas fa-tags"></i>
+        {% for tag in frage.tag.all %}
+        <span class="tag">{{ tag.text }}</span>
+        {% endfor %}
+      </div>
+
+      <!--Frage Buttons laden-->
+      {% include "frage_actions.html" %}
+    </div>
     {% endfor %}
 
     <!--Paginator-->
     <div class="pagination">
       <span class="step-links">
         {% if page_frage.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page_frage.previous_page_number }}">previous</a>
+        <a href="?page=1">&laquo; erste</a>
+        <a href="?page={{ page_frage.previous_page_number }}">vorherige</a>
         {% endif %}
 
         <span class="current">
@@ -105,8 +105,8 @@
         </span>
 
         {% if page_frage.has_next %}
-        <a href="?page={{ page_frage.next_page_number }}">next</a>
-        <a href="?page={{ page_frage.paginator.num_pages }}">last &raquo;</a>
+        <a href="?page={{ page_frage.next_page_number }}">nächste</a>
+        <a href="?page={{ page_frage.paginator.num_pages }}">letzte &raquo;</a>
         {% endif %}
       </span>
     </div>
