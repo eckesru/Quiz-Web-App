@@ -149,6 +149,7 @@ body {
   border: 2px solid #fff;
   position: relative;
   margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .radio-circle::before {
