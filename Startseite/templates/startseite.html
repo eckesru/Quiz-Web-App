@@ -12,7 +12,12 @@
       <!--Anzeige der heißen Frage-->
       <div class="frage">
         <!--Frage Metaangaben-->
-        {% include "frage_meta.html" %}
+        <div class="frage-meta">
+          <span class="frage-username">{{ hot_frage.user.username }}</span>
+          <span class="frage-erstelldatum"
+            >{{ hot_frage.creation_date|date:"Y-m-d H:i" }}</span
+          >
+        </div>
 
         <!--Frage Überschrift mit Link zur Frage anzeigen-->
         <h3>
