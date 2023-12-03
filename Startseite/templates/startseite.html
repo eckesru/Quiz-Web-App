@@ -13,7 +13,9 @@
       <div class="frage">
         <!--Frage Metaangaben-->
         <div class="frage-meta">
-          <span class="frage-username">{{ hot_frage.user.username }}</span>
+          <span class="frage-username"
+            >{{ hot_frage.user.username }} ({{ frage.user.rank }})</span
+          >
           <span class="frage-erstelldatum"
             >{{ hot_frage.creation_date|date:"Y-m-d H:i" }}</span
           >
