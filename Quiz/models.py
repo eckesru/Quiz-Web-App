@@ -18,6 +18,15 @@ class QuesModel(models.Model):
         managed = False
         db_table = "Quiz_quesmodel"
 
+class WeeklyQuizResults(models.Model):
+    user_id = models.IntegerField()
+    quiz_week = models.IntegerField()  # Kalenderwoche
+    points = models.IntegerField()
+    when_played = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"WeeklyQuizResult ID: {self.id} - User: {self.user.username} - Points: {self.points} - Played at: {self.when_played}"
+
 
 class QuizResults(models.Model):
     id = models.AutoField(primary_key=True)

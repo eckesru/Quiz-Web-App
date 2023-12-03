@@ -6,7 +6,7 @@
         }
     </style>
 
-    <form id="frageErstellenFormular" method="post" action="{% url 'quiz:quiz_page' category.id %}">
+    <form id="frageErstellenFormular" method="post" action="{% url 'quiz:quiz_page' category.shortname %}">
         {% csrf_token %}
         <h2 class="quiz-heading">{{ category.name }} Quiz</h2>
         <br>

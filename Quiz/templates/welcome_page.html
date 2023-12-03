@@ -1,131 +1,151 @@
 {% extends "base.html" %}
 {% block content %}
-    <style>
-        /* Gemeinsamer Stil für die Formulare */
-        #frageErstellenFormular,
-        #bereitsGespielteQuizzesFormular,
-        #ranglisteFormular {
-            width: 100%;
-            max-width: 800px;
-            margin: 10px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.6);
-        }
+<style>
+    /* Gemeinsamer Stil für die Formulare */
+    .form-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 10px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.6);
+        box-sizing: border-box;
+    }
 
-        /* Stil für die Willkommensliste */
-        .welcome-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    /* Stil für die Willkommensliste */
+    .welcome-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-        .welcome-item {
-            margin-bottom: 10px;
-        }
+    .welcome-item {
+        margin-bottom: 10px;
+    }
 
-        .welcome-link {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
+    .welcome-link {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
 
-        /* Stil für die Tabellen */
-        #bereitsGespielteQuizzesFormular table,
-        #ranglisteFormular table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+    /* Stil für die Tabellen */
+    .form-container table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
 
-        #bereitsGespielteQuizzesFormular th,
-        #bereitsGespielteQuizzesFormular td,
-        #ranglisteFormular th,
-        #ranglisteFormular td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+    .form-container th,
+    .form-container td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
 
-    <!-- Willkommensformular -->
-    <form id="frageErstellenFormular">
-        <h1 class="welcome-heading">Willkommen im Quiz-Bereich</h1>
-        <br>
-        <p class="welcome-text">Bitte wähle eine Kategorie aus, um mit dem Quiz zu beginnen:</p>
-        <br>
-        <ul class="welcome-list">
-            {% for category in categories %}
-                <li class="welcome-item">
-                    <a class="welcome-link" href="{% url 'quiz:quiz_page' category.id %}">{{ category.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </form>
+<div style="display: flex; justify-content: space-between;">
 
-    <!-- Formular für bereits gespielte Quizzes -->
-    <form id="bereitsGespielteQuizzesFormular">
-        <h2>Bereits gespielte Quizzes:</h2>
-        <br>
-        {% if quiz_results %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Kategorie</th>
-                        <th>Punktzahl</th>
-                        <th>Gespielt am</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for result in quiz_results %}
+    <!-- Linker Container für bestehende Formulare und Rangliste -->
+    <div style="width: calc(66.66% - 10px);">
+
+        <!-- Willkommensformular -->
+        <div class="form-container" id="frageErstellenFormular">
+            <h1 class="welcome-heading">Willkommen im Quiz-Bereich</h1>
+            <br>
+            <p class="welcome-text">Bitte wähle eine Kategorie aus, um mit dem Quiz zu beginnen:</p>
+            <br>
+            <ul class="welcome-list">
+                {% for category in categories %}
+                    <li class="welcome-item">
+                        <a class="welcome-link" href="{% url 'quiz:quiz_page' category.shortname %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Formular für bereits gespielte Quizzes -->
+        <div class="form-container" id="bereitsGespielteQuizzesFormular">
+            <h2>Deine letzten 10 gespielten Quizzes:</h2>
+            <br>
+            {% if quiz_results %}
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ result.get_category_name }}</td>
-                            <td>{{ result.points }}</td>
-                            <td>{{ result.when_played }}</td>
+                            <th>Kategorie</th>
+                            <th>Punktzahl</th>
+                            <th>Gespielt am</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>Noch keine Quizzes gespielt.</p>
-        {% endif %}
-    </form>
-
-    <!-- Formular für die Rangliste -->
-    <form id="ranglisteFormular">
-        <h2>Rangliste:</h2>
-        <br>
-        {% if grouped_leaderboard %}
-            {% for category_name, entries in grouped_leaderboard.items %}
-                <br>
-                <h3>{{ category_name }}</h3>
-                {% if entries %}
-                    <table>
-                        <thead>
+                    </thead>
+                    <tbody>
+                        {% for result in quiz_results|slice:":10" %}
                             <tr>
-                                <th>Rang</th>
-                                <th>Benutzername</th>
-                                <th>Punktzahl</th>
+                                <td>{{ result.get_category_name }}</td>
+                                <td>{{ result.points }}</td>
+                                <td>{{ result.when_played }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for entry in entries %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Noch keine Quizzes gespielt.</p>
+            {% endif %}
+        </div>
+
+        <!-- Formular für die Rangliste -->
+        <div class="form-container" id="ranglisteFormular">
+            <h2>Rangliste (jeweils höchste Punktzahl):</h2>
+            <br>
+            {% if grouped_leaderboard %}
+                {% for category_name, entries in grouped_leaderboard.items %}
+                    <br>
+                    <h3>{{ category_name }}</h3>
+                    {% if entries %}
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>{{ entry.username }}</td>
-                                    <td>{{ entry.points }}</td>
+                                    <th>Rang</th>
+                                    <th>Benutzername</th>
+                                    <th>Punktzahl</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>Keine Rangliste verfügbar.</p>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <p>Keine Rangliste verfügbar.</p>
-        {% endif %}
-    </form>
+                            </thead>
+                            <tbody>
+                                {% regroup entries by user_id as user_results %}
+                                {% for user_results_group in user_results %}
+                                    {% if user_results_group.list %}
+                                        {% with user_result=user_results_group.list.0 %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ user_result.username }}</td>
+                                                <td>{{ user_result.points }}</td>
+                                            </tr>
+                                        {% endwith %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Keine Rangliste verfügbar.</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>Keine Rangliste verfügbar.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Rechter Container für das zusätzliche Formular -->
+    <div style="width: calc(50% - 10px);">
+        <!-- Zusätzliches Formular -->
+        <div class="form-container" id="testFormular">
+            <h1 class="welcome-heading">Quiz der Woche</h1>
+            <br>
+            <a class="welcome-link" href="{% url 'quiz:weekly_quiz_page' %}">Hier geht's los!</a>
+        </div>
+    </div>
+
+</div>
 
 {% endblock %}
