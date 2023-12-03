@@ -7,13 +7,13 @@ function submitAntwort() {
   if (!userAnswer) {
     // Der Benutzer hat keine Antwort ausgewählt
     alert("Bitte wähle eine Antwort aus.");
-    event.preventDefault();
+    preventDefault();
   }
 
   // Hier überprüfen, ob der Benutzer bereits geantwortet hat
   if ("{{ answer_user_frage_des_tages }}" !== "") {
     alert("Du hast bereits geantwortet!");
-    event.preventDefault();
+    preventDefault();
   }
 
   // Formular-Daten vorbereiten

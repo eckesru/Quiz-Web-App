@@ -190,10 +190,18 @@
             <span class="radio-label">{{ frage_des_tages.op4 }}</span>
           </label>
         </div>
-        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
+        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages or show_statistics %}disabled{% endif %}>
           Prüfen
         </button>
       </form>
+      <!-- Statistiken anzeigen -->
+      <div class="statistics">
+        Statistiken:
+        <!-- Zeige die Statistiken für jede Option an -->
+        {% for option, percentage in statistics_frage_des_tages.items %}
+        <p>{{ option }}: {{ percentage }}%</p>
+        {% endfor %}
+      </div>
     </div>
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
