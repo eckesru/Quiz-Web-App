@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.onload = function () {
       if (xhr.status >= 200 && xhr.status < 400) {
         // Die empfangenen Daten in ein HTML-Element einfügen
-        var container = document.querySelector(".aktuelle-frage-container");
+        var container = document.querySelector(".fragen");
         container.innerHTML = xhr.responseText;
 
         // Falls es zusätzliche JavaScript-Funktionen gibt, die nachgeladen wurden,
