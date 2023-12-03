@@ -199,22 +199,30 @@
     {% if answer_user_frage_des_tages %}
     <!-- Statistiken anzeigen -->
     <div class="statistics">
-      So haben andere User abgestimmt 🤓 <br>
-      <!-- Zeige die Statistiken für jede Option an -->
-      <div class="bar-container">
-        <div class="bar" style="width: {{ statistics_frage_des_tages.op1|default:0 }}%"></div>
-      </div>
-      <div class="bar-container">
-        <div class="bar" style="width: {{ statistics_frage_des_tages.op2|default:0 }}%"></div>
-      </div>
-      <div class="bar-container">
-        <div class="bar" style="width: {{ statistics_frage_des_tages.op3|default:0 }}%"></div>
-      </div>
-      <div class="bar-container">
-        <div class="bar" style="width: {{ statistics_frage_des_tages.op4|default:0 }}%"></div>
-      </div>
+        So haben andere User abgestimmt 🤓 <br>
+        <!-- Zeige die Statistiken für jede Option an -->
+        <div class="bar-container">
+            <div class="bar" style="width: {{ statistics_frage_des_tages.op1|default:0 }}%">
+                <span class="bar-label">{{ statistics_frage_des_tages.op1|default:0 }}%</span>
+            </div>
+        </div>
+        <div class="bar-container">
+            <div class="bar" style="width: {{ statistics_frage_des_tages.op2|default:0 }}%">
+                <span class="bar-label">{{ statistics_frage_des_tages.op2|default:0 }}%</span>
+            </div>
+        </div>
+        <div class="bar-container">
+            <div class="bar" style="width: {{ statistics_frage_des_tages.op3|default:0 }}%">
+                <span class="bar-label">{{ statistics_frage_des_tages.op3|default:0 }}%</span>
+            </div>
+        </div>
+        <div class="bar-container">
+            <div class="bar" style="width: {{ statistics_frage_des_tages.op4|default:0 }}%">
+                <span class="bar-label">{{ statistics_frage_des_tages.op4|default:0 }}%</span>
+            </div>
+        </div>
     </div>
-    {% endif %}
+{% endif %}
 
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
