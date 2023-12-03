@@ -200,10 +200,10 @@
     <div class="statistics">
       So haben andere User abgestimmt 🤓 <br>
       <!-- Zeige die Statistiken für jede Option an -->
-      <p>op1: {{ statistics_frage_des_tages.op1|default:0|floatformat:0 }}%</p>
-      <p>op2: {{ statistics_frage_des_tages.op2|default:0|floatformat:0 }}%</p>
-      <p>op3: {{ statistics_frage_des_tages.op3|default:0|floatformat:0 }}%</p>
-      <p>op4: {{ statistics_frage_des_tages.op4|default:0|floatformat:0 }}%</p>
+      <p>op1: {{ statistics_frage_des_tages.op1|default:0|int }}%</p>
+      <p>op2: {{ statistics_frage_des_tages.op2|default:0|int }}%</p>
+      <p>op3: {{ statistics_frage_des_tages.op3|default:0|int }}%</p>
+      <p>op4: {{ statistics_frage_des_tages.op4|default:0|int }}%</p>
     </div>
 
     <div class="frage-des-tages-container">
