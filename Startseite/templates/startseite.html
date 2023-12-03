@@ -193,7 +193,7 @@
         <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
           Prüfen
         </button>
-        <p>{{ antwort_feedback }}</p>
+        <p><br>{{ antwort_feedback }}</p>
       </form>
       {% if answer_user_frage_des_tages %}
       <p><br>Richtige Antwort: {{ frage_des_tages.ans }}<p>
