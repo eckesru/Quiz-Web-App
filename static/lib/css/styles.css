@@ -271,7 +271,8 @@ select {
 .antwort,
 .profil,
 .frage-des-tages-container,
-.rangliste {
+.rangliste,
+.statistics {
   max-width: 800px;
   margin: 15px auto;
   padding: 15px;
