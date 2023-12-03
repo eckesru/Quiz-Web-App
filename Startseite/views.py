@@ -42,12 +42,12 @@ def startseite_view(request):
                                   frage_des_tages,
                                   timestamp)
     
-    if answer_user_frage_des_tages is None:
-        antwort_feedback = None
-    elif answer_user_frage_des_tages == frage_des_tages.ans:
-        antwort_feedback = True
-    else:
-        antwort_feedback = False
+    #if answer_user_frage_des_tages is None:
+        #antwort_feedback = None
+    #elif answer_user_frage_des_tages == frage_des_tages.ans:
+        #antwort_feedback = True
+    #else:
+       #antwort_feedback = False
 
     statistics_frage_des_tages = get_statistics_frage_des_tages(
         frage_des_tages, timestamp)
