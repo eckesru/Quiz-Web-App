@@ -59,7 +59,6 @@
     <h2>Aktuelle Fragen</h2>
 
     <!--Schleife durch Fragen-->
-    <div class="fragen">
       {% for frage in page_frage %}
       <div class="frage">
         <!--Frage Metaangaben-->
@@ -91,7 +90,6 @@
         <!--Frage Buttons laden-->
         {% include "frage_actions.html" %}
       </div>
-    </div>
     {% endfor %}
 
     <!--Paginator-->
