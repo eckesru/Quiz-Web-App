@@ -200,7 +200,7 @@
           if (!userAnswer) {
             // Der Benutzer hat keine Antwort ausgewählt
             alert("Bitte wähle eine Antwort aus.");
-            return;
+            event.preventDefault();
           }
 
           // Formular-Daten vorbereiten
