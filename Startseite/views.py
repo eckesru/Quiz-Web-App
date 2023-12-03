@@ -60,7 +60,8 @@ def startseite_view(request):
                "answer_user_frage_des_tages": answer_user_frage_des_tages,
                "statistics_frage_des_tages": statistics_frage_des_tages,
                "top_5_user": top_5_user,
-               "antwort_feedback": antwort_feedback}
+               #"antwort_feedback": antwort_feedback
+               }
 
     return render(request, 'startseite.html', context)
 
