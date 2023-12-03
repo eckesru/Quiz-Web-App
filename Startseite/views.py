@@ -68,14 +68,14 @@ def update_answer_and_statistics(request):
         frage_des_tages = get_frage_des_tages(request.user,
                                               timestamp)
 
+        print(frage_des_tages)
+
         answer_user_frage_des_tages = get_user_answer_frage_des_tages(
                                       request.user,
                                       frage_des_tages,
                                       timestamp)
 
-        if answer_user_frage_des_tages:
-            return JsonResponse({'allowed': False})
-        else:
+        if not answer_user_frage_des_tages:
             user_answer = request.POST.get('user_answer')
 
             # Antwort des Users in ManyToMany-Tabelle speichern
@@ -84,6 +84,8 @@ def update_answer_and_statistics(request):
                 user=user,
                 quizfrage=frage_des_tages,
                 answer=user_answer)
+
+            print(user_answer_obj)
 
             user_answer_obj.save()
 
