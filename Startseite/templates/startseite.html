@@ -66,12 +66,7 @@
     {% for frage in page_frage %}
     <div class="frage">
       <!--Frage Metaangaben-->
-      <div class="frage-meta">
-        <span class="frage-username">{{ frage.user.username }}</span>
-        <span class="frage-erstelldatum"
-          >{{ frage.creation_date|date:"Y-m-d H:i" }}</span
-        >
-      </div>
+      {% include "frage_meta.html" %}
 
       <!--Frage Überschrift mit Link zur Frage anzeigen-->
       <h3>
