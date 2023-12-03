@@ -68,8 +68,6 @@ def update_answer_and_statistics(request):
         frage_des_tages = get_frage_des_tages(request.user,
                                               timestamp)
 
-        print(frage_des_tages)
-
         answer_user_frage_des_tages = get_user_answer_frage_des_tages(
                                       request.user,
                                       frage_des_tages,
@@ -84,8 +82,6 @@ def update_answer_and_statistics(request):
                 user=user,
                 quizfrage=frage_des_tages,
                 answer=user_answer)
-
-            print(user_answer_obj)
 
             user_answer_obj.save()
 

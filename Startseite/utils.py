@@ -46,7 +46,6 @@ def get_frage_des_tages(user, timestamp):
     # Zufällige Quiz-Frage (gemäß Seed) aus der Liste wählen
     frage_des_tages = random.choice(question_list)
 
-    print(timestamp, "+", frage_des_tages)
     return frage_des_tages
 
 
