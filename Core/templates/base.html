@@ -20,12 +20,12 @@
   </head>
   <body>
     <header class="header">
-      <a href="{% url 'startseite-view' %}"><img
-        src="/static/lib/images/logo.png"
-        alt="Logo"
-        class="logo"
-        height="100"
-        
+      <a href="{% url 'startseite-view' %}"
+        ><img
+          src="/static/lib/images/logo.png"
+          alt="Logo"
+          class="logo"
+          height="100"
       /></a>
       <nav class="navbar">
         <a href="{% url 'startseite-view' %}">Startseite</a>
@@ -57,5 +57,6 @@
     <script src="{% static 'lib/js/button_antwort_loeschen.js' %}"></script>
     <script src="{% static 'lib/js/button_antwort_liken.js' %}"></script>
     <script src="{% static 'lib/js/button_frage_bearbeiten.js' %}"></script>
+    <script src="{% static 'lib/js/paginator.js' %}"></script>
   </body>
 </html>

@@ -51,8 +51,20 @@
         </span>
 
         {% if page_frage.has_next %}
+        <!--
         <a href="?seite={{ page_frage.next_page_number }}">next</a>
         <a href="?seite={{ page_frage.paginator.num_pages }}">last &raquo;</a>
+        -->
+        <a
+          href="javascript:void(0);"
+          onclick="loadContent('?seite={{ page_frage.next_page_number }}', 'fragen-container')"
+          >nächste</a
+        >
+        <a
+          href="javascript:void(0);"
+          onclick="loadContent('?seite={{ page_frage.paginator.num_pages }}', 'fragen-container')"
+          >letzte &raquo;</a
+        >
         {% endif %}
       </span>
     </div>
@@ -92,7 +104,8 @@
         {% endif %}
 
         <span class="current">
-          Seite {{ page_antwort.number }} von {{ page_antwort.paginator.num_pages }}
+          Seite {{ page_antwort.number }} von {{
+          page_antwort.paginator.num_pages }}
         </span>
 
         {% if page_antwort.has_next %}
