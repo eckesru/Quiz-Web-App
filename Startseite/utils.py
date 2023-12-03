@@ -75,8 +75,8 @@ def get_user_answer_frage_des_tages(user, frage_des_tages, timestamp):
         user_answer = None
     else:
         user_answer = answer_frage_des_tages.answer
-    finally:
-        return user_answer
+    #finally:
+        #return user_answer
 
 
 def get_statistics_frage_des_tages(frage_des_tages, timestamp):
