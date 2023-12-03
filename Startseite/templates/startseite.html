@@ -139,44 +139,52 @@
         <!--Anzeigen der Auswahlmöglichkeiten-->
         <div class="radio-btns">
           <!--Antwortmöglichkeit 1-->
-          <label class="radio-btn"
+          <label class="radio-btn" {% if answer_user_frage_des_tages %}disabled{% endif %}
             ><input
               type="radio"
               name="answer_{{ frage_des_tages.id }}"
               value="op1"
+              {% if answer_user_frage_des_tages %}disabled{% endif %}
+              {% if answer_user_frage_des_tages == "op1" %}checked{% endif %}
             />
             <div class="radio-circle"></div>
             <span class="radio-label">{{ frage_des_tages.op1 }}</span>
           </label>
 
           <!--Antwortmöglichkeit 2-->
-          <label class="radio-btn"
+          <label class="radio-btn" {% if answer_user_frage_des_tages %}disabled{% endif %}
             ><input
               type="radio"
               name="answer_{{ frage_des_tages.id }}"
               value="op2"
+              {% if answer_user_frage_des_tages %}disabled{% endif %}
+              {% if answer_user_frage_des_tages == "op2" %}checked{% endif %}
             />
             <div class="radio-circle"></div>
             <span class="radio-label">{{ frage_des_tages.op2 }}</span>
           </label>
 
           <!--Antwortmöglichkeit 3-->
-          <label class="radio-btn"
+          <label class="radio-btn" {% if answer_user_frage_des_tages %}disabled{% endif %}
             ><input
               type="radio"
               name="answer_{{ frage_des_tages.id }}"
               value="op3"
+              {% if answer_user_frage_des_tages %}disabled{% endif %}
+              {% if answer_user_frage_des_tages == "op3" %}checked{% endif %}
             />
             <div class="radio-circle"></div>
             <span class="radio-label">{{ frage_des_tages.op3 }}</span>
           </label>
 
           <!--Antwortmöglichkeit 4-->
-          <label class="radio-btn"
+          <label class="radio-btn" {% if answer_user_frage_des_tages %}disabled{% endif %}
             ><input
               type="radio"
               name="answer_{{ frage_des_tages.id }}"
               value="op4"
+              {% if answer_user_frage_des_tages %}disabled{% endif %}
+              {% if answer_user_frage_des_tages == "op4" %}checked{% endif %}
             />
             <div class="radio-circle"></div>
             <span class="radio-label">{{ frage_des_tages.op4 }}</span>
@@ -184,7 +192,7 @@
         </div>
 
         <div>
-          <button type="submit" class="btn btn_blue" onclick="submitAntwort()">
+          <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
             Prüfen
           </button>
         </div>

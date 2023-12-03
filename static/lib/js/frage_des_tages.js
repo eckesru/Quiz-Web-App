@@ -10,6 +10,12 @@ function submitAntwort() {
     event.preventDefault();
   }
 
+  // Hier überprüfen, ob der Benutzer bereits geantwortet hat
+  if ("{{ answer_user_frage_des_tages }}" !== "") {
+    alert("Du hast bereits geantwortet!");
+    event.preventDefault();
+  }
+
   // Formular-Daten vorbereiten
   var formData = new FormData(document.getElementById("antwort-form"));
   formData.append("user_answer", userAnswer.value);
