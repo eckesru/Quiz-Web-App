@@ -1,30 +1,7 @@
 {% extends "base.html" %} {% block content %}
-
-<script>
-  function loadFrageContent(url, targetElementId) {
-    fetch(url)
-      .then((response) => response.text())
-      .then((data) => {
-        var targetElement = document.getElementById(targetElementId);
-        if (targetElement) {
-          targetElement.innerHTML = data;
-        } else {
-          console.error("Error: Target element not found");
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("paginator.js geladen");
-
-    // Hier kannst du weitere Funktionen oder Code hinzufügen, wenn nötig
-  });
-</script>
-
 <div id="meineInhalte">
   <!--Fragen Container-->
-  <div class="frage-container" id="frage-container">
+  <div class="frage-container">
     <h2>Meine Fragen</h2>
 
     <!--Schleife durch einzelne Fragen des Users-->
@@ -74,20 +51,8 @@
         </span>
 
         {% if page_frage.has_next %}
-        <!--
         <a href="?seite={{ page_frage.next_page_number }}">next</a>
         <a href="?seite={{ page_frage.paginator.num_pages }}">last &raquo;</a>
-        -->
-        <a
-          href="javascript:void(0);"
-          onclick="loadFrageContent('?seite={{ page_frage.next_page_number }}', 'fragen-container'); console.log('next clicked');"
-          >nächste</a
-        >
-        <a
-          href="javascript:void(0);"
-          onclick="loadFrageContent('?seite={{ page_frage.paginator.num_pages }}', 'fragen-container'); console.log('last clicked');"
-          >letzte &raquo;</a
-        >
         {% endif %}
       </span>
     </div>
@@ -127,8 +92,7 @@
         {% endif %}
 
         <span class="current">
-          Seite {{ page_antwort.number }} von {{
-          page_antwort.paginator.num_pages }}
+          Seite {{ page_antwort.number }} von {{ page_antwort.paginator.num_pages }}
         </span>
 
         {% if page_antwort.has_next %}
