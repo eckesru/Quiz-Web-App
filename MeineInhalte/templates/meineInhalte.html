@@ -2,7 +2,7 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    function loadContent(url, targetElementId) {
+    function loadFrageContent(url, targetElementId) {
       fetch(url)
         .then((response) => response.text())
         .then((data) => {
@@ -80,12 +80,12 @@
         -->
         <a
           href="javascript:void(0);"
-          onclick="loadContent('?seite={{ page_frage.next_page_number }}', 'fragen-container')"
+          onclick="loadFrageContent('?seite={{ page_frage.next_page_number }}', 'fragen-container'); console.log('next clicked');"
           >nächste</a
         >
         <a
           href="javascript:void(0);"
-          onclick="loadContent('?seite={{ page_frage.paginator.num_pages }}', 'fragen-container')"
+          onclick="loadFrageContent('?seite={{ page_frage.paginator.num_pages }}', 'fragen-container'); console.log('last clicked');"
           >letzte &raquo;</a
         >
         {% endif %}
