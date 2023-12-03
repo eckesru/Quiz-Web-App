@@ -196,10 +196,11 @@
       </form>
     </div>
 
-    <!-- Statistiken anzeigen -->
+    {% if answer_user_frage_des_tages %}
+    <!--Statistiken anzeigen-->
     <div class="statistics">
       So haben andere User abgestimmt 🤓 <br>
-      <!-- Zeige die Statistiken für jede Option an -->
+      <!--Zeige die Statistiken für jede Option an-->
       <p>op1: {{ statistics_frage_des_tages.op1|default:0|floatformat:2 }}%</p>
       <p>op2: {{ statistics_frage_des_tages.op2|default:0|floatformat:2 }}%</p>
       <p>op3: {{ statistics_frage_des_tages.op3|default:0|floatformat:2 }}%</p>
@@ -217,6 +218,7 @@
         Zum Quiz
       </button>
     </div>
+    {% endif %}
 
     <!--Top 5 User (Rangliste)-->
     <h2>Rangliste</h2>
