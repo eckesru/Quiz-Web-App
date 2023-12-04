@@ -194,13 +194,13 @@
           Prüfen
         </button>
         {% if answer_user_frage_des_tages %}
-        {% if answer_user_frage_des_tages in frage_des_tages.ans %}
-        <p><br>Die Antwort ist richtig! 🎉</p>
+          {% if answer_user_frage_des_tages in frage_des_tages.ans %}
+            <p><br>Die Antwort ist richtig! 🎉</p>
+          {% else %}
+            <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
+          {% endif %}
         {% else %}
-        <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
-        {% endif %}
-        {% else %}
-        <p><br>Du hast die Frage des Tages noch nicht beantwortet?! 😯</p>
+          <p><br>Du hast die Frage des Tages noch nicht beantwortet?! 😯</p>
         {% endif %}
       </form>
     </div>
