@@ -22,6 +22,7 @@ function submitAntwort() {
   // Formular-Daten vorbereiten
   var formData = new FormData(document.getElementById("antwort-form"));
   formData.append("user_answer", userAnswer.value);
+  console.log(userAnswer.value);
 
   // AJAX-Anfrage senden
   fetch("{% url 'antwort-einreichen' %}", {
