@@ -193,7 +193,7 @@
         <script>
           var userAnswerValue = document.querySelector('input[name=answer_{{ frage_des_tages.id }}]:checked').value
         </script>
-        <button type="submit" class="btn btn_blue" onclick="submitAntwort("userAnswerValue")" {% if answer_user_frage_des_tages %}disabled{% endif %}>
+        <button type="submit" class="btn btn_blue" onclick="submitAntwort(userAnswerValue)" {% if answer_user_frage_des_tages %}disabled{% endif %}>
           Prüfen
         </button>
         {% if answer_user_frage_des_tages %}
