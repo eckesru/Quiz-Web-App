@@ -193,6 +193,9 @@
         <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
           Prüfen
         </button>
+
+        {{ frage_des_tages.get_option_by_value }}
+
         <script>
           function submitAntwort() {
             // Ausgewählte Antwort abrufen
