@@ -254,7 +254,7 @@
 
         {% if answer_user_frage_des_tages %}
           {% if answer_user_frage_des_tages == 'op1' %}
-            {% set selected_answer = frage_des_tages.op1 %}
+            {% comment %} {% set selected_answer = frage_des_tages.op1 %} {% endcomment %}
           {% endif %}
 
           {% if selected_answer == frage_des_tages.ans %}
