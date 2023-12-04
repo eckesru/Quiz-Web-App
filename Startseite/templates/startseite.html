@@ -254,9 +254,19 @@
 
         {% if answer_user_frage_des_tages %}
           {% if answer_user_frage_des_tages == 'op1' %}
-            {% set selected_answer = frage_des_tages.op1 %}
-            {% comment %} <p>op1<p> {% endcomment %}
-            {% endif %}
+            {% assign selected_answer = frage_des_tages.op1 %}
+          {% endif %}
+    
+          {% if answer_user_frage_des_tages == 'op2' %}
+            {% assign selected_answer = frage_des_tages.op2 %}
+          {% endif %}
+        
+          {% if answer_user_frage_des_tages == 'op3' %}
+            {% assign selected_answer = frage_des_tages.op3 %}
+          {% endif %}
+        
+          {% if answer_user_frage_des_tages == 'op4' %}
+            {% assign selected_answer = frage_des_tages.op4 %}
           {% endif %}
 
           {% if selected_answer == frage_des_tages.ans %}
