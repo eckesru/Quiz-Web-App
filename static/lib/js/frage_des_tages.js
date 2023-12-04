@@ -1,7 +1,7 @@
 function submitAntwort(userAnswer) {
+  console.log(userAnswer);
   if (!userAnswer) {
     // Der Benutzer hat keine Antwort ausgewählt
-    console.log(userAnswer);
     alert("Bitte wähle eine Antwort aus.");
     preventDefault();
   }
