@@ -253,10 +253,14 @@
         </script>
 
         {% if answer_user_frage_des_tages %}
-          {% if answer_user_frage_des_tages == 'op1' %}{% set selected_answer = frage_des_tages.op1 %}
-          {% elif answer_user_frage_des_tages == 'op2' %}{% set selected_answer = frage_des_tages.op2 %}
-          {% elif answer_user_frage_des_tages == 'op3' %}{% set selected_answer = frage_des_tages.op3 %}
-          {% elif answer_user_frage_des_tages == 'op4' %}{% set selected_answer = frage_des_tages.op4 %}
+          {% if answer_user_frage_des_tages == 'op1' %}
+            {% set selected_answer = frage_des_tages.op1 %}
+          {% elif answer_user_frage_des_tages == 'op2' %}
+            {% set selected_answer = frage_des_tages.op2 %}
+          {% elif answer_user_frage_des_tages == 'op3' %}
+            {% set selected_answer = frage_des_tages.op3 %}
+          {% elif answer_user_frage_des_tages == 'op4' %}
+            {% set selected_answer = frage_des_tages.op4 %}
         {% endif %}
 
         {% if answer_user_frage_des_tages %}
