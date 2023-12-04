@@ -194,7 +194,7 @@
           Prüfen
         </button>
 
-        {{ frage_des_tages.ans.get_option_by_value }}
+        {{ frage_des_tages.get_option_by_value({{frage_des_tages.ans}}) }}
 
         <script>
           function submitAntwort() {
