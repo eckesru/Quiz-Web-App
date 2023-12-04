@@ -14,9 +14,13 @@ class QuesModel(models.Model):
     def __str__(self):
         return self.question
 
+    def get_value_by_option(self, option_name):
+        return getattr(self, option_name)
+
     class Meta:
         managed = False
         db_table = "Quiz_quesmodel"
+
 
 class WeeklyQuizResults(models.Model):
     user_id = models.IntegerField()
@@ -25,7 +29,10 @@ class WeeklyQuizResults(models.Model):
     when_played = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"WeeklyQuizResult ID: {self.id} - User: {self.user.username} - Points: {self.points} - Played at: {self.when_played}"
+        return f"WeeklyQuizResult ID: {self.id}\
+              - User: {self.user.username}\
+                 - Points: {self.points}\
+                  - Played at: {self.when_played}"
 
 
 class QuizResults(models.Model):
