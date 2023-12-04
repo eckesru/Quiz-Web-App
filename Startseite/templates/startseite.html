@@ -254,28 +254,35 @@
 
         {% if answer_user_frage_des_tages %}
           {% if answer_user_frage_des_tages == 'op1' %}
-            {% assign selected_answer = frage_des_tages.op1 %}
-          {% endif %}
-    
-          {% if answer_user_frage_des_tages == 'op2' %}
-            {% assign selected_answer = frage_des_tages.op2 %}
-          {% endif %}
-        
-          {% if answer_user_frage_des_tages == 'op3' %}
-            {% assign selected_answer = frage_des_tages.op3 %}
-          {% endif %}
-        
-          {% if answer_user_frage_des_tages == 'op4' %}
-            {% assign selected_answer = frage_des_tages.op4 %}
-          {% endif %}
-
-          {% if selected_answer == frage_des_tages.ans %}
-            <p><br>Die Antwort ist richtig! 🎉</p>
-          {% else %}
-            <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
-          {% endif %}
+            {% if frage_des_tages.op1 == frage_des_tages.ans %}
+              <p><br>Die Antwort ist richtig! 🎉</p>
+              {% else %}
+              <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
+              {% endif %}
+            {% endif %}
+            {% if answer_user_frage_des_tages == 'op2' %}
+            {% if frage_des_tages.op2 == frage_des_tages.ans %}
+              <p><br>Die Antwort ist richtig! 🎉</p>
+              {% else %}
+              <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
+              {% endif %}
+            {% endif %}
+            {% if answer_user_frage_des_tages == 'op3' %}
+            {% if frage_des_tages.op3 == frage_des_tages.ans %}
+              <p><br>Die Antwort ist richtig! 🎉</p>
+              {% else %}
+              <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
+              {% endif %}
+            {% endif %}
+            {% if answer_user_frage_des_tages == 'op4' %}
+            {% if frage_des_tages.op4 == frage_des_tages.ans %}
+              <p><br>Die Antwort ist richtig! 🎉</p>
+              {% else %}
+              <p><br>Die Antwort ist falsch! 😥 Die richtig Antwort ist: {{ frage_des_tages.ans }}</p>
+              {% endif %}
+            {% endif %}
         {% else %}
-          <p><br>Du hast die Frage des Tages noch nicht beantwortet?! 😯</p>
+            <p><br>Du hast die Frage des Tages noch nicht beantwortet?! 😯</p>
         {% endif %}
       </form>
     </div>
