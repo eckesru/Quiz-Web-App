@@ -1,5 +1,5 @@
 function submitAntwort(userAnswerValue) {
-  console.log(userAnswer.value);
+  console.log(userAnswerValue);
 
   if (!userAnswerValue) {
     // Der Benutzer hat keine Antwort ausgewählt
