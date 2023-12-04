@@ -14,10 +14,10 @@ function submitAntwort() {
   }
 
   // Hier überprüfen, ob der Benutzer bereits geantwortet hat
-  if ("{{ answer_user_frage_des_tages }}" !== "") {
-    alert("Du hast bereits geantwortet!");
-    preventDefault();
-  }
+  //if ("{{ answer_user_frage_des_tages }}" !== "") {
+    //alert("Du hast bereits geantwortet!");
+    //preventDefault();
+  //}
 
   // Formular-Daten vorbereiten
   var formData = new FormData(document.getElementById("antwort-form"));
