@@ -14,6 +14,12 @@ class QuesModel(models.Model):
     def __str__(self):
         return self.question
 
+    # Hilfsmethode zur Punkteberechnung im Core (Frage des Tages)
+    def get_option_by_value(self, value):
+        options = {self.op1: 'op1', self.op2: 'op2',
+                   self.op3: 'op3', self.op4: 'op4'}
+        return options.get(value)
+
     # Hilfsmethode, um im Frontend die Option zum Antwort-String zu bekommen
     def get_option_dict(self):
         options = {self.op1: 'op1', self.op2: 'op2',
