@@ -41,13 +41,6 @@ def startseite_view(request):
                                   request.user,
                                   frage_des_tages,
                                   timestamp)
-    
-    #if answer_user_frage_des_tages is None:
-        #antwort_feedback = None
-    #elif answer_user_frage_des_tages == frage_des_tages.ans:
-        #antwort_feedback = True
-    #else:
-       #antwort_feedback = False
 
     statistics_frage_des_tages = get_statistics_frage_des_tages(
         frage_des_tages, timestamp)
@@ -59,8 +52,7 @@ def startseite_view(request):
                "frage_des_tages": frage_des_tages,
                "answer_user_frage_des_tages": answer_user_frage_des_tages,
                "statistics_frage_des_tages": statistics_frage_des_tages,
-               "top_5_user": top_5_user,
-               #"antwort_feedback": antwort_feedback
+               "top_5_user": top_5_user
                }
 
     return render(request, 'startseite.html', context)
