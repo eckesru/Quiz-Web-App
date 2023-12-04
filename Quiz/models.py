@@ -15,10 +15,10 @@ class QuesModel(models.Model):
         return self.question
 
     # Hilfsmethode, um im Frontend die Option zum Antwort-String zu bekommen
-    def get_option_by_value(self, value):
+    def get_option_dict(self):
         options = {self.op1: 'op1', self.op2: 'op2',
                    self.op3: 'op3', self.op4: 'op4'}
-        return options.get(value)
+        return options
 
     class Meta:
         managed = False
