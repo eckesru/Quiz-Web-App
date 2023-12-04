@@ -26,7 +26,8 @@ def update_points_for_user(user):
     teilnahmen_frage_des_tages = BenutzerQuesModel.objects.filter(user=user)
     correct_answers = 0
     for teilnahme in teilnahmen_frage_des_tages:
-        if (teilnahme.answer == teilnahme.quizfrage.ans):
+        if (teilnahme.answer == teilnahme.quizfrage.get_option_by_value(
+                                teilnahme.quizfrage.ans)):
             correct_answers += 1
 
     # Ermittlung der korrekten Antworten bei Quiz der Woche

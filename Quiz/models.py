@@ -14,8 +14,11 @@ class QuesModel(models.Model):
     def __str__(self):
         return self.question
 
-    def get_value_by_option(self, option_name):
-        return getattr(self, option_name)
+    # Hilfsmethode, um im Frontend die Option zum Antwort-String zu bekommen
+    def get_option_by_value(self, value):
+        options = {self.op1: 'op1', self.op2: 'op2',
+                   self.op3: 'op3', self.op4: 'op4'}
+        return options.get(value)
 
     class Meta:
         managed = False

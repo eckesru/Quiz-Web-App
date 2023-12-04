@@ -54,10 +54,6 @@ def startseite_view(request):
 
     top_5_user = get_top_5_users(timestamp)
 
-    print(answer_user_frage_des_tages)
-    print(frage_des_tages)
-    print(frage_des_tages.ans)
-
     context = {"page_frage": page_frage,
                "hot_frage": hot_frage,
                "frage_des_tages": frage_des_tages,
