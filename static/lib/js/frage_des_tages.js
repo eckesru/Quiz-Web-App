@@ -1,7 +1,10 @@
 function submitAntwort() {
   // Ausgewählte Antwort abrufen
+  var questionId = document
+    .getElementById("PruefenButton")
+    .getAttribute("data-question-id");
   var userAnswer = document.querySelector(
-    'input[name="answer_{{ frage_des_tages.id }}"]:checked'
+    'input[name="answer_' + questionId + '"]:checked'
   );
 
   if (!userAnswer) {

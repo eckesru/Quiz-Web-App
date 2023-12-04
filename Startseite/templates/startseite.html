@@ -190,7 +190,7 @@
             <span class="radio-label">{{ frage_des_tages.op4 }}</span>
           </label>
         </div>
-        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
+        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %} data-question-id="{{ frage_des_tages.id }}">
           Prüfen
         </button>
         {% if answer_user_frage_des_tages %}
