@@ -190,7 +190,13 @@
             <span class="radio-label">{{ frage_des_tages.op4 }}</span>
           </label>
         </div>
-        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
+        <script>
+          // Ausgewählte Antwort abrufen
+          var userAnswer = document.querySelector(
+            'input[name="answer_{{ frage_des_tages.id }}"]:checked'
+            );
+        </script>
+        <button type="submit" class="btn btn_blue" onclick="submitAntwort('userAnswer')" {% if answer_user_frage_des_tages %}disabled{% endif %}>
           Prüfen
         </button>
         {% if answer_user_frage_des_tages %}

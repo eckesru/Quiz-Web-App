@@ -1,9 +1,4 @@
-function submitAntwort() {
-  // Ausgewählte Antwort abrufen
-  var userAnswer = document.querySelector(
-    'input[name="answer_{{ frage_des_tages.id }}"]:checked'
-  );
-
+function submitAntwort(userAnswer) {
   if (!userAnswer) {
     // Der Benutzer hat keine Antwort ausgewählt
     console.log(userAnswer);
