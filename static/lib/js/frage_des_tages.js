@@ -1,13 +1,7 @@
-function submitAntwort() {
-  // Ausgewählte Antwort abrufen
-  var questionId = document
-    .getElementById("PruefenButton")
-    .getAttribute("data-question-id");
-  var userAnswer = document.querySelector(
-    'input[name="answer_' + questionId + '"]:checked'
-  );
+function submitAntwort(userAnswerValue) {
+  console.log(userAnswer.value);
 
-  if (!userAnswer) {
+  if (!userAnswerValue) {
     // Der Benutzer hat keine Antwort ausgewählt
     alert("Bitte wähle eine Antwort aus.");
     preventDefault();
@@ -15,14 +9,13 @@ function submitAntwort() {
 
   // Hier überprüfen, ob der Benutzer bereits geantwortet hat
   //if ("{{ answer_user_frage_des_tages }}" !== "") {
-    //alert("Du hast bereits geantwortet!");
-    //preventDefault();
+  //alert("Du hast bereits geantwortet!");
+  //preventDefault();
   //}
 
   // Formular-Daten vorbereiten
   var formData = new FormData(document.getElementById("antwort-form"));
-  formData.append("user_answer", userAnswer.value);
-  console.log(userAnswer.value);
+  formData.append("user_answer", userAnswerValue);
 
   // AJAX-Anfrage senden
   fetch("{% url 'antwort-einreichen' %}", {
@@ -64,3 +57,5 @@ function getCookie(name) {
   }
   return cookieValue;
 }
+
+console.log("frage_des_tages.js geladen");
