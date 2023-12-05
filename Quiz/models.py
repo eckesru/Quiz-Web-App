@@ -14,16 +14,9 @@ class QuesModel(models.Model):
     def __str__(self):
         return self.question
 
-    # Hilfsmethode zur Punkteberechnung im Core (Frage des Tages)
-    def get_option_by_value(self, value):
-        options = {self.op1: 'op1', self.op2: 'op2',
-                   self.op3: 'op3', self.op4: 'op4'}
-        return options.get(value)
-
     class Meta:
         managed = False
         db_table = "Quiz_quesmodel"
-
 
 class WeeklyQuizResults(models.Model):
     user_id = models.IntegerField()
@@ -32,10 +25,7 @@ class WeeklyQuizResults(models.Model):
     when_played = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"WeeklyQuizResult ID: {self.id}\
-              - User: {self.user.username}\
-                 - Points: {self.points}\
-                  - Played at: {self.when_played}"
+        return f"WeeklyQuizResult ID: {self.id} - User: {self.user.username} - Points: {self.points} - Played at: {self.when_played}"
 
 
 class QuizResults(models.Model):

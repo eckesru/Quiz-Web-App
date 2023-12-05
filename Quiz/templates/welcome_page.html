@@ -43,6 +43,22 @@
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
+
+        /* Rechter Container für das zusätzliche Formular */
+        .right-container {
+        width: calc(33.33% - 10px); /* Ändere die Breite entsprechend deiner Anforderungen */
+        box-sizing: border-box;
+    }
+
+    /* Zusätzliches Formular */
+    .right-container .form-container {
+        max-width: 100%; /* Ändere die maximale Breite nach Bedarf */
+        margin: 0;
+    }
+
+    /* Zusätzlicher Abschnitt für die letzten Quiz der Woche-Ergebnisse des Benutzers */
+    .right-container .form-container#userWeeklyResultsFormular {
+        margin-top: 0; /* Keinen oberen Abstand mehr hinzufügen */
 </style>
 
 <div style="display: flex; justify-content: space-between;">
@@ -142,9 +158,68 @@
         <div class="form-container" id="testFormular">
             <h1 class="welcome-heading">Quiz der Woche</h1>
             <br>
-            <a class="welcome-link" href="{% url 'quiz:weekly_quiz_page' %}">Hier geht's los!</a>
+            <a class="welcome-link" href="{% url 'quiz:quizderwoche_page' %}">Hier geht's los!</a>
         </div>
+
+        <!-- Zusätzlicher Abschnitt für die letzten Quiz der Woche-Ergebnisse des Benutzers -->
+        <div class="form-container" id="userWeeklyResultsFormular">
+            <h2>Deine letzten 10 Quiz der Woche-Ergebnisse:</h2>
+            <br>
+            {% if user_weekly_results %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kalenderwoche</th>
+                            <th>Punktzahl</th>
+                            <th>Gespielt am</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in user_weekly_results %}
+                            <tr>
+                                <td>{{ result.quiz_week }}</td>
+                                <td>{{ result.points }}</td>
+                                <td>{{ result.when_played }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Noch keine Quiz der Woche gespielt.</p>
+            {% endif %}
+        </div>
+
+        <!-- Zusätzliches Formular für die wöchentliche Rangliste des Quiz der Woche -->
+        <div class="form-container" id="weeklyLeaderboardFormular">
+            <h2>Rangliste für die aktuelle Kalenderwoche:</h2>
+            <br>
+            {% if weekly_leaderboard %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rang</th>
+                            <th>Benutzername</th>
+                            <th>Punktzahl</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in weekly_leaderboard %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ result.username }}</td>
+                                <td>{{ result.points }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Noch keine Ergebnisse für das Quiz der Woche.</p>
+            {% endif %}
+        </div>
+        
     </div>
+
+        
 
 </div>
 

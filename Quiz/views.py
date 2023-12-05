@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 from django.contrib import messages
 from django.urls import reverse
+from django.db.models import F, Sum
+from django.db.models.functions import ExtractWeek
+import datetime
 
 
 @login_required(login_url='/login/')
@@ -15,6 +18,10 @@ def welcome_page(request):
     # Hole die bereits gespielten Quizzes des Benutzers
     quiz_results = QuizResults.objects.filter(
         user_id=request.user.id).order_by('-when_played')
+
+    # Hole die letzten Quiz der Woche-Ergebnisse des Benutzers
+    user_weekly_results = WeeklyQuizResults.objects.filter(
+        user_id=request.user.id).order_by('-when_played')[:10]
 
     # Hole alle verfügbaren Quiz-Kategorien
     categories = StudyArea.objects.all()
@@ -47,10 +54,31 @@ def welcome_page(request):
                                                     key=lambda x: x['points'],
                                                     reverse=True)
 
+# Aktuelle Kalenderwoche extrahieren
+    current_week = datetime.date.today().isocalendar()[1]
+
+    # Rangliste für das Quiz der Woche erstellen
+    weekly_leaderboard = WeeklyQuizResults.objects.filter(
+        quiz_week=current_week
+    ).order_by('-points')[:10]
+
+    # Extrahiere die Benutzernamen basierend auf den IDs
+    user_ids = [result.user_id for result in weekly_leaderboard]
+    usernames = Benutzer.objects.filter(id__in=user_ids).values('id', 'username')
+
+    # Erstelle ein Dictionary für die Zuordnung von Benutzer-IDs zu Benutzernamen
+    username_mapping = {user['id']: user['username'] for user in usernames}
+
+    # Aktualisiere die Benutzernamen in der weekly_leaderboard-Liste
+    for result in weekly_leaderboard:
+        result.username = username_mapping.get(result.user_id, 'Unknown')
+
     return render(request, 'welcome_page.html',
                   {'categories': categories,
                    'quiz_results': quiz_results,
-                   'grouped_leaderboard': grouped_leaderboard})
+                   'user_weekly_results': user_weekly_results,
+                   'grouped_leaderboard': grouped_leaderboard,
+                   'weekly_leaderboard': weekly_leaderboard})
 
 
 @login_required(login_url='/login/')
@@ -115,7 +143,7 @@ def quiz_page(request, shortname):
     return redirect("/quiz/")
 
 @login_required(login_url='/login/')
-def weekly_quiz_page(request):
+def quizderwoche_page(request):
     now = timezone.now()
     start_of_week = now - timedelta(days=now.weekday(), hours=now.hour, minutes=now.minute, seconds=now.second, microseconds=now.microsecond)
     seed = start_of_week.isocalendar()[1]
@@ -135,8 +163,8 @@ def weekly_quiz_page(request):
 
     if request.method == 'POST':
         if quiz_already_played:
-            # Wenn der Benutzer das Quiz bereits gespielt hat, kehren Sie einfach zur weekly_quiz_page zurück
-            return redirect(reverse('quiz:weekly_quiz_page'))
+            # Wenn der Benutzer das Quiz bereits gespielt hat, kehren Sie einfach zur quizderwoche_page zurück
+            return redirect(reverse('quiz:quizderwoche_page'))
 
         user_answers = {key: request.POST[key] for key in request.POST if key.startswith('answer_')}
 
@@ -147,16 +175,17 @@ def weekly_quiz_page(request):
                 correct_answers += 1
 
         # Speichern Sie das Ergebnis in der WeeklyQuizResults-Tabelle
-        weekly_quiz_result = WeeklyQuizResults(
+        quizderwoche_result = WeeklyQuizResults(
             user_id=user_id,
             quiz_week=quiz_week,
             points=correct_answers
         )
-        weekly_quiz_result.save()
+        quizderwoche_result.save()
 
-        return redirect(reverse('quiz:weekly_quiz_result'))
+        return render(request, 'quizderwoche_result.html', {'correct_answers': correct_answers, 'total_questions': len(weekly_questions)})
 
-    return render(request, 'weekly_quiz_page.html', {'questions': weekly_questions, 'quiz_already_played': quiz_already_played})
+    return render(request, 'quizderwoche_page.html', {'questions': weekly_questions, 'quiz_already_played': quiz_already_played})
+
 
 @login_required(login_url='/login/')
 def quiz_result(request, shortname):
@@ -171,9 +200,8 @@ def quiz_result(request, shortname):
                    'correct_answers': correct_answers,
                    'total_questions': total_questions})
 
-
 @login_required(login_url='/login/')
-def weekly_quiz_result(request):
+def quizderwoche_result(request, correct_answers, total_questions):
     # Holen Sie sich die Ergebnisse des aktuellen Benutzers für das aktuelle Quiz der Woche
     results = WeeklyQuizResults.objects.filter(user_id=request.user.id).order_by('-when_played')[:1]
 
@@ -183,4 +211,7 @@ def weekly_quiz_result(request):
 
     result = results[0]
 
-    return render(request, 'weekly_quiz_result.html', {'result': result})
+    return render(request, 'quizderwoche_result.html', {'result': result, 'correct_answers': correct_answers, 'total_questions': total_questions})
+
+
+
