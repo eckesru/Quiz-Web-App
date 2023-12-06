@@ -193,9 +193,6 @@
         <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
           Prüfen
         </button>
-
-        <p>{{ options.frage_des_tages.ans }}</p>
-
         <script>
           function submitAntwort() {
             // Ausgewählte Antwort abrufen
@@ -264,6 +261,7 @@
         {% else %}
             <p><br>Du hast die Frage des Tages noch nicht beantwortet?! 😯</p>
         {% endif %}
+        
       </form>
     </div>
     
