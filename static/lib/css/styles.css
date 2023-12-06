@@ -83,6 +83,10 @@ body {
   font-size: 10px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Buttons */
 .btn {
   width: auto;
