@@ -30,7 +30,7 @@ def startseite_view(request):
     page = request.GET.get('page')
     page_frage = paginator.get_page(page)
 
-    timestamp = timezone.now()
+    timestamp = timezone.localtime(timezone.now())
 
     hot_frage = get_hot_frage()
 
@@ -67,7 +67,7 @@ def update_answer_and_statistics(request):
     if request.method == 'POST':
         user = request.user
 
-        timestamp = timezone.now()
+        timestamp = timezone.localtime(timezone.now())
         date = timestamp.date()
 
         frage_des_tages = get_frage_des_tages(request.user,
@@ -89,6 +89,9 @@ def update_answer_and_statistics(request):
                 answer=user_answer)
 
             user_answer_obj.save()
+
+            # Aktualisieren der Punkte für den Ersteller
+            Benutzer.update_points(user)
 
             statistics_frage_des_tages = get_statistics_frage_des_tages(
                 frage_des_tages, timestamp)

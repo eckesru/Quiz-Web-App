@@ -71,10 +71,13 @@ def get_user_answer_frage_des_tages(user, frage_des_tages, timestamp):
             get(date=date,
                 user=user,
                 quizfrage=frage_des_tages)
+
     except BenutzerQuesModel.DoesNotExist:
         user_answer = None
+
     else:
         user_answer = answer_frage_des_tages.answer
+
     finally:
         return user_answer
 
