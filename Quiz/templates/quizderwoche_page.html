@@ -3,41 +3,41 @@
 {% block content %}
 {% if quiz_already_played %}
     <form id="frageErstellenFormular" class="form-container">
-        <h1>Fehler</h2>
+        <h1>Fehler</h1>
         <br>
         <p>Du hast das <strong>Quiz der Woche</strong> in dieser Woche bereits gespielt, komm nächste Woche wieder!</p>
         <br>
         <a href="{% url 'quiz:welcome_page' %}">Zurück zur Quiz Auswahl</a>
     </form>
-    {% else %}
-        <form method="post" action="{% url 'quiz:weekly_quiz_page' %}">
-            {% csrf_token %}
-            <h2>Wöchentliches Quiz</h2>
-            <br>
-            <div class="quiz-question-container" id="question-container">
-                {% for question in questions %}
-                    <div class="question {% if forloop.first %}active{% endif %}" id="question-{{ forloop.counter }}">
-                        <p class="quiz-question"><u><strong>{{ question.question }}</strong></u></p>
-                        
-                        <!-- Display question number out of total questions -->
-                        <p class="quiz-question-number">Frage {{ forloop.counter }} von {{ questions|length }}</p>
-
-                        <!-- Add a timer element for each question -->
-                        <p id="timer-{{ forloop.counter }}" class="quiz-timer">verbleibende Zeit: 30 Sekunden</p>
+{% else %}
+    <form method="post" action="{% url 'quiz:quizderwoche_page' %}">
+        {% csrf_token %}
+        <h2>Wöchentliches Quiz</h2>
+        <br>
+        <div class="quiz-question-container" id="question-container">
+            {% for question in questions %}
+                <div class="question {% if forloop.first %}active{% endif %}" id="question-{{ forloop.counter }}">
+                    <p class="quiz-question"><u><strong>{{ question.question }}</strong></u></p>
                     
-                        <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op1 }}"> {{ question.op1 }}</label><br>
-                        <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op2 }}"> {{ question.op2 }}</label><br>
-                        <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op3 }}"> {{ question.op3 }}</label><br>
-                        <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op4 }}"> {{ question.op4 }}</label><br>
-                    </div>
-                {% endfor %}
-            </div>
+                    <!-- Display question number out of total questions -->
+                    <p class="quiz-question-number">Frage {{ forloop.counter }} von {{ questions|length }}</p>
 
-            <button type="button" id="next-question-btn">Nächste Frage</button>
-            <input type="submit" value="Quiz abgeben" id="submit-btn" style="display: none;">
-        </form>
+                    <!-- Add a timer element for each question -->
+                    <p id="timer-{{ forloop.counter }}" class="quiz-timer">verbleibende Zeit: 30 Sekunden</p>
+                
+                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op1 }}"> {{ question.op1 }}</label><br>
+                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op2 }}"> {{ question.op2 }}</label><br>
+                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op3 }}"> {{ question.op3 }}</label><br>
+                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op4 }}"> {{ question.op4 }}</label><br>
+                </div>
+            {% endfor %}
+        </div>
 
-        <!-- JavaScript -->
+        <button type="button" id="next-question-btn">Nächste Frage</button>
+        <input type="submit" value="Quiz abgeben" id="submit-btn" style="display: none;">
+    </form>
+
+    <!-- JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var currentQuestion = 1;
@@ -133,16 +133,30 @@
                 }, 1000);
             }
 
-            function submitQuiz() {
-                nextQuestion();
-            }
-
             document.getElementById('next-question-btn').addEventListener('click', function () {
                 nextQuestion();
             });
 
             document.getElementById('submit-btn').addEventListener('click', function () {
-                submitQuiz();
+                // Add correct answers and total questions as form data before submitting
+                var formData = new FormData(document.getElementById('frageErstellenFormular'));
+                formData.append('correct_answers', countCorrectAnswers());
+                formData.append('total_questions', totalQuestions);
+                
+                // Submit the form with updated data
+                fetch("{% url 'quiz:quizderwoche_page' %}", {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.text())
+                  .then(html => document.getElementById('app').innerHTML = html);
+
+                // Alternatively, you can use XMLHttpRequest for older browsers:
+                // var xhr = new XMLHttpRequest();
+                // xhr.open('POST', "{% url 'quiz:quizderwoche_page' %}", true);
+                // xhr.onload = function () {
+                //     document.getElementById('app').innerHTML = xhr.responseText;
+                // };
+                // xhr.send(formData);
             });
 
             // Initially hide all questions except the first one
@@ -154,5 +168,5 @@
         });
     </script>
     <!-- End JavaScript -->
-    {% endif %}
+{% endif %}
 {% endblock %}

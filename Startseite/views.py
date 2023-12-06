@@ -42,20 +42,21 @@ def startseite_view(request):
                                   frage_des_tages,
                                   timestamp)
 
+    answer_opt_frage_des_tages = frage_des_tages.get_option_by_value(
+        frage_des_tages.ans)
+
     statistics_frage_des_tages = get_statistics_frage_des_tages(
         frage_des_tages, timestamp)
 
     top_5_user = get_top_5_users(timestamp)
 
-    option_dict = frage_des_tages.get_option_dict()
-
     context = {"page_frage": page_frage,
                "hot_frage": hot_frage,
                "frage_des_tages": frage_des_tages,
                "answer_user_frage_des_tages": answer_user_frage_des_tages,
+               "answer_opt_frage_des_tages": answer_opt_frage_des_tages,
                "statistics_frage_des_tages": statistics_frage_des_tages,
                "top_5_user": top_5_user,
-               "options": option_dict
                }
 
     return render(request, 'startseite.html', context)
