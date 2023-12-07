@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 from django.contrib import messages
 from django.urls import reverse
-from django.db.models import F, Sum
+from django.db.models import F, Sum, Max
 from django.db.models.functions import ExtractWeek
 import datetime
 
@@ -29,14 +29,13 @@ def welcome_page(request):
     # Rangliste für jede Quiz-Kategorie (sortiert nach Punktzahl absteigend)
     leaderboard = []
     for category in categories:
-        top_results = QuizResults.objects.filter(quiz_id=category.id).order_by(
-            '-points')[:10]  # Hier [:10] für die Top 10
+        top_results = QuizResults.objects.filter(quiz_id=category.id).values('user_id').annotate(max_points=Max('points')).order_by('-max_points')[:10]
         for result in top_results:
-            user = Benutzer.objects.get(id=result.user_id)
+            user = Benutzer.objects.get(id=result['user_id'])
             leaderboard.append({
                 'category_name': category.name,
                 'username': user.username,
-                'points': result.points,
+                'points': result['max_points'],
             })
 
     # Erstelle eine Dictionary-Struktur,
@@ -48,13 +47,7 @@ def welcome_page(request):
             grouped_leaderboard[category_name] = []
         grouped_leaderboard[category_name].append(entry)
 
-    # Sortiere die Rangliste für jede Kategorie absteigend nach Punktzahl
-    for category_name, entries in grouped_leaderboard.items():
-        grouped_leaderboard[category_name] = sorted(entries,
-                                                    key=lambda x: x['points'],
-                                                    reverse=True)
-
-# Aktuelle Kalenderwoche extrahieren
+    # Aktuelle Kalenderwoche extrahieren
     current_week = datetime.date.today().isocalendar()[1]
 
     # Rangliste für das Quiz der Woche erstellen

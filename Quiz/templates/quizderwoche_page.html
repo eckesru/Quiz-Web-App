@@ -10,7 +10,7 @@
         <a href="{% url 'quiz:welcome_page' %}">Zurück zur Quiz Auswahl</a>
     </form>
 {% else %}
-    <form method="post" action="{% url 'quiz:quizderwoche_page' %}">
+    <form id="frageErstellenFormular" method="post" action="{% url 'quiz:quizderwoche_page' %}">
         {% csrf_token %}
         <h2>Wöchentliches Quiz</h2>
         <br>

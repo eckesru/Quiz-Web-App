@@ -110,45 +110,41 @@
         </div>
 
         <!-- Formular für die Rangliste -->
-        <div class="form-container" id="ranglisteFormular">
-            <h2>Rangliste (jeweils höchste Punktzahl):</h2>
+<div class="form-container" id="ranglisteFormular">
+    <h2>Rangliste (jeweils höchste Punktzahl):</h2>
+    <br>
+    {% if grouped_leaderboard %}
+        {% for category_name, entries in grouped_leaderboard.items %}
             <br>
-            {% if grouped_leaderboard %}
-                {% for category_name, entries in grouped_leaderboard.items %}
-                    <br>
-                    <h3>{{ category_name }}</h3>
-                    {% if entries %}
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Rang</th>
-                                    <th>Benutzername</th>
-                                    <th>Punktzahl</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% regroup entries by user_id as user_results %}
-                                {% for user_results_group in user_results %}
-                                    {% if user_results_group.list %}
-                                        {% with user_result=user_results_group.list.0 %}
-                                            <tr>
-                                                <td>{{ forloop.counter }}</td>
-                                                <td>{{ user_result.username }}</td>
-                                                <td>{{ user_result.points }}</td>
-                                            </tr>
-                                        {% endwith %}
-                                    {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <p>Keine Rangliste verfügbar.</p>
-                    {% endif %}
-                {% endfor %}
+            <h3>{{ category_name }}</h3>
+            {% if entries %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rang</th>
+                            <th>Benutzername</th>
+                            <th>Punktzahl</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user_result in entries %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ user_result.username }}</td>
+                                <td>{{ user_result.points }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             {% else %}
                 <p>Keine Rangliste verfügbar.</p>
             {% endif %}
-        </div>
+        {% endfor %}
+    {% else %}
+        <p>Keine Rangliste verfügbar.</p>
+    {% endif %}
+</div>
+
 
     </div>
 
