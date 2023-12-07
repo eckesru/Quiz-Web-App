@@ -54,10 +54,12 @@ def frage_anzeigen_view_delete(request, frage_id):
 def like_frage(request, frage_id):
     if request.method == 'POST':
         user = request.user
+        del_user = Benutzer.objects.get(username="entfernt")
+
         # frage = Frage.objects.filter(id=frage_id).get()
         frage = get_object_or_404(Frage, id=frage_id)
 
-        if frage.user == user:
+        if frage.user in (user, del_user):
             return JsonResponse({'allowed': False})
 
         if frage in user.liked_fragen.all():

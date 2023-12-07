@@ -11,6 +11,10 @@ def frage_anzeigen_view_antwort_erstellen(request, frage_id):
     frage = Frage.objects.get(id=frage_id)
     antwort_text = request.session.pop('temp_antwort_text')
 
+    del_user = Benutzer.objects.get(username="entfernt")
+    if frage.user == del_user:
+        return redirect("/frage/" + str(frage_id) + "/")
+
     # Erzeugung des Antwort-Objekts
     antwort = Antwort.objects.create(
         user=user,
@@ -51,7 +55,8 @@ def like_antwort(request, frage_id, antwort_id):
         user = request.user
         antwort = Antwort.objects.filter(id=antwort_id).get()
 
-        if antwort.user == user:
+        del_user = Benutzer.objects.get(username="entfernt")
+        if antwort.user in (user, del_user):
             return JsonResponse({'allowed': False})
 
         if antwort in user.liked_antworten.all():

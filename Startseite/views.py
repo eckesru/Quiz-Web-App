@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponseRedirect
 from Core.models import Frage, Benutzer, BenutzerQuesModel
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import TruncDate
@@ -13,6 +13,11 @@ from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users, \
 @login_required(login_url='/login/')
 # Leitet User zum Login, wenn nicht eingeloggt
 def startseite_view(request):
+    if request.method == 'POST':
+        reverse_url = request.META.get("HTTP_REFERER")
+        if reverse_url is None:
+            return redirect("/startseite/")
+        return HttpResponseRedirect(reverse_url)
 
     del_user = Benutzer.objects.get(username="entfernt")
 
