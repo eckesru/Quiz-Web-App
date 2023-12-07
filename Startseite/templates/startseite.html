@@ -192,11 +192,11 @@
             <span class="radio-label">{{ frage_des_tages.op4 }}</span>
           </label>
         </div>
-        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" {% if answer_user_frage_des_tages %}disabled{% endif %}>
+        <button type="submit" class="btn btn_blue" onclick="submitAntwort()" data-user-answer="answer_{{ frage_des_tages.id }}" {% if answer_user_frage_des_tages %}disabled{% endif %}>
           Prüfen
         </button>
-        <script>
-          function submitAntwort() {
+        {% comment %} <script>
+          function submitAntwortOld() {
             // Ausgewählte Antwort abrufen
             var userAnswer = document.querySelector(
               'input[name="answer_{{ frage_des_tages.id }}"]:checked'
@@ -252,7 +252,7 @@
             }
             return cookieValue;
           }
-        </script>
+        </script> {% endcomment %}
 
         {% if answer_user_frage_des_tages %}
           {% if answer_user_frage_des_tages == answer_opt_frage_des_tages %}
