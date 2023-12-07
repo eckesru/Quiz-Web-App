@@ -137,6 +137,7 @@ def quiz_page(request, shortname):
 
     return redirect("/quiz/")
 
+
 @login_required(login_url='/login/')
 def quizderwoche_page(request):
     now = timezone.localtime(timezone.now())
@@ -210,6 +211,7 @@ def quiz_result(request, shortname):
                   {'category': category,
                    'correct_answers': correct_answers,
                    'total_questions': total_questions})
+
 
 @login_required(login_url='/login/')
 def quizderwoche_result(request, correct_answers, total_questions):
