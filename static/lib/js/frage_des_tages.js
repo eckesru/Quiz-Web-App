@@ -1,6 +1,6 @@
-function submitAntwort() {
+function submitAntwort(event) {
   // Ausgewählte Antwort über Button Datenattribut abrufen
-  var button = this;
+  var button = event.currentTarget;
   var userAnswer = document.querySelector(
     'input[name="' + button.dataset.userAnswer + '"]:checked'
   );
