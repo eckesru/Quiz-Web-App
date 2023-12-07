@@ -99,7 +99,7 @@ DATABASES = {
     'PASSWORD': os.environ.get('DB_PASSWORD'),
     # Zum lokalen Testen bzgl. SSL:  {'disabled': True}
     # Korrekt: SSL: {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')
-    'OPTIONS': {'ssl': {'disabled': True},
+    'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')},
                 'charset': 'utf8mb4'}
   }
 }
