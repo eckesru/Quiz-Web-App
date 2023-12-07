@@ -17,9 +17,13 @@ def meine_inhalte_view(request):
     paginator_frage = Paginator(user_fragen, 10)
 
     page_frage = request.GET.get('seite')
-    # Aufbau: .../?seite=x-y, split um x zu bekommen
-    page_frage_list = page_frage.split("-")
-    page_frage_obj = paginator_frage.get_page(page_frage_list[0])
+    try:
+        # Aufbau: .../?seite=x-y, split um x zu bekommen
+        page_frage_list = page_frage.split("-")
+        page_frage_obj = paginator_frage.get_page(page_frage_list[0])
+    except AttributeError:
+        # Wenn in der Url keine Seite angegeben ist, dann Seite 1
+        page_frage_obj = paginator_frage.get_page(1)
 
     user_antworten = Antwort.objects.filter(user_id=user).\
         order_by("-creation_date")
@@ -29,9 +33,14 @@ def meine_inhalte_view(request):
     paginator_antwort = Paginator(user_antworten, 15)
 
     page_antwort = request.GET.get('seite')
-    # Aufbau: .../?seite=x-y, split um y zu bekommen
-    page_antwort_list = page_antwort.split("-")
-    page_antwort_obj = paginator_antwort.get_page(page_antwort_list[1])
+
+    try:
+        # Aufbau: .../?seite=x-y, split um y zu bekommen
+        page_antwort_list = page_antwort.split("-")
+        page_antwort_obj = paginator_antwort.get_page(page_antwort_list[1])
+    except AttributeError:
+        # Wenn in der Url keine Seite angegeben ist, dann Seite 1
+        page_antwort_obj = paginator_antwort.get_page(1)
 
     context = {"page_frage": page_frage_obj, "page_antwort": page_antwort_obj}
     return render(request, 'meineInhalte.html', context)
