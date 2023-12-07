@@ -87,7 +87,7 @@ def quiz_page(request, shortname):
 
     if request.method == 'GET':
         # Seed definieren, welcher sich nur immer ändert
-        now = timezone.now()
+        now = timezone.localtime(timezone.now())
         seed = (now.hour + now.minute + now.second + now.microsecond)
 
         # Random mit dem berechneten seed initialisieren
@@ -130,7 +130,7 @@ def quiz_page(request, shortname):
             user_id=user_id,
             quiz_id=quiz_id,
             points=correct_answers,
-            when_played=timezone.now()  # Aktuelles Datum und Uhrzeit
+            when_played=timezone.localtime(timezone.now())  # Aktuelles Datum und Uhrzeit
         )
         quiz_result.save()
 
@@ -144,7 +144,7 @@ def quiz_page(request, shortname):
 
 @login_required(login_url='/login/')
 def quizderwoche_page(request):
-    now = timezone.now()
+    now = timezone.localtime(timezone.now())
     start_of_week = now - timedelta(days=now.weekday(), hours=now.hour, minutes=now.minute, seconds=now.second, microseconds=now.microsecond)
     seed = start_of_week.isocalendar()[1]
 
