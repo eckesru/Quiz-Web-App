@@ -16,7 +16,7 @@ function submitAntwort(event) {
   formData.append("user_answer", userAnswer.value);
 
   // AJAX-Anfrage senden
-  fetch("{% url 'antwort-einreichen' %}", {
+  fetch("antwort-einreichen/", {
     method: "POST",
     body: formData,
     credentials: "same-origin",
