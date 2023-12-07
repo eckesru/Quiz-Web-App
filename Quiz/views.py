@@ -6,10 +6,8 @@ import random
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from datetime import timedelta
-from django.contrib import messages
 from django.urls import reverse
-from django.db.models import F, Sum, Max
-from django.db.models.functions import ExtractWeek
+from django.db.models import Max
 import datetime
 
 
@@ -29,7 +27,9 @@ def welcome_page(request):
     # Rangliste für jede Quiz-Kategorie (sortiert nach Punktzahl absteigend)
     leaderboard = []
     for category in categories:
-        top_results = QuizResults.objects.filter(quiz_id=category.id).values('user_id').annotate(max_points=Max('points')).order_by('-max_points')[:10]
+        top_results = QuizResults.objects.filter(quiz_id=category.id)\
+            .values('user_id').annotate(max_points=Max('points'))\
+            .order_by('-max_points')[:10]
         for result in top_results:
             user = Benutzer.objects.get(id=result['user_id'])
             leaderboard.append({
@@ -57,9 +57,10 @@ def welcome_page(request):
 
     # Extrahiere die Benutzernamen basierend auf den IDs
     user_ids = [result.user_id for result in weekly_leaderboard]
-    usernames = Benutzer.objects.filter(id__in=user_ids).values('id', 'username')
+    usernames = Benutzer.objects.filter(id__in=user_ids)\
+        .values('id', 'username')
 
-    # Erstelle ein Dictionary für die Zuordnung von Benutzer-IDs zu Benutzernamen
+    # Erstelle Dictionary für die Zuordnung von Benutzer-IDs zu Benutzernamen
     username_mapping = {user['id']: user['username'] for user in usernames}
 
     # Aktualisiere die Benutzernamen in der weekly_leaderboard-Liste
@@ -123,7 +124,8 @@ def quiz_page(request, shortname):
             user_id=user_id,
             quiz_id=quiz_id,
             points=correct_answers,
-            when_played=timezone.localtime(timezone.now())  # Aktuelles Datum und Uhrzeit
+            # Aktuelles Datum und Uhrzeit
+            when_played=timezone.localtime(timezone.now())
         )
         quiz_result.save()
 
@@ -138,7 +140,11 @@ def quiz_page(request, shortname):
 @login_required(login_url='/login/')
 def quizderwoche_page(request):
     now = timezone.localtime(timezone.now())
-    start_of_week = now - timedelta(days=now.weekday(), hours=now.hour, minutes=now.minute, seconds=now.second, microseconds=now.microsecond)
+    start_of_week = now - timedelta(days=now.weekday(),
+                                    hours=now.hour,
+                                    minutes=now.minute,
+                                    seconds=now.second,
+                                    microseconds=now.microsecond)
     seed = start_of_week.isocalendar()[1]
 
     random.seed(seed)
@@ -146,20 +152,25 @@ def quizderwoche_page(request):
     question_pool = QuesModel.objects.all()
 
     # Wöchentliches Quiz erstellen oder vorhandenes abrufen
-    weekly_questions = random.sample(list(question_pool), min(15, len(question_pool)))
+    weekly_questions = random.sample(list(question_pool),
+                                     min(15, len(question_pool)))
 
     # Überprüfen, ob der Benutzer das wöchentliche Quiz bereits gespielt hat
     user_id = request.user.id
     quiz_week = start_of_week.isocalendar()[1]
 
-    quiz_already_played = WeeklyQuizResults.objects.filter(user_id=user_id, quiz_week=quiz_week).exists()
+    quiz_already_played = \
+        WeeklyQuizResults.objects.filter(user_id=user_id,
+                                         quiz_week=quiz_week).exists()
 
     if request.method == 'POST':
         if quiz_already_played:
-            # Wenn der Benutzer das Quiz bereits gespielt hat, kehren Sie einfach zur quizderwoche_page zurück
+            # Wenn der Benutzer das Quiz bereits gespielt hat,
+            # kehre einfach zur quizderwoche_page zurück
             return redirect(reverse('quiz:quizderwoche_page'))
 
-        user_answers = {key: request.POST[key] for key in request.POST if key.startswith('answer_')}
+        user_answers = {key: request.POST[key] for key in request.POST
+                        if key.startswith('answer_')}
 
         correct_answers = 0
         for question in weekly_questions:
@@ -175,9 +186,16 @@ def quizderwoche_page(request):
         )
         quizderwoche_result.save()
 
-        return render(request, 'quizderwoche_result.html', {'correct_answers': correct_answers, 'total_questions': len(weekly_questions)})
+        # Aktualisieren der Punkte für den Ersteller
+        Benutzer.update_points(request.user)
 
-    return render(request, 'quizderwoche_page.html', {'questions': weekly_questions, 'quiz_already_played': quiz_already_played})
+        return render(request, 'quizderwoche_result.html',
+                      {'correct_answers': correct_answers,
+                       'total_questions': len(weekly_questions)})
+
+    return render(request, 'quizderwoche_page.html',
+                  {'questions': weekly_questions,
+                   'quiz_already_played': quiz_already_played})
 
 
 @login_required(login_url='/login/')
@@ -195,16 +213,16 @@ def quiz_result(request, shortname):
 
 @login_required(login_url='/login/')
 def quizderwoche_result(request, correct_answers, total_questions):
-    # Holen Sie sich die Ergebnisse des aktuellen Benutzers für das aktuelle Quiz der Woche
-    results = WeeklyQuizResults.objects.filter(user_id=request.user.id).order_by('-when_played')[:1]
+    # Holen die Ergebnisse des Benutzers für das aktuelle Quiz der Woche
+    results = WeeklyQuizResults.objects.filter(user_id=request.user.id)\
+        .order_by('-when_played')[:1]
 
     if not results:
-        # Wenn keine Ergebnisse vorhanden sind, leiten Sie den Benutzer zu einer Fehlerseite weiter
+        # Wenn keine Ergebnisse vorhanden sind, leite Benutzer zur Fehlerseite
         return render(request, 'no_quiz_result.html')
 
     result = results[0]
 
-    return render(request, 'quizderwoche_result.html', {'result': result, 'correct_answers': correct_answers, 'total_questions': total_questions})
-
-
-
+    return render(request, 'quizderwoche_result.html',
+                  {'result': result, 'correct_answers': correct_answers,
+                   'total_questions': total_questions})

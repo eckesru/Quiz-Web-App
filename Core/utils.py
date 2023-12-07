@@ -1,5 +1,6 @@
 # Datei zur Auslagerung von Methoden
 from .models import Frage, Antwort, Benutzer, BenutzerQuesModel
+from Quiz.models import WeeklyQuizResults
 
 
 def update_points_for_user(user):
@@ -31,8 +32,10 @@ def update_points_for_user(user):
             correct_answers += 1
 
     # Ermittlung der korrekten Antworten bei Quiz der Woche
-    # TODO: Punktermittlung zur Quiz der Woche implementieren
-    correct_quiz_answers = 0
+    teilnahmen_quiz_der_woche = WeeklyQuizResults.objects.filter(user=user)
+    quiz_points = 0
+    for teilnahme in teilnahmen_quiz_der_woche:
+        quiz_points += teilnahme.points
 
     # Gewichte der Punkteberechnung
     frage_mutiplier = 2
@@ -46,8 +49,8 @@ def update_points_for_user(user):
     antwort_points = antworten_amount * antwort_multiplier
     like_points = likes_amount * like_multiplier
     frage_des_tages_points = correct_answers * frage_des_tages_multiplier
-    quiz_der_woche_points = round(correct_quiz_answers *
-                                  quiz_der_woche_multiplier)
+    quiz_der_woche_points = round(quiz_points *
+                                  quiz_der_woche_multiplier, 0)
 
     # Gesamtsumme der Punkte als Ergebnis zurückgeben
     points = frage_points + antwort_points + like_points +\
