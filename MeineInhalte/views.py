@@ -25,7 +25,7 @@ def meine_inhalte_view(request):
     # Instanziierung des Paginators
     # class Paginator(object_list, per_page, *orphans, *allow_empty_first_page)
     # TODO: Ermittlung der Seitenzahlen (zwei Objekte) klären
-    paginator_antwort = Paginator(user_antworten, 10)
+    paginator_antwort = Paginator(user_antworten, 15)
     page_antwort = request.GET.get('seite')
     page_antwort_obj = paginator_antwort.get_page(page_antwort)
 

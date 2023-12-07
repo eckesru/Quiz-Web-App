@@ -27,7 +27,7 @@ def startseite_view(request):
     # Damit werden Seiten von Django gemanaged
     # class Paginator(object_list, per_page, *orphans, *allow_empty_first_page)
     paginator = Paginator(frage, 10)
-    page = request.GET.get('page')
+    page = request.GET.get('seite')
     page_frage = paginator.get_page(page)
 
     timestamp = timezone.localtime(timezone.now())
