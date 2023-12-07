@@ -11,7 +11,8 @@ def frage_erstellen_view(request):
         user = request.user
 
         selected_tags_str_ids = request.POST.getlist('frageTags')
-        selected_tags = Tag.objects.filter(str_id__in=selected_tags_str_ids)
+        selected_tags = Tag.objects\
+            .filter(str_id__in=selected_tags_str_ids)[:5]  # Limit 5
         module_str_id = request.POST.get('frageModul')
         module = Modul.objects.get(str_id=module_str_id)
 
