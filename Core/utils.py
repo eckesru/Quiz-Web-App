@@ -32,7 +32,8 @@ def update_points_for_user(user):
             correct_answers += 1
 
     # Ermittlung der korrekten Antworten bei Quiz der Woche
-    teilnahmen_quiz_der_woche = WeeklyQuizResults.objects.filter(user=user)
+    teilnahmen_quiz_der_woche = \
+        WeeklyQuizResults.objects.filter(user_id=user.id)
     quiz_points = 0
     for teilnahme in teilnahmen_quiz_der_woche:
         quiz_points += teilnahme.points
