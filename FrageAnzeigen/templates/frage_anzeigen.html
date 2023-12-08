@@ -6,7 +6,7 @@
   {% include "frage_meta.html" %}
 
   <!--Frage Überschrift-->
-  <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+  <h3>{{ frage.modul.str_id }}: {{ frage.title }}</h3>
 
   <!--Frage Text-->
   <div class="frage-text">{{ frage.text|safe }}</div>

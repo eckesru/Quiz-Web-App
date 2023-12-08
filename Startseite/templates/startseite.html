@@ -24,7 +24,7 @@
         <!--Frage Überschrift mit Link zur Frage anzeigen-->
         <h3>
           <a href="{% url 'frage-anzeigen' hot_frage.id %}"
-            >{{ hot_frage.module.text }}: {{ hot_frage.title }}</a
+            >{{ hot_frage.modul.str_id }}: {{ hot_frage.title }}</a
           >
         </h3>
 
@@ -71,7 +71,7 @@
       <!--Frage Überschrift mit Link zur Frage anzeigen-->
       <h3>
         <a href="{% url 'frage-anzeigen' frage.id %}"
-          >{{ frage.module.text }}: {{ frage.title }}</a
+          >{{ frage.modul.str_id }}: {{ frage.title }}</a
         >
       </h3>
 

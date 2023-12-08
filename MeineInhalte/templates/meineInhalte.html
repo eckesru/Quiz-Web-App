@@ -13,7 +13,7 @@
       <!--Frage Überschrift mit Link zur Frage anzeigen-->
       <h3>
         <a href="{% url 'frage-anzeigen' frage.id %}"
-          >{{ frage.module.text }}: {{ frage.title }}</a
+          >{{ frage.modul.str_id }}: {{ frage.title }}</a
         >
       </h3>
 
