@@ -211,22 +211,22 @@
         <p class="statistics-heading">So wurde bisher abgestimmt 🤓</p>
         <!-- Zeige die Statistiken für jede Option an -->
         <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op1|round|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op1|default:0 }}%">
               <span class="bar-label">{{ statistics_frage_des_tages.op1|default:0 }}%</span>
           </div>
       </div>
       <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op2|round|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op2|default:0 }}%">
               <span class="bar-label">{{ statistics_frage_des_tages.op2|default:0 }}%</span>
           </div>
       </div>
       <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op3|round|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op3|default:0 }}%">
               <span class="bar-label">{{ statistics_frage_des_tages.op3|default:0 }}%</span>
           </div>
       </div>
       <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op4|round|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op4|default:0 }}%">
               <span class="bar-label">{{ statistics_frage_des_tages.op4|default:0 }}%</span>
           </div>
       </div>
