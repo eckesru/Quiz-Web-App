@@ -22,6 +22,10 @@
   <!--Frage Buttons laden-->
   {% include "frage_actions.html" %}
 </div>
+{% else %}
+<div class="frage">
+  <div class="frage-text">Diese Frage wurde entfernt 🙁</div>
+</div>
 {% endif %}
 
 <!-- Anzeige der Anzahl der Antworten -->
@@ -47,6 +51,7 @@
 </div>
 {% endfor %}
 
+{% if frage.user.username != "entfernt"%}
 <!--Antwort erstellen Formular-->
 <div class="antwort">
   <form id="antwortErstellenFormular" method="post">
@@ -66,4 +71,5 @@
     </button>
   </form>
 </div>
+{% endif %}
 {% endblock %}
