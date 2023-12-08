@@ -130,8 +130,7 @@ html {
   transform: scale(1);
 }
 
-#btn_zum_quiz,
-#btn_frage_stellen {
+#btn_zum_quiz {
   margin-top: 0px;
 }
 
