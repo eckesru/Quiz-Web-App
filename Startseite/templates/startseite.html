@@ -126,7 +126,14 @@
     <!--Aktualisierung der Punkte-->
     <script>
       setInterval(function() {
-        document.querySelector(".text_large").innerText = `${user.username} 🏆 ${user.points}`;
+
+        // User-Daten neu laden
+        fetchUserData()
+          .then(user => {
+            document.querySelector(".text_large").innerText = 
+              `${user.username} 🏆 ${user.points}`
+          });
+      
       }, 5000); // Alle 5 Sekunden
     </script>
 
