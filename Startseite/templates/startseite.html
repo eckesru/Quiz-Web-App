@@ -104,8 +104,8 @@
         </span>
 
         {% if page_frage.has_next %}
-        <a href="?page={{ page_frage.next_page_number }}">nächste</a>
-        <a href="?page={{ page_frage.paginator.num_pages }}">letzte &raquo;</a>
+        <a href="?seite={{ page_frage.next_page_number }}">nächste</a>
+        <a href="?seite={{ page_frage.paginator.num_pages }}">letzte &raquo;</a>
         {% endif %}
       </span>
     </div>
