@@ -27,7 +27,7 @@
 
     <!--Auswahl Frage Tags-->
     <label for="frageTags">Tag:</label>
-    <select id="frageTags" name="frageTags" required multiple size="5">
+    <select id="frageTags" name="frageTags" required multiple size="5" maxlength="5">
       {% for tag in tag_choices %}
       <option value="{{ tag.str_id }}">{{ tag.text }}</option>
       {% endfor %}
