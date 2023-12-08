@@ -48,7 +48,7 @@
       </div>
       <div class="frage">
         <!--Frage stellen Button-->
-        <span>Stelle jetzt deine Frage!</span>
+        <span>Stelle jetzt deine Frage❗</span>
         <button
           onclick="window.location.href='{% url 'frage-erstellen' %}'"
           class="btn btn_blue"
@@ -120,10 +120,10 @@
       <p>Username: {{ user.username }}</p>
 
       <!--Punkte des Users-->
-      <p>Punkte: {{ user.points }}</p>
+      <p>Punkte: {{ user.points }} 🏆</p>
 
       <!--Level des Users-->
-      <p>Level: {{ user.rank }}</p>
+      <p>Level: {{ user.rank }} ⭐</p>
     </div>
 
     <!--Frage des Tages-->
@@ -235,7 +235,7 @@
 
     <div class="frage-des-tages-container">
       <!--Quiz Starten Button-->
-      <span>Starte jetzt ein Quiz und messe dich mit anderen!</span>
+      <span>Starte jetzt ein Quiz und messe dich mit anderen❗</span>
       <button
         onclick="window.location.href='{% url 'quiz:welcome_page' %}'"
         class="btn btn_blue"

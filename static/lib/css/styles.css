@@ -183,6 +183,12 @@ html {
   border-color: #555;
 }
 
+/* Style für Profil */
+.profile p {
+  font-size: 18px; 
+  margin: 8px 0;
+}
+
 /*Style für Statistik zur Frage des Tages*/
 
 .statistics-heading {
