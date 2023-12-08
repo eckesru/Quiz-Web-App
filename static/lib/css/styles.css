@@ -183,8 +183,8 @@ html {
   border-color: #555;
 }
 
-/* Style für Profil */
-.profil-text {
+/* Style für Text */
+.text_large {
   font-size: 18px; 
   margin: 8px 0;
 }
