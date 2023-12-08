@@ -98,7 +98,10 @@ def get_statistics_frage_des_tages(frage_des_tages, timestamp):
 
         total = counter_answers.total()
 
-        statistics = {key: round((counter_answers[key] / total) * 100, 2)
+        # statistics = {key: round((counter_answers[key] / total) * 100, 2)
+        #               for key in counter_answers}
+
+        statistics = {key: round((counter_answers[key] / total) * 100)
                       for key in counter_answers}
 
         # Wenn eins der op fehlt, mit Wert 0 hinzufügen
