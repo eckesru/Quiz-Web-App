@@ -123,19 +123,6 @@
       <p class="text_large">{{ user.rank }}</p>
     </div>
 
-    <!--Aktualisierung der Punkte-->
-    <script>
-      setInterval(function() {
-
-        // User-Daten neu laden
-        fetchUserData()
-        .then(user => {
-          document.getElementById("user-info").innerHTML =
-          `${user.username} 🏆 ${user.points}`
-        });
-      }, 5000); // Alle 5 Sekunden
-    </script>
-
     <!--Frage des Tages-->
     <h2>Frage des Tages</h2>
     <div class="frage-des-tages-container">
