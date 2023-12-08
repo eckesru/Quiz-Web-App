@@ -46,8 +46,8 @@
         </span>
 
         {% if page_frage.has_next %}
-        <a href="?seite={{ page_frage.next_page_number }}-page_antwort.number">nächste</a>
-        <a href="?seite={{ page_frage.paginator.num_pages }}-page_antwort.number">letzte &raquo;</a>
+        <a href="?seite={{ page_frage.next_page_number }}-{{ page_antwort.number }}">nächste</a>
+        <a href="?seite={{ page_frage.paginator.num_pages }}-{{ page_antwort.number }}">letzte &raquo;</a>
         {% endif %}
       </span>
     </div>
