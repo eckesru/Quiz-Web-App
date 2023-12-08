@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block content %}
+{% if frage.user.username =! "entfernt"%}
 <!--Frage anzeigen-->
 <div class="frage">
   <!--Frage Metaangaben-->
@@ -21,6 +22,7 @@
   <!--Frage Buttons laden-->
   {% include "frage_actions.html" %}
 </div>
+{% endif %}
 
 <!-- Anzeige der Anzahl der Antworten -->
 {% if antwort %} {% if antwort|length == 1 %}

@@ -339,6 +339,7 @@ select {
 /* Stil für Titel der Fragen */
 .frage h3 {
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .frage h3 a {

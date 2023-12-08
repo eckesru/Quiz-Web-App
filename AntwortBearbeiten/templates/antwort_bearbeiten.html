@@ -1,8 +1,31 @@
 {% extends "base.html" %} {% block content %}
+<div class="frage">
+  <!--Frage Metaangaben-->
+  {% include "frage_meta.html" %}
+
+  <!--Frage Überschrift-->
+  <h3>{{ frage.module.text }}: {{ frage.title }}</h3>
+
+  <!--Frage Text-->
+  <div class="frage-text">{{ frage.text|safe }}</div>
+
+  <!--Frage Tags-->
+  <div class="tags">
+    <i class="fas fa-tags"></i>
+    {% for tag in frage.tag.all %}
+    <span class="tag">{{ tag.text }}</span>
+    {% endfor %}
+  </div>
+
+  <!--Frage Buttons laden-->
+  {% include "frage_actions.html" %}
+</div>
 <div class="antwort">
   <form id="antwortBearbeitenFormular" method="post">
     {% csrf_token %}
-    <textarea id="antwortText" name="antwortText">{{ antwort.text|safe }}</textarea>
+    <textarea id="antwortText" name="antwortText">
+{{ antwort.text|safe }}</textarea
+    >
     <button type="submit" class="btn btn_blue">Antwort speichern</button>
   </form>
 </div>
