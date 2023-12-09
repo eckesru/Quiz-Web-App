@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login/')
 def antwort_edit_view(request, frage_id, antwort_id):
     user = request.user
+
     antwort = Antwort.objects.get(id=antwort_id)
     antwort_user = antwort.user
 
@@ -19,5 +20,7 @@ def antwort_edit_view(request, frage_id, antwort_id):
         Antwort.objects.filter(id=antwort_id).update(text=antwort_text_new)
         return redirect("/frage/" + str(frage_id) + "/")
 
-    context = {"antwort": antwort}
+    frage = antwort.frage
+
+    context = {"frage": frage, "antwort": antwort}
     return render(request, 'antwort_bearbeiten.html', context)
