@@ -209,22 +209,22 @@
         <p class="statistics-heading">So wurde bisher abgestimmt 🤓</p>
         <!-- Zeige die Statistiken für jede Option an -->
         <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op1|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op1|default:0 }}%; background-color: {% if answer_opt_frage_des_tages == "op1" %}green{% else %}red{% endif %}">
               <span class="bar-label">{{ statistics_frage_des_tages.op1|default:0 }}%</span>
           </div>
       </div>
       <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op2|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op2|default:0 }}%; background-color: {% if answer_opt_frage_des_tages == "op2" %}green{% else %}red{% endif %}">
               <span class="bar-label">{{ statistics_frage_des_tages.op2|default:0 }}%</span>
           </div>
       </div>
       <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op3|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op3|default:0 }}%; background-color: {% if answer_opt_frage_des_tages == "op3" %}green{% else %}red{% endif %}">
               <span class="bar-label">{{ statistics_frage_des_tages.op3|default:0 }}%</span>
           </div>
       </div>
       <div class="bar-container">
-          <div class="bar" style="width: {{ statistics_frage_des_tages.op4|default:0 }}%">
+          <div class="bar" style="width: {{ statistics_frage_des_tages.op4|default:0 }}%; background-color: {% if answer_opt_frage_des_tages == "op4" %}green{% else %}red{% endif %}">
               <span class="bar-label">{{ statistics_frage_des_tages.op4|default:0 }}%</span>
           </div>
       </div>

@@ -203,7 +203,7 @@ html {
 
 .bar {
   height: 100%;
-  background-color: #4CAF50;
+  /* background-color: green; */
   position: relative;
   overflow: hidden;
 }
