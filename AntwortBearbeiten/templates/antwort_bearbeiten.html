@@ -1,4 +1,6 @@
 {% extends "base.html" %} {% block content %}
+{% if frage.user.username != "entfernt"%}
+<!--Frage anzeigen-->
 <div class="frage">
   <!--Frage Metaangaben-->
   {% include "frage_meta.html" %}
@@ -20,6 +22,11 @@
   <!--Frage Buttons laden-->
   {% include "frage_actions.html" %}
 </div>
+{% else %}
+<div class="frage">
+  <div class="frage-text">Diese Frage wurde entfernt 🙁</div>
+</div>
+{% endif %}
 <div class="antwort">
   <form id="antwortBearbeitenFormular" method="post">
     {% csrf_token %}
