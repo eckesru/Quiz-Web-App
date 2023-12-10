@@ -40,6 +40,41 @@
           <span class="tag">{{ tag.text }}</span>
           {% endfor %}
         </div>
+
+        <!--Frage Buttons-->
+        <div class="frage-actions">
+          <!--Button Frage liken-->
+          <button
+            type="button"
+            class="btn btn_light_blue"
+            onclick="frageLiken('{{ hot_frage.id }}')"
+          >
+            <i class="fas fa-thumbs-up"></i> Gefällt mir
+            <span id="frage-like-count-{{ hot_frage.id }}">{{ hot_frage.likes }}</span>
+          </button>
+
+          <!--Nur Anzeigen, wenn User berechtigt-->
+          {% if request.user == hot_frage.user %}
+
+          <!--Button Frage bearbeiten-->
+          <button
+            type="submit"
+            class="btn btn_blue"
+            onclick="frageBearbeiten('{{ hot_frage.id }}')"
+          >
+            Bearbeiten
+          </button>
+
+          <!--Button Frage löschen-->
+          <button
+            type="submit"
+            class="btn btn_red"
+            onclick="frageLoeschen('{{ hot_frage.id }}')"
+          >
+            Löschen
+          </button>
+          {% endif %}
+        </div>
         {% else %}
 
         <!--Anzeige, wenn keine heiße Frage vorhanden ist-->
