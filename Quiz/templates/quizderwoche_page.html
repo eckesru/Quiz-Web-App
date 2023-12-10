@@ -1,40 +1,86 @@
-<!-- weekly_quiz_page.html -->
 {% extends "base.html" %}
 {% block content %}
+<style>
+    /* Gemeinsamer Stil für die Quizfrage-Container */
+    .quiz-question-container {
+        transition: opacity 0.5s ease-in-out;
+    }
+
+</style>
+
 {% if quiz_already_played %}
-    <form id="frageErstellenFormular" class="form-container">
-        <h1>Fehler</h1>
-        <br>
-        <p>Du hast das <strong>Quiz der Woche</strong> in dieser Woche bereits gespielt, komm nächste Woche wieder!</p>
-        <br>
-        <a href="{% url 'quiz:welcome_page' %}">Zurück zur Quiz Auswahl</a>
+    <h2>Fehler</h2>
+    <form id="frageErstellenFormular" class="error-form-container">
+        <span class="text_large">
+            <p>Du hast das Quiz der Woche in dieser Woche bereits gespielt, komm nächste Woche wieder!</p>
+            <br>
+            <a href="{% url 'quiz:welcome_page' %}">
+                <button class="btn btn_blue" type="button" id="btn_zum_quiz">Zurück zur Quiz-Hauptseite</button>
+            </a>
+        </span>
     </form>
 {% else %}
+    <h2>Quiz der Woche</h2>
     <form id="frageErstellenFormular" method="post" action="{% url 'quiz:quizderwoche_page' %}">
         {% csrf_token %}
-        <h2>Wöchentliches Quiz</h2>
-        <br>
         <div class="quiz-question-container" id="question-container">
             {% for question in questions %}
-                <div class="question {% if forloop.first %}active{% endif %}" id="question-{{ forloop.counter }}">
-                    <p class="quiz-question"><u><strong>{{ question.question }}</strong></u></p>
-                    
-                    <!-- Display question number out of total questions -->
-                    <p class="quiz-question-number">Frage {{ forloop.counter }} von {{ questions|length }}</p>
+            <div class="question {% if forloop.first %}active{% endif %}" id="question-{{ forloop.counter }}">
+                <!-- Display question number out of total questions -->
+                <p class="quiz-question-number">Frage {{ forloop.counter }} von {{ questions|length }}</p>
 
-                    <!-- Add a timer element for each question -->
-                    <p id="timer-{{ forloop.counter }}" class="quiz-timer">verbleibende Zeit: 30 Sekunden</p>
-                
-                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op1 }}"> {{ question.op1 }}</label><br>
-                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op2 }}"> {{ question.op2 }}</label><br>
-                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op3 }}"> {{ question.op3 }}</label><br>
-                    <label class="quiz-answer"><input type="radio" name="answer_{{ question.id }}" value="{{ question.op4 }}"> {{ question.op4 }}</label><br>
-                </div>
+                <!-- Add a timer element for each question -->
+                <p id="timer-{{ forloop.counter }}" class="quiz-timer">verbleibende Zeit: 30 Sekunden</p><hr><br>
+
+                <p class="quiz-question">{{ question.question }}</p><br>
+                Wähle eine Antwort:<br>
+
+                <label class="radio-btn"
+                    ><input
+                        type="radio"
+                        name="answer_{{ question.id }}"
+                        value="{{ question.op1 }}"
+                        />
+                        <div class="radio-circle"></div>
+                        <span class="radio-label"> {{ question.op1 }}</span>
+                </label>
+
+                <label class="radio-btn"
+                    ><input
+                        type="radio"
+                        name="answer_{{ question.id }}"
+                        value="{{ question.op2 }}"
+                        />
+                        <div class="radio-circle"></div>
+                        <span class="radio-label"> {{ question.op2 }}</span>
+                </label>
+
+                <label class="radio-btn"
+                    ><input
+                        type="radio"
+                        name="answer_{{ question.id }}"
+                        value="{{ question.op3 }}"
+                        />
+                        <div class="radio-circle"></div>
+                        <span class="radio-label"> {{ question.op3 }}</span>
+                </label>
+
+                <label class="radio-btn"
+                    ><input
+                        type="radio"
+                        name="answer_{{ question.id }}"
+                        value="{{ question.op4 }}"
+                        />
+                        <div class="radio-circle"></div>
+                        <span class="radio-label"> {{ question.op4 }}</span>
+                </label>
+
+            </div>
             {% endfor %}
         </div>
 
-        <button type="button" id="next-question-btn">Nächste Frage</button>
-        <input type="submit" value="Quiz abgeben" id="submit-btn" style="display: none;">
+        <button class="btn btn_blue" type="button" id="next-question-btn">Nächste Frage</button>
+        <input type="submit" class="btn btn_blue" value="Quiz abgeben" id="submit-btn" style="display: none;">
     </form>
 
     <!-- JavaScript -->
@@ -94,7 +140,7 @@
                     questionContainer.style.opacity = 1;
 
                     // Reset answer styles from the previous question
-                    document.querySelectorAll('.quiz-answer input').forEach(function (input) {
+                    document.querySelectorAll('.radio-btn input').forEach(function (input) {
                         input.parentElement.style.backgroundColor = '';
                     });
                 }, 500);
@@ -107,11 +153,13 @@
                 var question = document.getElementById('question-' + currentQuestion);
                 var correctAnswer = correctAnswers[currentQuestion - 1];
 
-                question.querySelectorAll('.quiz-answer').forEach(function (answerContainer) {
+                question.querySelectorAll('.radio-btn').forEach(function (answerContainer) {
                     var answerInput = answerContainer.querySelector('input');
+                    var label = answerContainer.querySelector('.radio-label');
+
                     if (answerInput) {
                         var isCorrect = answerInput.value === correctAnswer;
-                        answerContainer.style.backgroundColor = isCorrect ? 'green' : 'red';
+                        label.style.backgroundColor = isCorrect ? 'green' : 'red';
                     }
                 });
 
@@ -133,30 +181,16 @@
                 }, 1000);
             }
 
+            function submitQuiz() {
+                nextQuestion();
+            }
+
             document.getElementById('next-question-btn').addEventListener('click', function () {
                 nextQuestion();
             });
 
             document.getElementById('submit-btn').addEventListener('click', function () {
-                // Add correct answers and total questions as form data before submitting
-                var formData = new FormData(document.getElementById('frageErstellenFormular'));
-                formData.append('correct_answers', countCorrectAnswers());
-                formData.append('total_questions', totalQuestions);
-                
-                // Submit the form with updated data
-                fetch("{% url 'quiz:quizderwoche_page' %}", {
-                    method: 'POST',
-                    body: formData
-                }).then(response => response.text())
-                  .then(html => document.getElementById('app').innerHTML = html);
-
-                // Alternatively, you can use XMLHttpRequest for older browsers:
-                // var xhr = new XMLHttpRequest();
-                // xhr.open('POST', "{% url 'quiz:quizderwoche_page' %}", true);
-                // xhr.onload = function () {
-                //     document.getElementById('app').innerHTML = xhr.responseText;
-                // };
-                // xhr.send(formData);
+                submitQuiz();
             });
 
             // Initially hide all questions except the first one

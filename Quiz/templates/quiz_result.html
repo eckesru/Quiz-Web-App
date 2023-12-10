@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+    <h2>Dein Ergebnis</h2>
     <form id="frageErstellenFormular">
-        <h1>Dein Ergebnis:</h1>
+        <span class="text_large">
+        <p>Kategorie: {{ category.name }}</p>
+        <p>Richtige Antworten: {{ correct_answers }} von {{ total_questions }}</p>
         <br>
-        <p><strong>Kategorie:</strong> {{ category.name }}</p>
-        <p><strong>Richtige Antworten: </strong>{{ correct_answers }} von {{ total_questions }}</p>
-        <br>
-        <a href="{% url 'quiz:welcome_page' %}">Zurück zur Quiz Auswahl</a>
+        <a href="{% url 'quiz:welcome_page' %}">
+            <button class="btn btn_blue" type="button" id="btn_zum_quiz">Zurück zur Quiz-Hauptseite</button>
+        </a>
+        </span>
     </form>
 {% endblock %}
