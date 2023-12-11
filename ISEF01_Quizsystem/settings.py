@@ -32,6 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["isef01quiz.pro", "localhost"]
 # TODO: localhost in ALLOWED_HOST rausnehmen
+CSRF_TRUSTED_ORIGINS = ['https://isef01quiz.pro']
 
 # Application definition
 
