@@ -11,7 +11,13 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("/")
+
+            # Hole das ?next= aus dem request und leite entsprechend weiter
+            next = request.GET.get('next')
+            if next:
+                return redirect(next)
+            else:
+                return redirect("/")
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
