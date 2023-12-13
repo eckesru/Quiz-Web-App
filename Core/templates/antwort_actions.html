@@ -5,7 +5,6 @@
     type="button"
     class="btn btn_light_blue"
     onclick="antwortLiken('{{ antwort.frage.id }}', '{{ antwort.id }}')"
-    {% if request.user == antwort.user %}disabled{% endif %}
   >
     Hilfreich
     <span id="antwort-like-count-{{ antwort.id }}">{{ antwort.likes }}</span>
