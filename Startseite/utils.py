@@ -6,21 +6,24 @@ from collections import Counter
 
 
 def get_hot_frage():
+    try:
+        del_user = Benutzer.objects.get(username="entfernt")
+        fragen = Frage.objects.all().exclude(user=del_user)
 
-    del_user = Benutzer.objects.get(username="entfernt")
-    fragen = Frage.objects.all().exclude(user=del_user)
+        # Frage in Liste hinzufügen, wenn keine Antworten gibt (Fremdschlüssel)
+        fragen_ohne_antworten = [frage for frage in fragen
+                                 if get_antwort_count_for_frage(frage) == 0]
 
-    # Frage in Liste hinzufügen, wenn keine Antworten gibt (Fremdschlüssel)
-    fragen_ohne_antworten = [frage for frage in fragen
-                             if get_antwort_count_for_frage(frage) == 0]
+        # Aufsteigend nach creation_date sortieren
+        sorted_fragen = sorted(fragen_ohne_antworten,
+                               key=lambda frage:
+                               frage.creation_date,
+                               reverse=False)
 
-    # Aufsteigend nach creation_date sortieren
-    sorted_fragen = sorted(fragen_ohne_antworten,
-                           key=lambda frage:
-                           frage.creation_date,
-                           reverse=False)
+        return sorted_fragen[0]
 
-    return sorted_fragen[0]
+    except IndexError:
+        return None
 
 
 def get_antwort_count_for_frage(frage):
