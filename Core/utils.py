@@ -74,7 +74,7 @@ def get_rank(points):
         (600,   "Fanatischer Forscher 👩‍🔬"),
         (300,   "Wächter des Wissens 💂‍♀️"),
         (150,   "Akademischer Adept 😎"),
-        (75,    "Begeisterter Bücherwurmn 📖"),
+        (75,    "Begeisterter Bücherwurm 📖"),
         (30,    "Ehrgeiziger Akademiker 🧐"),
         (0,     "Neugieriger Student 🤓")
     ]
