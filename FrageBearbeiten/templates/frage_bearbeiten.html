@@ -5,6 +5,12 @@
     {% csrf_token %}
     <textarea id="frageText" name="frageText">{{ frage.text|safe }}</textarea>
     <button type="submit" class="btn btn_blue">Frage speichern</button>
+    <script>
+      if (!istFrageTextBefuellt()) {
+        alert('Bitte füllen Sie den Fragetext aus.');
+        event.preventDefault();
+      }
+    </script>
   </form>
 </div>
 {% endblock %}
