@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% block content %}
 <div class="frage">
+  <!--Frage Metaangaben-->
+  {% include "frage_meta.html" %}
+
+  <!--Frage Überschrift-->
   <h3>{{ frage.module.str_id }}: {{ frage.title }}</h3>
   <form id="frageBearbeitenFormular" method="post">
     {% csrf_token %}
