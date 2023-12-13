@@ -3,9 +3,4 @@ function frageBearbeiten(frageId) {
   window.location.href = "/frage/" + frageId + "/edit/";
 }
 
-function istFrageTextBefuellt() {
-  const frageText = document.getElementById('frageText').value;
-  return frageText.length > 0;
-}
-
 //console.log("button_frage_bearbeiten.js geladen")
