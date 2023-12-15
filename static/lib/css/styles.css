@@ -415,7 +415,7 @@ table {
 
 td {
   font-size: 16px;
-  padding: 1rem 2rem;
+  padding: 1rem;
   position: relative;
 }
 
@@ -429,11 +429,7 @@ td {
 }
 
 .points {
-  display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.top_5_userrank {
-  font-size: 12px;
+  width: 5rem;
 }
