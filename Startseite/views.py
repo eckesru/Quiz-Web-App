@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from Core.models import Frage, Benutzer, BenutzerQuesModel
 from django.contrib.auth.decorators import login_required
-from django.db.models.functions import TruncDate
+from django.db.models.functions import TruncDate, TruncTime
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .utils import get_hot_frage, get_frage_des_tages, get_top_5_users, \
@@ -25,8 +25,9 @@ def startseite_view(request):
     # TruncDate von Django holt nur Date, ignoriert Time.
     frage = Frage.objects.\
         exclude(user=del_user).\
-        annotate(creation_date_only=TruncDate('creation_date')).\
-        order_by("-creation_date_only", "-likes")
+        annotate(creation_date_only=TruncDate('creation_date'),
+                 creation_time_only=TruncTime('creation_date')).\
+        order_by("-creation_date_only", "-likes", "-creation_time_only")
 
     # Instanziierung eines Paginators
     # Damit werden Seiten von Django gemanaged

@@ -27,12 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # TODO: DEBUG auf false setzen
 
-ALLOWED_HOSTS = ["isef01quiz.pro", "localhost"]
+ALLOWED_HOSTS = [".isef01quiz.pro", "localhost"]
 # TODO: localhost in ALLOWED_HOST rausnehmen
-CSRF_TRUSTED_ORIGINS = ['https://isef01quiz.pro']
+CSRF_TRUSTED_ORIGINS = ['https://isef01quiz.pro', 'https://www.isef01quiz.pro']
 
 # Application definition
 
@@ -162,4 +162,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+STATIC_ROOT = '/var/www/isef01quiz.pro/static'
