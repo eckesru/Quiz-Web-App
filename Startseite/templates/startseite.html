@@ -286,7 +286,7 @@
         {% for top_user in top_5_user %}
         <tr>
           <td class="number">{{ forloop.counter }}</td>
-          <td class="name">{{ top_user.username }}</td>
+          <td class="name">{{ top_user.username }} {{ user.rank }}</td>
           <td class="points">{{ top_user.points }}</td>
         </tr>
         {% endfor %}
