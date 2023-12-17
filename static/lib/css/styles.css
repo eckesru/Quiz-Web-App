@@ -430,8 +430,8 @@ td {
 
 .points {
   justify-content: flex-end;
-  align-items: center;
-  width: 5rem;
+  /*align-items: center;*/
+  width: 1rem;
 }
 
 /* Quiz Styling */
